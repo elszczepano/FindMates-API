@@ -1,0 +1,19 @@
+{
+  "name": "findmates-api",
+  "version": "1.0.0",
+  "description": "FindMates app - API",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elszczepano/FindMates-API.git"
+  },
+  "author": "Dominik Szczepaniak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/elszczepano/FindMates-API/issues"
+  },
+  "homepage": "https://github.com/elszczepano/FindMates-API#readme"
+}
