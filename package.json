@@ -18,5 +18,8 @@
   "homepage": "https://github.com/elszczepano/FindMates-API#readme",
   "devDependencies": {
     "jest": "^23.5.0"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
   }
 }
