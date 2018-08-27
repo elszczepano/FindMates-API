@@ -4,6 +4,8 @@
   "description": "FindMates app - API",
   "main": "index.js",
   "scripts": {
+    "build": "rimraf ./dist && babel ./src -d ./dist",
+    "dev": "nodemon -w src/server.js --exec \"babel-node src/server.js\"",
     "test": "jest --coverage"
   },
   "repository": {
@@ -19,7 +21,9 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
-    "jest": "^23.5.0"
+    "jest": "^23.5.0",
+    "nodemon": "^1.18.3",
+    "rimraf": "^2.6.2"
   },
   "dependencies": {
     "express": "^4.16.3"
