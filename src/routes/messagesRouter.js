@@ -3,19 +3,19 @@ import messagesController from "../controllers/messagesController";
 
 const router = express.Router();
 
-router.get('/messages',
+router.get('/',
     messagesController.getAll
 );
-router.get('/messages/:id',
+router.get('/:id',
     messagesController.getOne
 );
-router.post('/messages/',
+router.post('/',
     messagesController.createNew
 );
-router.put('/messages/:id',
+router.put('/:id',
     messagesController.updateOne
 );
-router.delete('/messages/:id',
+router.delete('/:id',
     messagesController.deleteOne
 );
 

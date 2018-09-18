@@ -3,19 +3,19 @@ import usersController from "../controllers/usersController";
 
 const router = express.Router();
 
-router.get('/users',
+router.get('/',
     usersController.getAll
 );
-router.get('/users/:id',
+router.get('/:id',
     usersController.getOne
 );
-router.post('/users/',
+router.post('/',
     usersController.createNew
 );
-router.put('/users/:id',
+router.put('/:id',
     usersController.updateOne
 );
-router.delete('/users/:id',
+router.delete('/:id',
     usersController.deleteOne
 );
 

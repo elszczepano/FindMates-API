@@ -3,19 +3,19 @@ import matchesController from "../controllers/matchesController";
 
 const router = express.Router();
 
-router.get('/matches',
+router.get('/',
     matchesController.getAll
 );
-router.get('/matches/:id',
+router.get('/:id',
     matchesController.getOne
 );
-router.post('/matches/',
+router.post('/',
     matchesController.createNew
 );
-router.put('/matches/:id',
+router.put('/:id',
     matchesController.updateOne
 );
-router.delete('/matches/:id',
+router.delete('/:id',
     matchesController.deleteOne
 );
 

@@ -3,19 +3,19 @@ import pendingMatchesController from "../controllers/pendingMatchesController";
 
 const router = express.Router();
 
-router.get('/pending-matches',
+router.get('/',
     pendingMatchesController.getAll
 );
-router.get('/pending-matches/:id',
+router.get('/:id',
     pendingMatchesController.getOne
 );
-router.post('/pending-matches/',
+router.post('/',
     pendingMatchesController.createNew
 );
-router.put('/pending-matches/:id',
+router.put('/:id',
     pendingMatchesController.updateOne
 );
-router.delete('/pending-matches/:id',
+router.delete('/:id',
     pendingMatchesController.deleteOne
 );
 
