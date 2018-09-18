@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
+import indexRouter from './routes/indexRouter';
 import usersRouter from './routes/usersRouter';
 import matchesRouter from './routes/matchesRouter';
 import messagesRouter from './routes/messagesRouter';
@@ -13,7 +14,12 @@ const app = express();
 mongoose.connect('mongodb://localhost:27017/FindMates', { useNewUrlParser: true });
 const db = mongoose.connection;
 
+//Setup extensions
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
 //Setup routing
+app.use('/', indexRouter);
 app.use('/matches', matchesRouter);
 app.use('/messages', messagesRouter);
 app.use('/pending-matches', pendingMatchesRouter);
