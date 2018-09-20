@@ -1,5 +1,4 @@
 import Match from '../models/Match';
-import PendingMatch from "../models/PendingMatch";
 
 exports.getAll = (req, res) => {
     Match.find({}, (err, match) => {
@@ -34,7 +33,7 @@ exports.deleteOne = (req, res) => {
     Match.findById(req.params.id)
         .then(item => item.remove().then(() => res.json({
             success: true,
-            message: 'Match successfully deleted'  
+            message: 'Match successfully deleted'
         })))
         .catch(err => res.status(404).json({ success: false }));
 };

@@ -1,5 +1,4 @@
 import User from '../models/User';
-import PendingMatch from "../models/PendingMatch";
 
 exports.getAll = (req, res) => {
     User.find({}, (err, user) => {

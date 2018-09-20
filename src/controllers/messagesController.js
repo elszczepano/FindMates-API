@@ -1,5 +1,4 @@
 import Message from '../models/Message';
-import PendingMatch from "../models/PendingMatch";
 
 exports.getAll = (req, res) => {
     Message.find({}, (err, message) => {
