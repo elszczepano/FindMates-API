@@ -1,4 +1,5 @@
 import Message from '../models/Message';
+import PendingMatch from "../models/PendingMatch";
 
 exports.getAll = (req, res) => {
     Message.find({}, (err, message) => {
@@ -30,8 +31,10 @@ exports.updateOne = (req, res) => {
 };
 
 exports.deleteOne = (req, res) => {
-    Message.remove({_id: req.params._id}, (err, message) => {
-        if(err) res.send(err);
-        res.json({ message: 'Message successfully deleted' });
-    });
+    Message.findById(req.params.id)
+        .then(item => item.remove().then(() => res.json({
+            success: true,
+            message: 'Message match successfully deleted'
+        })))
+        .catch(err => res.status(404).json({ success: false }));
 };

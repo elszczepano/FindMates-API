@@ -30,8 +30,10 @@ exports.updateOne = (req, res) => {
 };
 
 exports.deleteOne = (req, res) => {
-    PendingMatch.remove({_id: req.params._id}, (err, pendingMatch) => {
-        if(err) res.send(err);
-        res.json({ message: 'Match successfully deleted' });
-    });
+    PendingMatch.findById(req.params.id)
+        .then(item => item.remove().then(() => res.json({
+            success: true,
+            message: 'Pending match successfully deleted'
+        })))
+        .catch(err => res.status(404).json({ success: false }));
 };
