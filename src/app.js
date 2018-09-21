@@ -6,12 +6,13 @@ import usersRouter from './routes/usersRouter';
 import matchesRouter from './routes/matchesRouter';
 import messagesRouter from './routes/messagesRouter';
 import pendingMatchesRouter from './routes/pendingMatchesRouter';
+import dbConfig from './dbConfig';
 
 //Setup Express.js
 const app = express();
 
 //Setup MongoDB
-mongoose.connect('mongodb://localhost:27017/FindMates', { useNewUrlParser: true });
+mongoose.connect(dbConfig.url, { useNewUrlParser: true });
 const db = mongoose.connection;
 
 //Setup extensions
