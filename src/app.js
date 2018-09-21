@@ -8,13 +8,12 @@ import usersRouter from './routes/usersRouter';
 import matchesRouter from './routes/matchesRouter';
 import messagesRouter from './routes/messagesRouter';
 import pendingMatchesRouter from './routes/pendingMatchesRouter';
-import dbConfig from './dbConfig';
 
 //Setup Express.js
 const app = express();
 
 //Setup MongoDB
-mongoose.connect(dbConfig.url, { useNewUrlParser: true });
+mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true });
 const db = mongoose.connection;
 
 //Setup extensions
