@@ -1,39 +1,36 @@
 import Match from '../models/Match';
 
 exports.getAll = (req, res) => {
-    Match.find({}, (err, match) => {
-        if(err) res.send(err);
-        res.json(match);
-    });
+    Match.find({})
+        .then(item => res.json(item))
+        .catch(err => res.status(404).json({ success: false }));
 };
 
 exports.getOne = (req, res) => {
-    Match.findById(req.params._id, (err, match) => {
-        if(err) res.send(err);
-        res.json(match);
-    });
+    Match.findById(req.params._id)
+        .then(item => res.json(item))
+        .catch(err => res.status(404).json({ success: false }));
 };
 
 exports.createNew = (req, res) => {
     const newMatch = new Match(req.body);
-    newMatch.save((err, match) => {
-        if(err) res.send(err);
-        res.json(match);
-    });
+    newMatch.save()
+        .then(item => res.json(item))
+        .catch(err => res.status(404).json({ success: false }));
 };
 
 exports.updateOne = (req, res) => {
-    Match.findOneAndUpdate({_id: req.params._id}, req.body, {new: true}, (err, match) => {
-        if(err) res.send(err);
-        res.json(match);
-    });
+    Match.findOneAndUpdate({_id: req.params._id}, req.body, {new: true})
+        .then(item => res.json(item))
+        .catch(err => res.status(404).json({ success: false }));
 };
 
 exports.deleteOne = (req, res) => {
     Match.findById(req.params.id)
-        .then(item => item.remove().then(() => res.json({
-            success: true,
-            message: 'Match successfully deleted'
+        .then(item => item.remove()
+            .then(() => res.json({
+                success: true,
+                message: 'Match successfully deleted'
         })))
         .catch(err => res.status(404).json({ success: false }));
 };
