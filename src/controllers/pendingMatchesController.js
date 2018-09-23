@@ -7,7 +7,7 @@ exports.getAll = (req, res) => {
 };
 
 exports.getOne = (req, res) => {
-    PendingMatch.findById(req.params._id)
+    PendingMatch.findById(req.params.id)
         .then(item => res.json(item))
         .catch(err => res.status(404).json({ success: false }));
 };
@@ -20,7 +20,7 @@ exports.createNew = (req, res) => {
 };
 
 exports.updateOne = (req, res) => {
-    PendingMatch.findOneAndUpdate({_id: req.params._id}, req.body, {new: true})
+    PendingMatch.findOneAndUpdate({id: req.params.id}, req.body, {new: true})
         .then(item => res.json(item))
         .catch(err => res.status(404).json({ success: false }));
 };
