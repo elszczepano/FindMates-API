@@ -14,7 +14,8 @@ const userSchema = mongoose.Schema({
         required: true
     },
     birthDate: {
-        type: Date
+        type: Date,
+        required: true
     },
     longitude: {
         type: String,
