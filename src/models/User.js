@@ -9,6 +9,14 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    email: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
     gender: {
         type: String,
         required: true
@@ -62,4 +70,4 @@ const userSchema = mongoose.Schema({
     }
 });
 
-const User = module.exports = mongoose.model('User', userSchema);
+const User = module.exports = mongoose.model('User', userSchema, 'users');

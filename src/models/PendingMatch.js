@@ -28,4 +28,4 @@ const pendingMatchSchema = mongoose.Schema({
     }
 });
 
-const PendingMatch = module.exports = mongoose.model('PendingMatch', pendingMatchSchema);
+const PendingMatch = module.exports = mongoose.model('PendingMatch', pendingMatchSchema, 'pendingMatches');
