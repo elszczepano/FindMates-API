@@ -1,17 +1,16 @@
 import mongoose from 'mongoose';
 
 const pendingMatchSchema = mongoose.Schema({
-    message: {
-        type: String,
-        required: true
-    },
-    userId: {
+    user1Id: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
-    matchId: {
+    user2Id: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
+    },
+    approved: {
+        type: Boolean
     },
     createdAt: {
         type: Date,
