@@ -2,11 +2,11 @@ import mongoose from 'mongoose';
 
 const matchSchema = mongoose.Schema({
     user1Id: {
-        type: Number,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
     user2Id: {
-        type: Number,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
     createdAt: {

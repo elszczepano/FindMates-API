@@ -6,11 +6,11 @@ const pendingMatchSchema = mongoose.Schema({
         required: true
     },
     userId: {
-        type: Number,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
     matchId: {
-        type: Number,
+        type: mongoose.Schema.Types.ObjectId,
         required: true
     },
     createdAt: {
