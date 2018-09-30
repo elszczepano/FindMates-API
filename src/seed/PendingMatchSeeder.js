@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 import PendingMatch from '../models/PendingMatch';
 
 mongoose.connect('mongodb://localhost:27017/FindMates', { useNewUrlParser: true });
+PendingMatch.deleteMany({}, err=> console.log(err));
 
 const user1Id = mongoose.Types.ObjectId();
 const user2Id = mongoose.Types.ObjectId();

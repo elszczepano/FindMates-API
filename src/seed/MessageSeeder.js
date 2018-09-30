@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import Message from '../models/Message';
 
 mongoose.connect('mongodb://localhost:27017/FindMates', { useNewUrlParser: true });
+Message.deleteMany({}, err=> console.log(err));
 
 const userId = mongoose.Types.ObjectId();
 const matchId = mongoose.Types.ObjectId();
