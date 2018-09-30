@@ -10,4 +10,7 @@ const match = new Match({
     user1Id: user1Id,
     user2Id: user2Id
 });
-match.save().then(() => mongoose.disconnect()).catch(err => console.log(err));
+match.save()
+    .then(() => mongoose.disconnect())
+    .then(() => console.log('Match seed succesfully'))
+    .catch(err => console.log(err));

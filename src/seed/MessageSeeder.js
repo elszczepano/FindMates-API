@@ -12,4 +12,7 @@ const message = new Message({
     userId: userId,
     matchId: matchId
 });
-message.save().then(() => mongoose.disconnect()).catch(err => console.log(err));
+message.save()
+    .then(() => mongoose.disconnect())
+    .then(() => console.log('Message seed succesfully'))
+    .catch(err => console.log(err));

@@ -17,5 +17,11 @@ const pendingMatch2 = new PendingMatch({
     approved: false
 });
 
-pendingMatch1.save().then(() => mongoose.disconnect()).catch(err => console.log(err));
-pendingMatch2.save().then(() => mongoose.disconnect()).catch(err => console.log(err));
+pendingMatch1.save()
+    .then(() => mongoose.disconnect())
+    .then(() => console.log('Pending match number 1 seed succesfully'))
+    .catch(err => console.log(err));
+pendingMatch2.save()
+    .then(() => mongoose.disconnect())
+    .then(() => console.log('Pending match number 2 seed succesfully'))
+    .catch(err => console.log(err));

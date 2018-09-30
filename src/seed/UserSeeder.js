@@ -24,4 +24,7 @@ const user = new User({
     purpose: 'New friends',
 });
 
-user.save().then(() => mongoose.disconnect()).catch(err => console.log(err));
+user.save()
+    .then(() => mongoose.disconnect())
+    .then(() => console.log('User seed succesfully'))
+    .catch(err => console.log(err));
