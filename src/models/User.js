@@ -3,39 +3,39 @@ import mongoose from 'mongoose';
 const userSchema = mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: [true, 'Name field is required']
     },
     password: {
         type: String,
-        required: true
+        required: [true, 'Password field is required']
     },
     email: {
         type: String,
-        required: true
+        required: [true, 'Email field is required']
     },
     phone: {
         type: String,
-        required: true
+        required: [true, 'Phone field is required']
     },
     gender: {
         type: String,
-        required: true
+        required: [true, 'Gender field is required']
     },
     birthDate: {
         type: Date,
-        required: true
+        required: [true, 'Birth date field is required']
     },
     longitude: {
         type: String,
-        required: true
+        required: [true, 'Longitude field is required']
     },
     latitude: {
         type: String,
-        required: true
+        required: [true, 'Latitude field is required']
     },
     pictures: {
         type: Array,
-        required: true
+        required: [true, 'At least one picture is required']
     },
     description: {
         type: String
@@ -48,22 +48,22 @@ const userSchema = mongoose.Schema({
     },
     typeOfAccount: {
         type: String,
-        required: true,
+        required: [true, 'Type of account field is required'],
         default: 'Free',
     },
     purpose: {
         type: String,
-        required: true
+        required: [true, 'Purpose field is required']
     },
     createdAt: {
         type: Date,
         default: Date.now,
-        required: true
+        required: [true, 'Created at field is required']
     },
     updatedAt: {
         type: Date,
         default: Date.now,
-        required: true
+        required: [true, 'Updated at field is required']
     },
     deletedAt: {
         type: Date

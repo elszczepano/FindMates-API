@@ -3,25 +3,25 @@ import mongoose from 'mongoose';
 const messageSchema = mongoose.Schema({
     message: {
         type: String,
-        required: true
+        required: [true, 'Message field is required']
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true
+        required: [true, 'User ID field is required']
     },
     matchId: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true
+        required: [true, 'Match ID field is required']
     },
     createdAt: {
         type: Date,
         default: Date.now,
-        required: true
+        required: [true, 'Created at field is required']
     },
     updatedAt: {
         type: Date,
         default: Date.now,
-        required: true
+        required: [true, 'Updated at field is required']
     },
     deletedAt: {
         type: Date
