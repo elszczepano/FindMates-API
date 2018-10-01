@@ -10,12 +10,13 @@ const user2Id = mongoose.Types.ObjectId();
 const pendingMatch1 = new PendingMatch({
     user1Id: user1Id,
     user2Id: user2Id,
-    approved: true
+    user1Approval: true
 });
 const pendingMatch2 = new PendingMatch({
     user1Id: user2Id,
     user2Id: user1Id,
-    approved: false
+    user1Approval: false,
+    user2Approval: true
 });
 
 pendingMatch1.save()
