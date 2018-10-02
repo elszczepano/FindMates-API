@@ -3,11 +3,12 @@ dotenv.config({path: '.env'});
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
+import authRouter from './routes/authRouter';
 import indexRouter from './routes/indexRouter';
-import usersRouter from './routes/usersRouter';
 import matchesRouter from './routes/matchesRouter';
 import messagesRouter from './routes/messagesRouter';
 import pendingMatchesRouter from './routes/pendingMatchesRouter';
+import usersRouter from './routes/usersRouter';
 
 //Setup Express.js
 const app = express();
@@ -22,6 +23,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 //Setup routing
 app.use('/', indexRouter);
+app.use('/auth', authRouter);
 app.use('/matches', matchesRouter);
 app.use('/messages', messagesRouter);
 app.use('/pending-matches', pendingMatchesRouter);
