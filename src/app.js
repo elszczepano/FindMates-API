@@ -3,6 +3,7 @@ dotenv.config({path: '.env'});
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
+import passport from './config/passport';
 import authRouter from './routes/authRouter';
 import indexRouter from './routes/indexRouter';
 import matchesRouter from './routes/matchesRouter';
@@ -12,6 +13,9 @@ import usersRouter from './routes/usersRouter';
 
 //Setup Express.js
 const app = express();
+
+//Configure passport
+passport();
 
 //Setup MongoDB
 mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true });
