@@ -1,22 +1,22 @@
-import express from 'express';
+import { Router } from 'express';
 import usersController from "../controllers/usersController";
 
-const router = express.Router();
+const api = Router();
 
-router.get('/',
+api.get('/',
     usersController.getAll
 );
-router.get('/:id',
+api.get('/:id',
     usersController.getOne
 );
-router.post('/',
+api.post('/',
     usersController.createNew
 );
-router.put('/:id',
+api.put('/:id',
     usersController.updateOne
 );
-router.delete('/:id',
+api.delete('/:id',
     usersController.deleteOne
 );
 
-module.exports = router;
+module.exports = api;

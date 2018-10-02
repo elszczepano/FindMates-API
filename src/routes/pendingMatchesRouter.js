@@ -1,22 +1,22 @@
-import express from 'express';
+import { Router } from 'express';
 import pendingMatchesController from "../controllers/pendingMatchesController";
 
-const router = express.Router();
+const api = Router();
 
-router.get('/',
+api.get('/',
     pendingMatchesController.getAll
 );
-router.get('/:id',
+api.get('/:id',
     pendingMatchesController.getOne
 );
-router.post('/',
+api.post('/',
     pendingMatchesController.createNew
 );
-router.put('/:id',
+api.put('/:id',
     pendingMatchesController.updateOne
 );
-router.delete('/:id',
+api.delete('/:id',
     pendingMatchesController.deleteOne
 );
 
-module.exports = router;
+module.exports = api;

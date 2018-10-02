@@ -1,9 +1,9 @@
-import express from "express";
+import { Router } from "express";
 
-const router = express.Router();
+const api = Router();
 
-router.get('/', (req, res) => {
+api.get('/', (req, res) => {
     res.json('Welcome to FindMates API');
 });
 
-module.exports = router;
+module.exports = api;

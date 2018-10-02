@@ -1,22 +1,22 @@
-import express from "express";
+import { Router } from "express";
 import matchesController from "../controllers/matchesController";
 
-const router = express.Router();
+const api = Router();
 
-router.get('/',
+api.get('/',
     matchesController.getAll
 );
-router.get('/:id',
+api.get('/:id',
     matchesController.getOne
 );
-router.post('/',
+api.post('/',
     matchesController.createNew
 );
-router.put('/:id',
+api.put('/:id',
     matchesController.updateOne
 );
-router.delete('/:id',
+api.delete('/:id',
     matchesController.deleteOne
 );
 
-module.exports = router;
+module.exports = api;

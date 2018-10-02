@@ -1,22 +1,22 @@
-import express from "express";
+import { Router } from "express";
 import messagesController from "../controllers/messagesController";
 
-const router = express.Router();
+const api = Router();
 
-router.get('/',
+api.get('/',
     messagesController.getAll
 );
-router.get('/:id',
+api.get('/:id',
     messagesController.getOne
 );
-router.post('/',
+api.post('/',
     messagesController.createNew
 );
-router.put('/:id',
+api.put('/:id',
     messagesController.updateOne
 );
-router.delete('/:id',
+api.delete('/:id',
     messagesController.deleteOne
 );
 
-module.exports = router;
+module.exports = api;
