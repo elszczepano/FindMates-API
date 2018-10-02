@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import passportLocalMongoose from 'passport-local-mongoose';
 
 const userSchema = mongoose.Schema({
     name: {
@@ -57,20 +58,12 @@ const userSchema = mongoose.Schema({
     purpose: {
         type: String,
         required: [true, 'Purpose field is required']
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        required: [true, 'Created at field is required']
-    },
-    updatedAt: {
-        type: Date,
-        default: Date.now,
-        required: [true, 'Updated at field is required']
-    },
+    }
     deletedAt: {
         type: Date
     }
+}, {
+    timestamps: true
 });
 
 const User = module.exports = mongoose.model('User', userSchema, 'users');

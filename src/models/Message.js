@@ -13,19 +13,11 @@ const messageSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: [true, 'Match ID field is required']
     },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        required: [true, 'Created at field is required']
-    },
-    updatedAt: {
-        type: Date,
-        default: Date.now,
-        required: [true, 'Updated at field is required']
-    },
     deletedAt: {
         type: Date
     }
+}, {
+    timestamps: true
 });
 
 const Message = module.exports = mongoose.model('Message', messageSchema, 'messages');

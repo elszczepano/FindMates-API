@@ -15,19 +15,11 @@ const pendingMatchSchema = mongoose.Schema({
     user2Approval: {
         type: Boolean
     },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-        required: [true, 'Created at field is required']
-    },
-    updatedAt: {
-        type: Date,
-        default: Date.now,
-        required: [true, 'Updated at field is required']
-    },
     deletedAt: {
         type: Date
     }
+}, {
+    timestamps: true
 });
 
 const PendingMatch = module.exports = mongoose.model('PendingMatch', pendingMatchSchema, 'pendingMatches');
