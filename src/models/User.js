@@ -26,16 +26,13 @@ const userSchema = mongoose.Schema({
         required: [true, 'Birth date field is required']
     },
     longitude: {
-        type: String,
-        required: [true, 'Longitude field is required']
+        type: String
     },
     latitude: {
-        type: String,
-        required: [true, 'Latitude field is required']
+        type: String
     },
     pictures: {
-        type: Array,
-        required: [true, 'At least one picture is required']
+        type: Array
     },
     description: {
         type: String
@@ -54,7 +51,7 @@ const userSchema = mongoose.Schema({
     purpose: {
         type: String,
         required: [true, 'Purpose field is required']
-    }
+    },
     deletedAt: {
         type: Date
     }
