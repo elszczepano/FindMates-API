@@ -5,9 +5,13 @@ const messageSchema = mongoose.Schema({
         type: String,
         required: [true, 'Message field is required']
     },
-    userId: {
+    senderId: {
         type: mongoose.Schema.Types.ObjectId,
-        required: [true, 'User ID field is required']
+        required: [true, 'Recepient ID field is required']
+    },
+    recepientId: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: [true, 'Recepient ID field is required']
     },
     matchId: {
         type: mongoose.Schema.Types.ObjectId,
