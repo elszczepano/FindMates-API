@@ -12,6 +12,16 @@ exports.getOne = (req, res) => {
         .catch(err => res.status(404).json({ success: false }));
 };
 
+exports.getResourcesOfUser = (req, res) => {
+    Match.find({$or:
+            [
+                {'user1Id': req.params.id},
+                {'user2Id': req.params.id}
+            ]})
+        .then(item => res.json(item))
+        .catch(err => res.status(404).json({ success: false }));
+};
+
 exports.createNew = (req, res) => {
     const newMatch = new Match(req.body);
     newMatch.save()

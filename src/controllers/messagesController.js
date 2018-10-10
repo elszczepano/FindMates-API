@@ -1,4 +1,5 @@
 import Message from '../models/Message';
+import Match from "../models/Match";
 
 exports.getAll = (req, res) => {
     Message.find({})
@@ -8,6 +9,16 @@ exports.getAll = (req, res) => {
 
 exports.getOne = (req, res) => {
     Message.findById(req.params.id)
+        .then(item => res.json(item))
+        .catch(err => res.status(404).json({ success: false }));
+};
+
+exports.getResourcesOfUser = (req, res) => {
+    Match.find({$or:
+            [
+                {'recepientId': req.params.id},
+                {'senderId': req.params.id}
+            ]})
         .then(item => res.json(item))
         .catch(err => res.status(404).json({ success: false }));
 };

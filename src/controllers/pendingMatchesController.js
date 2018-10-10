@@ -1,4 +1,5 @@
 import PendingMatch from '../models/PendingMatch';
+import Match from "../models/Match";
 
 exports.getAll = (req, res) => {
     PendingMatch.find({})
@@ -8,6 +9,16 @@ exports.getAll = (req, res) => {
 
 exports.getOne = (req, res) => {
     PendingMatch.findById(req.params.id)
+        .then(item => res.json(item))
+        .catch(err => res.status(404).json({ success: false }));
+};
+
+exports.getResourcesOfUser = (req, res) => {
+    PendingMatch.find({$or:
+            [
+                {'user1Id': req.params.id},
+                {'user2Id': req.params.id}
+            ]})
         .then(item => res.json(item))
         .catch(err => res.status(404).json({ success: false }));
 };
