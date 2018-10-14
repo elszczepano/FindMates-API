@@ -8,7 +8,6 @@ api.get('/',
     jwtAuth,
     matchesController.getAll
 );
-//TODO - Check if id of owner === id of current user
 api.get('/:id',
     jwtAuth,
     matchesController.getOne
@@ -22,7 +21,6 @@ api.put('/:id',
     jwtAuth,
     matchesController.updateOne
 );
-//TODO - Check if id of owner === id of current user
 api.delete('/:id',
     jwtAuth,
     matchesController.deleteOne
