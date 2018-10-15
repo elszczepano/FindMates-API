@@ -32,6 +32,12 @@ exports.getResourcesOfUser = (req, res) => {
         .catch(err => res.status(404).json({ success: false }));
 };
 
+exports.getResourcesOfMatch = (req, res) => {
+    Message.find({'matchId': req.params.id})
+        .then(item => res.json(item))
+        .catch(err => res.status(404).json({ success: false }));
+};
+
 exports.createNew = (req, res) => {
     const newMessage = new Message(req.body);
     newMessage.save()
