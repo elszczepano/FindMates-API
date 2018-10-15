@@ -1,5 +1,4 @@
 import Message from '../models/Message';
-import Match from "../models/Match";
 
 exports.getAll = (req, res) => {
     Message.find({})
@@ -9,12 +8,22 @@ exports.getAll = (req, res) => {
 
 exports.getOne = (req, res) => {
     Message.findById(req.params.id)
-        .then(item => res.json(item))
+        .then(item => {
+            if(req.user._id == item.recepientId || req.user._id == item.senderId) {
+                res.status(200).json(item);
+            }
+            else {
+                res.status(403).json({
+                    success: false,
+                    message: 'Access denied. User not permitted'
+                });
+            }
+        })
         .catch(err => res.status(404).json({ success: false }));
 };
 
 exports.getResourcesOfUser = (req, res) => {
-    Match.find({$or:
+    Message.find({$or:
             [
                 {'recepientId': req.params.id},
                 {'senderId': req.params.id}
@@ -38,10 +47,20 @@ exports.updateOne = (req, res) => {
 
 exports.deleteOne = (req, res) => {
     Message.findById(req.params.id)
-        .then(item => item.remove()
-            .then(() => res.json({
-                success: true,
-                message: 'Message match successfully deleted'
-        })))
+        .then(item => {
+            if(req.params.id == item.recepientIdId || req.params.id == item.senderId) {
+                res.status(200).remove();
+            }
+            else {
+                res.status(403).json({
+                    success: false,
+                    message: 'Access denied. User not permitted'
+                });
+            }
+        })
+        .then(() => res.json({
+            success: true,
+            message: 'Message successfully deleted'
+        }))
         .catch(err => res.status(404).json({ success: false }));
 };

@@ -8,7 +8,6 @@ api.get('/',
     jwtAuth,
     pendingMatchesController.getAll
 );
-//TODO - Check if id of owner  === id of current user
 api.get('/:id',
     jwtAuth,
     pendingMatchesController.getOne
@@ -22,10 +21,11 @@ api.put('/:id',
     jwtAuth,
     pendingMatchesController.updateOne
 );
-//TODO - Check if id of owner  === id of current user
 api.delete('/:id',
     jwtAuth,
     pendingMatchesController.deleteOne
 );
+
+//TODO - Add route to resources of user
 
 module.exports = api;

@@ -26,4 +26,6 @@ api.delete('/:id',
     matchesController.deleteOne
 );
 
+//TODO - Add route to resources of user
+
 module.exports = api;

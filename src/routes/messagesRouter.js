@@ -8,7 +8,6 @@ api.get('/',
     jwtAuth,
     messagesController.getAll
 );
-//TODO - Check if id of owner === id of current user
 api.get('/:id',
     jwtAuth,
     messagesController.getOne
@@ -22,10 +21,11 @@ api.put('/:id',
     jwtAuth,
     messagesController.updateOne
 );
-//TODO - Check if id of owner === id of current user
 api.delete('/:id',
     jwtAuth,
     messagesController.deleteOne
 );
+//TODO - Add route to resources of user
+//TODO - Add route to resources of matchId
 
 module.exports = api;
