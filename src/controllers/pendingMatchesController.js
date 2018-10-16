@@ -1,4 +1,5 @@
 import PendingMatch from '../models/PendingMatch';
+import Match from "../models/Match";
 
 exports.getAll = (req, res) => {
     PendingMatch.find({})
@@ -9,7 +10,7 @@ exports.getAll = (req, res) => {
 exports.getOne = (req, res) => {
     PendingMatch.findById(req.params.id)
         .then(item => {
-            if(req.user._id == item.user1Id || req.user._id == item.user2Id) {
+            if(req.user._id.equals(item.user1Id) || req.user._id.equals(item.user2Id)) {
                 res.status(200).json(item);
             }
             else {
@@ -48,8 +49,12 @@ exports.updateOne = (req, res) => {
 exports.deleteOne = (req, res) => {
     PendingMatch.findById(req.params.id)
         .then(item => {
-            if(req.params.id == item.user1Id || req.params.id == item.user2Id) {
-                res.status(200).remove();
+            if(req.user._id.equals(item.user1Id) || req.user._id.equals(item.user2Id)) {
+                item.remove({_id: req.params.id});
+                res.status(200).json({
+                    success: true,
+                    message: 'Pending match deleted successfully'
+                });
             }
             else {
                 res.status(403).json({
@@ -58,9 +63,5 @@ exports.deleteOne = (req, res) => {
                 });
             }
         })
-        .then(() => res.json({
-            success: true,
-            message: 'Match successfully deleted'
-        }))
         .catch(err => res.status(404).json({ success: false }));
 };

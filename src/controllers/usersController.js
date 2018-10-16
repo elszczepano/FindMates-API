@@ -28,10 +28,12 @@ exports.updateOne = (req, res) => {
 
 exports.deleteOne = (req, res) => {
     User.findById(req.params.id)
-        .then(item => item.remove()
-            .then(() => res.json({
+        .then(item => {
+            item.remove();
+            res.json({
                 success: true,
                 message: 'User match successfully deleted'
-        })))
+            })
+        })
         .catch(err => res.status(404).json({ success: false }));
 };

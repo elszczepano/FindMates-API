@@ -9,7 +9,7 @@ exports.getAll = (req, res) => {
 exports.getOne = (req, res) => {
     Message.findById(req.params.id)
         .then(item => {
-            if(req.user._id == item.recepientId || req.user._id == item.senderId) {
+            if(req.user._id.equals(item.recepientId) || req.user._id.equals(item.senderId)) {
                 res.status(200).json(item);
             }
             else {
@@ -25,8 +25,8 @@ exports.getOne = (req, res) => {
 exports.getResourcesOfUser = (req, res) => {
     Message.find({$or:
             [
-                {'recepientId': req.params.id},
-                {'senderId': req.params.id}
+                {'recepientId': req.user._id},
+                {'senderId': req.user._id}
             ]})
         .then(item => res.json(item))
         .catch(err => res.status(404).json({ success: false }));
@@ -54,8 +54,12 @@ exports.updateOne = (req, res) => {
 exports.deleteOne = (req, res) => {
     Message.findById(req.params.id)
         .then(item => {
-            if(req.params.id == item.recepientIdId || req.params.id == item.senderId) {
-                res.status(200).remove();
+            if(req.user._id.equals(item.recepientId) || req.user._id.equals(item.senderId)) {
+                item.remove({_id: req.params.id});
+                res.status(200).json({
+                    success: true,
+                    message: 'Match deleted successfully'
+                });
             }
             else {
                 res.status(403).json({
@@ -64,9 +68,5 @@ exports.deleteOne = (req, res) => {
                 });
             }
         })
-        .then(() => res.json({
-            success: true,
-            message: 'Message successfully deleted'
-        }))
         .catch(err => res.status(404).json({ success: false }));
 };
