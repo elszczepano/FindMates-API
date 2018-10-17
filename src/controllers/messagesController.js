@@ -1,4 +1,5 @@
 import Message from '../models/Message';
+import PendingMatch from "../models/PendingMatch";
 
 exports.getAll = (req, res) => {
     Message.find({})
@@ -39,15 +40,31 @@ exports.getResourcesOfMatch = (req, res) => {
 };
 
 exports.createNew = (req, res) => {
-    const newMessage = new Message(req.body);
-    newMessage.save()
+    const message = new Message(req.body);
+    message.save()
         .then(item => res.json(item))
         .catch(err => res.status(404).json({ success: false }));
 };
 
 exports.updateOne = (req, res) => {
-    Message.findOneAndUpdate({id: req.params.id}, req.body, {new: true})
-        .then(item => res.json(item))
+    Message.findById(req.params.id)
+        .then(item => {
+            if(req.user._id.equals(item.senderId) || req.user._id.equals(item.recepientId)) {
+                const message = Object.assign(item, req.body);
+                message.save()
+                    .then(item => res.json({
+                        success: true,
+                        message: "Message updated successfully.",
+                        data: item
+                    }));
+            }
+            else {
+                res.status(403).json({
+                    success: false,
+                    message: 'Access denied. User not permitted'
+                });
+            }
+        })
         .catch(err => res.status(404).json({ success: false }));
 };
 

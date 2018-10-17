@@ -16,7 +16,7 @@ api.post('/',
     jwtAuth,
     matchesController.createNew
 );
-//TODO - Check if id of owner === id of current user
+//TODO - ACL - Administrator access only
 api.put('/:id',
     jwtAuth,
     matchesController.updateOne

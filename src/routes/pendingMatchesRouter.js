@@ -16,7 +16,6 @@ api.post('/',
     jwtAuth,
     pendingMatchesController.createNew
 );
-//TODO - Check if id of owner  === id of current user
 api.put('/:id',
     jwtAuth,
     pendingMatchesController.updateOne

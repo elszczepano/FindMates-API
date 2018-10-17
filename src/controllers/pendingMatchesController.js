@@ -34,15 +34,31 @@ exports.getResourcesOfUser = (req, res) => {
 };
 
 exports.createNew = (req, res) => {
-    const newPendingMatch = new PendingMatch(req.body);
-    newPendingMatch.save()
+    const pendingMatch = new PendingMatch(req.body);
+    pendingMatch.save()
         .then(item => res.json(item))
         .catch(err => res.status(404).json({ success: false }));
 };
 
 exports.updateOne = (req, res) => {
-    PendingMatch.findOneAndUpdate({id: req.params.id}, req.body, {new: true})
-        .then(item => res.json(item))
+    PendingMatch.findById(req.params.id)
+        .then(item => {
+            if(req.user._id.equals(item.user1Id) || req.user._id.equals(item.user2Id)) {
+                const pendingMatch = Object.assign(item, req.body);
+                pendingMatch.save()
+                    .then(item => res.json({
+                        success: true,
+                        message: "Match updated successfully.",
+                        data: item
+                    }));
+            }
+            else {
+                res.status(403).json({
+                    success: false,
+                    message: 'Access denied. User not permitted'
+                });
+            }
+        })
         .catch(err => res.status(404).json({ success: false }));
 };
 
