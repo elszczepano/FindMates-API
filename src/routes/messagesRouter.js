@@ -16,7 +16,6 @@ api.post('/',
     jwtAuth,
     messagesController.createNew
 );
-//TODO - Check if id of owner  === id of current user
 api.put('/:id',
     jwtAuth,
     messagesController.updateOne
