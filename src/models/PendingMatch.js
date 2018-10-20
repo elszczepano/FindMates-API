@@ -9,15 +9,9 @@ const pendingMatchSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: [true, 'User 2 ID field is required.']
     },
-    user1Approval: {
-        type: Boolean
-    },
-    user2Approval: {
-        type: Boolean
-    },
-    deletedAt: {
-        type: Date
-    }
+    user1Approval: Boolean,
+    user2Approval: Boolean,
+    deletedAt: Date
 }, {
     timestamps: true
 });

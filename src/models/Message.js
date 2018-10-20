@@ -17,9 +17,7 @@ const messageSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: [true, 'Match ID field is required.']
     },
-    deletedAt: {
-        type: Date
-    }
+    deletedAt: Date
 }, {
     timestamps: true
 });

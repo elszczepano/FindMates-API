@@ -9,9 +9,7 @@ const matchSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: [true, 'User 2 ID field is required.']
     },
-    deletedAt: {
-        type: Date
-    }
+    deletedAt: Date
 }, {
     timestamps: true
 });
