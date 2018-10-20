@@ -16,7 +16,7 @@ exports.getOne = (req, res) => {
     Message.findById(req.params.id)
         .then(item => {
             if(!item) return res.status(404).json({ message: `Message with ID ${req.params.id} not found.`});
-            if(req.user._id.equals(item.recepientId) || req.user._id.equals(item.senderId)) {
+            if(req.user._id.equals(item.recipientId) || req.user._id.equals(item.senderId)) {
                 res.status(200).json(item);
             }
             else {
@@ -35,12 +35,12 @@ exports.getOne = (req, res) => {
 exports.getResourcesOfUser = (req, res) => {
     Message.find({$or:
             [
-                {'recepientId': req.user._id},
+                {'recipientId': req.user._id},
                 {'senderId': req.user._id}
             ]})
         .then(item => {
             if(!item) return res.status(404).json({ message: `Resources of user ID ${req.params.id} not found.`});
-            if(req.user._id.equals(item.recepientId) || req.user._id.equals(item.senderId)) {
+            if(req.user._id.equals(item.recipientId) || req.user._id.equals(item.senderId)) {
                 res.status(200).json(item);
             }
             else {
@@ -60,7 +60,7 @@ exports.getResourcesOfMatch = (req, res) => {
     Message.find({'matchId': req.params.id})
         .then(item => {
             if(!item) return res.status(404).json({ message: `Resources of match ID ${req.params.id} not found.`});
-            if(req.user._id.equals(item.recepientId) || req.user._id.equals(item.senderId)) {
+            if(req.user._id.equals(item.recipientId) || req.user._id.equals(item.senderId)) {
                 res.status(200).json(item);
             }
             else {
@@ -90,7 +90,7 @@ exports.updateOne = (req, res) => {
     Message.findById(req.params.id)
         .then(item => {
             if(!item) return res.status(404).json({ message: `Message with ID ${req.params.id} not found.`});
-            if(req.user._id.equals(item.senderId) || req.user._id.equals(item.recepientId)) {
+            if(req.user._id.equals(item.senderId) || req.user._id.equals(item.recipientId)) {
                 const message = Object.assign(item, req.body);
                 message.save()
                     .then(item => res.status(200).json({
@@ -116,7 +116,7 @@ exports.deleteOne = (req, res) => {
     Message.findById(req.params.id)
         .then(item => {
             if(!item) return res.status(404).json({ message: `Message with ID ${req.params.id} not found.`});
-            if(req.user._id.equals(item.recepientId) || req.user._id.equals(item.senderId)) {
+            if(req.user._id.equals(item.recipientId) || req.user._id.equals(item.senderId)) {
                 item.remove({_id: req.params.id});
                 res.status(200).json({
                     success: true,

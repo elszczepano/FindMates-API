@@ -7,11 +7,11 @@ const messageSchema = mongoose.Schema({
     },
     senderId: {
         type: mongoose.Schema.Types.ObjectId,
-        required: [true, 'Recepient ID field is required']
+        required: [true, 'Sender ID field is required']
     },
-    recepientId: {
+    recipientId: {
         type: mongoose.Schema.Types.ObjectId,
-        required: [true, 'Recepient ID field is required']
+        required: [true, 'Recipient ID field is required']
     },
     matchId: {
         type: mongoose.Schema.Types.ObjectId,
