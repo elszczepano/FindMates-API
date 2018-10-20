@@ -4,6 +4,6 @@ export default (req, res, next) => {
     if(queryId == userId) next();
     else res.status(403).json({
         success: false,
-        message: 'Access denied. User not permitted'
+        message: 'Access denied. User not permitted.'
     });
 }

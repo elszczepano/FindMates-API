@@ -13,5 +13,5 @@ const match = new Match({
 });
 match.save()
     .then(() => mongoose.disconnect())
-    .then(() => console.log('Match seed successfully'))
+    .then(() => console.log('Match seed successfully.'))
     .catch(err => console.log(err));

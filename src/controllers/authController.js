@@ -7,7 +7,7 @@ export default {
         const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, {expiresIn: 3600});
 
         return res.status(200).json({
-            message: "User signed in succesfully",
+            message: "User signed in successfully.",
             token: token
         });
     },
@@ -19,7 +19,7 @@ export default {
 
     res.status(201).json({
         success: true,
-        message: "User registered succesfully"
+        message: "User registered successfully."
     });
     }
 }

@@ -17,5 +17,5 @@ const message = new Message({
 });
 message.save()
     .then(() => mongoose.disconnect())
-    .then(() => console.log('Message seed successfully'))
+    .then(() => console.log('Message seed successfully.'))
     .catch(err => console.log(err));

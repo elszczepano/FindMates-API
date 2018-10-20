@@ -11,19 +11,19 @@ const userSchema = mongoose.Schema({
         unique: true,
         trim: true,
         lowercase: true,
-        required: [true, 'Email field is required']
+        required: [true, 'Email field is required.']
     },
     phone: {
         type: String,
-        required: [true, 'Phone field is required']
+        required: [true, 'Phone field is required.']
     },
     gender: {
         type: String,
-        required: [true, 'Gender field is required']
+        required: [true, 'Gender field is required.']
     },
     birthDate: {
         type: Date,
-        required: [true, 'Birth date field is required']
+        required: [true, 'Birth date field is required.']
     },
     longitude: {
         type: String
@@ -45,12 +45,12 @@ const userSchema = mongoose.Schema({
     },
     typeOfAccount: {
         type: String,
-        required: [true, 'Type of account field is required'],
+        required: [true, 'Type of account field is required.'],
         default: 'Free',
     },
     purpose: {
         type: String,
-        required: [true, 'Purpose field is required']
+        required: [true, 'Purpose field is required.']
     },
     deletedAt: {
         type: Date
