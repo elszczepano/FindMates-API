@@ -27,5 +27,5 @@ const user = new User({
 
 user.save()
     .then(() => mongoose.disconnect())
-    .then(() => console.log('User seed succesfully'))
+    .then(() => console.log('User seed successfully'))
     .catch(err => console.log(err));

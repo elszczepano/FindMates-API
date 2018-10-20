@@ -21,9 +21,9 @@ const pendingMatch2 = new PendingMatch({
 
 pendingMatch1.save()
     .then(() => mongoose.disconnect())
-    .then(() => console.log('Pending match number 1 seed succesfully'))
+    .then(() => console.log('Pending match number 1 seed successfully'))
     .catch(err => console.log(err));
 pendingMatch2.save()
     .then(() => mongoose.disconnect())
-    .then(() => console.log('Pending match number 2 seed succesfully'))
+    .then(() => console.log('Pending match number 2 seed successfully'))
     .catch(err => console.log(err));
