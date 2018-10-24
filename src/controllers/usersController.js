@@ -24,16 +24,6 @@ exports.getOne = (req, res) => {
         }));
 };
 
-exports.createNew = (req, res) => {
-    const newUser = new User(req.body);
-    newUser.save()
-        .then(item => res.status(201).json(item))
-        .catch(err => res.status(500).json({
-            success: false,
-            message: err
-        }));
-};
-
 exports.updateOne = (req, res) => {
     User.findOneAndUpdate({id: req.params.id}, req.body, {new: true})
         .then(item => {

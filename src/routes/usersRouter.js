@@ -13,11 +13,6 @@ api.get('/:id',
     jwtAuth,
     usersController.getOne
 );
-//TODO - ACL - Administrator access only
-api.post('/',
-    jwtAuth,
-    usersController.createNew
-);
 api.put('/:id',
     jwtAuth,
     checkOwnership,
