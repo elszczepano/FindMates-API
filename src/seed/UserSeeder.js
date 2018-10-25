@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import User from '../models/User';
 
 mongoose.connect('mongodb://localhost:27017/FindMates', { useNewUrlParser: true });
+mongoose.set('useCreateIndex', true);
 User.deleteMany({}, err=> console.log(err));
 
 const user = new User({

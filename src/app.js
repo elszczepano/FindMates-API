@@ -19,7 +19,8 @@ const app = express();
 passport();
 
 //Setup MongoDB
-mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true });
+mongoose.connect(process.env.DB_HOST, {useNewUrlParser: true });
+mongoose.set('useCreateIndex', true);
 const db = mongoose.connection;
 
 //Setup extensions
