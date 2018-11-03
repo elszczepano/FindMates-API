@@ -11,6 +11,7 @@ import messagesRouter from './routes/messagesRouter';
 import pendingMatchesRouter from './routes/pendingMatchesRouter';
 import usersRouter from './routes/usersRouter';
 import errorsHandler from './middlewares/errors';
+import checkDatabaseStatus from './checkDatabaseStatus';
 
 //Setup Express.js
 const app = express();
@@ -21,7 +22,7 @@ passport();
 //Setup MongoDB
 mongoose.connect(process.env.DB_HOST, {useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
-const db = mongoose.connection;
+checkDatabaseStatus(process.env.DB_HOST);
 
 //Setup extensions
 app.use(bodyParser.json());
