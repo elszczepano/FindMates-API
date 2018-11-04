@@ -79,7 +79,11 @@ exports.getResourcesOfMatch = (req, res) => {
 exports.createNew = (req, res) => {
     const message = new Message(req.body);
     message.save()
-        .then(item => res.status(201).json(item))
+        .then(item => res.status(201).json({
+            success: true,
+            message: "Message created successfully.",
+            data: item
+        }))
         .catch(err => res.status(500).json({
             success: false,
             message: err

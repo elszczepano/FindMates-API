@@ -59,7 +59,11 @@ exports.getResourcesOfUser = (req, res) => {
 exports.createNew = (req, res) => {
     const newMatch = new Match(req.body);
     newMatch.save()
-        .then(item => res.status(201).json(item))
+        .then(item => res.status(201).json({
+            success: true,
+            message: "Match created successfully.",
+            data: item
+        }))
         .catch(err => res.status(500).json({
             success: false,
             message: err
