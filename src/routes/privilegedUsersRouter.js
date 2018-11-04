@@ -1,32 +1,33 @@
 import { Router } from 'express';
 import privilegedUsersController from "../controllers/privilegedUsersController";
 import jwtAuth from "../middlewares/auth";
+import checkPrivileges from "../middlewares/checkPrivileges";
 
 const api = Router();
 
-//TODO - ACL - Administrator access only
 api.get('/',
     jwtAuth,
+    checkPrivileges,
     privilegedUsersController.getAll
 );
-//TODO - ACL - Administrator access only
 api.get('/:id',
     jwtAuth,
+    checkPrivileges,
     privilegedUsersController.getOne
 );
-//TODO - ACL - Administrator access only
 api.post('/',
     jwtAuth,
+    checkPrivileges,
     privilegedUsersController.createNew
 );
-//TODO - ACL - Administrator access only
 api.put('/:id',
     jwtAuth,
+    checkPrivileges,
     privilegedUsersController.updateOne
 );
-//TODO - ACL - Administrator access only
 api.delete('/:id',
     jwtAuth,
+    checkPrivileges,
     privilegedUsersController.deleteOne
 );
 

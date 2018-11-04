@@ -1,11 +1,12 @@
 import { Router } from "express";
 import matchesController from "../controllers/matchesController";
 import jwtAuth from "../middlewares/auth";
+import checkPrivileges from "../middlewares/checkPrivileges";
 
 const api = Router();
-//TODO - ACL - Administrator access only
 api.get('/',
     jwtAuth,
+    checkPrivileges,
     matchesController.getAll
 );
 api.get('/:id',
@@ -16,9 +17,9 @@ api.post('/',
     jwtAuth,
     matchesController.createNew
 );
-//TODO - ACL - Administrator access only
 api.put('/:id',
     jwtAuth,
+    checkPrivileges,
     matchesController.updateOne
 );
 api.delete('/:id',
