@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 //Setup routing
 app.use('/', indexRouter);
-app.use('/auth', authRouter);
+app.use('/', authRouter);
 app.use('/matches', matchesRouter);
 app.use('/messages', messagesRouter);
 app.use('/pending-matches', pendingMatchesRouter);
