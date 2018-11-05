@@ -3,6 +3,7 @@ dotenv.config({path: '.env'});
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
+import cors from 'cors';
 import passport from './config/passport';
 import authRouter from './routes/authRouter';
 import indexRouter from './routes/indexRouter';
@@ -27,6 +28,7 @@ checkDatabaseStatus(process.env.DB_HOST);
 //Setup extensions
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors());
 
 //Setup routing
 app.use('/', indexRouter);
