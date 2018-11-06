@@ -8,7 +8,6 @@ User.deleteMany({}, err=> console.log(err));
 
 const user = new User({
     name: faker.name.firstName(),
-    password: faker.lorem.word(),
     email: faker.internet.email(),
     phone: faker.phone.phoneNumber(),
     gender: 'male',
@@ -26,7 +25,17 @@ const user = new User({
     purpose: 'New friends',
 });
 
-user.save()
-    .then(() => mongoose.disconnect())
-    .then(() => console.log('User seed successfully.'))
-    .catch(err => console.log(err));
+const register = new Promise((resolve, reject) => {
+    User.register(user, 'test', (err, account) => {
+        if(err) {
+            reject(err);
+        }
+        resolve('User seed successfully.');
+    });
+});
+register.then(res => {
+    console.log(res);
+    mongoose.disconnect();
+}).catch(err => console.log(err));
+
+
