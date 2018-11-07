@@ -28,6 +28,7 @@ const userSchema = mongoose.Schema({
     longitude: String,
     latitude: String,
     pictures: Array,
+    profilePicture: String,
     description: String,
     snapchat: String,
     instagram: String,
