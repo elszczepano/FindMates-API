@@ -1,12 +1,13 @@
 import { Router } from 'express';
 import jwtAuth from '../middlewares/auth';
 import checkOwnership from '../middlewares/checkOwnership';
+import checkPrivileges from "../middlewares/checkPrivileges";
 import usersController from "../controllers/usersController";
 
 const api = Router();
-//TODO - ACL - Administrator access only
 api.get('/',
     jwtAuth,
+    checkPrivileges,
     usersController.getAll
 );
 api.get('/:id',
