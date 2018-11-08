@@ -3,6 +3,8 @@ import jwtAuth from '../middlewares/auth';
 import checkOwnership from '../middlewares/checkOwnership';
 import checkPrivileges from "../middlewares/checkPrivileges";
 import usersController from "../controllers/usersController";
+import { validateUserUpdate } from "../validators/usersValidator";
+import { checkValidation } from "../validators/checkValidation";
 
 const api = Router();
 api.get('/',
@@ -17,6 +19,8 @@ api.get('/:id',
 api.put('/:id',
     jwtAuth,
     checkOwnership,
+    validateUserUpdate,
+    checkValidation,
     usersController.updateOne
 );
 api.delete('/:id',
