@@ -1,7 +1,7 @@
-import { check, validationResult } from 'express-validator/check';
+import { check } from 'express-validator/check';
 import { sanitizeBody } from 'express-validator/filter';
 
-exports.validate = [
+exports.validateRegister = [
     check('name').trim().not().isEmpty().withMessage('Name is required.'),
     check('email').trim().not().isEmpty().withMessage('E-mail is required.'),
     check('email').trim().isEmail().withMessage('Invalid e-mail address.'),
@@ -14,14 +14,3 @@ exports.validate = [
     sanitizeBody('*').escape()
 ];
 
-exports.checkValidation = (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        return res.status(422).json({
-            success: false,
-            data: req.body,
-            errors: errors.mapped()
-        });
-    }
-    next();
-};
