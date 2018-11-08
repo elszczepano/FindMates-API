@@ -2,6 +2,8 @@ import { Router } from "express";
 import messagesController from "../controllers/messagesController";
 import jwtAuth from "../middlewares/auth";
 import checkPrivileges from "../middlewares/checkPrivileges";
+import { validateCreate } from "../validators/messagesValidator";
+import { checkValidation } from "../validators/checkValidation";
 
 const api = Router();
 api.get('/',
@@ -15,6 +17,8 @@ api.get('/:id',
 );
 api.post('/',
     jwtAuth,
+    validateCreate,
+    checkValidation,
     messagesController.createNew
 );
 api.put('/:id',
