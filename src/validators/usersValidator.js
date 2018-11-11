@@ -1,5 +1,6 @@
 import { check } from 'express-validator/check';
 import { sanitizeBody } from 'express-validator/filter';
+import moment from 'moment';
 
 exports.validateRegister = [
     check('name').trim().not().isEmpty().withMessage('Name is required.'),
@@ -10,7 +11,7 @@ exports.validateRegister = [
     check('phone').trim().not().isEmpty().withMessage('Phone number is required.'),
     check('gender').trim().not().isEmpty().withMessage('Gender is required.'),
     check('birthDate').trim().not().isEmpty().withMessage('Date of birth is required.'),
-    check('birthDate').trim().matches(/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/).withMessage('Invalid date of birth.'),
+    check('birthDate').trim().custom((value) => moment(value, 'YYYY-MM-DD').isValid()).withMessage('Invalid date of birth.'),
     check('pictures').optional().isArray().withMessage('Invalid data format.'),
     check('purpose').trim().not().isEmpty().withMessage('Purpose is required.'),
     sanitizeBody('*').escape()
@@ -25,7 +26,7 @@ exports.validateUserUpdate = [
     check('phone').optional().trim().not().isEmpty().withMessage('Phone number cannot be empty.'),
     check('gender').optional().trim().not().isEmpty().withMessage('Gender cannot be empty.'),
     check('birthDate').optional().trim().not().isEmpty().withMessage('Date of birth cannot be empty.'),
-    check('birthDate').trim().matches(/([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/).withMessage('Invalid date of birth.'),
+    check('birthDate').trim().custom((value) => moment(value, 'YYYY-MM-DD').isValid()).withMessage('Invalid date of birth.'),
     check('pictures').optional().isArray().withMessage('Invalid data format.'),
     check('purpose').optional().trim().not().isEmpty().withMessage('Purpose cannot be empty.'),
     sanitizeBody('*').escape()
