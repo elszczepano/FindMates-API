@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import {check} from "express-validator/check";
 import {sanitizeBody} from "express-validator/filter";
 
