@@ -1,6 +1,17 @@
 import mongoose from 'mongoose';
 import passportLocalMongoose from 'passport-local-mongoose';
 
+const GeoSchema = mongoose.Schema({
+    type: {
+        type: String,
+        default: "Point"
+    },
+    coordinates: {
+        type: [Number],
+        index: '2dsphere'
+    }
+});
+
 const userSchema = mongoose.Schema({
     name: {
         type: String,
@@ -25,8 +36,7 @@ const userSchema = mongoose.Schema({
         type: Date,
         required: [true, 'Birth date field is required.']
     },
-    longitude: String,
-    latitude: String,
+    geometry: GeoSchema,
     pictures: Array,
     profilePicture: String,
     description: String,
