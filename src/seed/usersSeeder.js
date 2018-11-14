@@ -12,8 +12,9 @@ const user = new User({
     phone: faker.phone.phoneNumber(),
     gender: 'male',
     birthDate: faker.date.past(),
-    longitude: faker.address.longitude(),
-    latitude: faker.address.latitude(),
+    geometry: {
+        coordinates: [52.406374, 16.9251681]
+    },
     pictures: [
         faker.image.image(),
         faker.image.image(),
