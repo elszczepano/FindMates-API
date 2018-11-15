@@ -7,12 +7,14 @@ const api = Router();
 
 api.get('/',
     jwtAuth,
-    checkPrivileges,
     privilegedUsersController.getAll
 );
 api.get('/:id',
     jwtAuth,
-    checkPrivileges,
+    privilegedUsersController.getOne
+);
+api.get('/users/:id',
+    jwtAuth,
     privilegedUsersController.getOne
 );
 api.post('/',
@@ -30,7 +32,5 @@ api.delete('/:id',
     checkPrivileges,
     privilegedUsersController.deleteOne
 );
-
-//TODO - Add route to resources of user
 
 module.exports = api;

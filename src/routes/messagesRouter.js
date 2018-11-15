@@ -11,6 +11,14 @@ api.get('/',
     checkPrivileges,
     messagesController.getAll
 );
+api.get('/matches/:id',
+    jwtAuth,
+    messagesController.getOne
+);
+api.get('/users/:id',
+    jwtAuth,
+    messagesController.getOne
+);
 api.get('/:id',
     jwtAuth,
     messagesController.getOne
@@ -31,7 +39,5 @@ api.delete('/:id',
     jwtAuth,
     messagesController.deleteOne
 );
-//TODO - Add route to resources of user
-//TODO - Add route to resources of matchId
 
 module.exports = api;

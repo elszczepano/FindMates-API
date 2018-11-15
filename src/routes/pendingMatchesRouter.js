@@ -15,6 +15,10 @@ api.get('/:id',
     jwtAuth,
     pendingMatchesController.getOne
 );
+api.get('/users/:id',
+    jwtAuth,
+    pendingMatchesController.getResourcesOfUser
+);
 api.post('/',
     jwtAuth,
     validateCreate,
@@ -31,7 +35,5 @@ api.delete('/:id',
     jwtAuth,
     pendingMatchesController.deleteOne
 );
-
-//TODO - Add route to resources of user
 
 module.exports = api;
