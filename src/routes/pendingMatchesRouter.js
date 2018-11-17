@@ -13,10 +13,12 @@ api.get('/',
 );
 api.get('/:id',
     jwtAuth,
+    checkPrivileges,
     pendingMatchesController.getOne
 );
 api.get('/users/:id',
     jwtAuth,
+    checkPrivileges,
     pendingMatchesController.getResourcesOfUser
 );
 api.post('/',
