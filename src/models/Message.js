@@ -7,14 +7,17 @@ const messageSchema = mongoose.Schema({
     },
     senderId: {
         type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: [true, 'Sender ID field is required.']
     },
     recipientId: {
         type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         required: [true, 'Recipient ID field is required.']
     },
     matchId: {
         type: mongoose.Schema.Types.ObjectId,
+        ref: 'Match',
         required: [true, 'Match ID field is required.']
     },
     deletedAt: Date

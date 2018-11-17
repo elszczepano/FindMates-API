@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 const privilegedUserSchema = mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
         unique: true,
         required: [true, 'User ID field is required.']
     },
