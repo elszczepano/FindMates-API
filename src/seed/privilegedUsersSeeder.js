@@ -5,10 +5,10 @@ mongoose.connect('mongodb://localhost:27017/FindMates', { useNewUrlParser: true 
 mongoose.set('useCreateIndex', true);
 PrivilegedUser.deleteMany({}, err=> console.log(err));
 
-const userId = mongoose.Types.ObjectId();
+const user = mongoose.Types.ObjectId();
 
 const privilegedUser = new PrivilegedUser({
-    userId: userId,
+    user: user,
     role: 'Administrator'
 });
 privilegedUser.save()

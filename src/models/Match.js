@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
 
 const matchSchema = mongoose.Schema({
-    user1Id: {
+    user1: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: [true, 'User 1 ID field is required.']
     },
-    user2Id: {
+    user2: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: [true, 'User 2 ID field is required.']

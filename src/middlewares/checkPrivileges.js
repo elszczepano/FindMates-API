@@ -1,7 +1,7 @@
 import PrivilegedUser from '../models/PrivilegedUser';
 
 export default (req, res, next) => {
-    PrivilegedUser.find({'userId': req.params.id})
+    PrivilegedUser.find({'user': req.params.id})
         .then(item => {
             if(item.role === 'Administrator') next();
             else {

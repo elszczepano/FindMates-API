@@ -3,7 +3,7 @@ import PrivilegedUser from '../models/PrivilegedUser';
 exports.getAll = (req, res) => {
     PrivilegedUser.find({})
         .populate({
-            path: 'userId',
+            path: 'user',
             select: '-__v -salt -hash -createdAt -updatedAt'
         })
         .then(item => {
@@ -19,7 +19,7 @@ exports.getAll = (req, res) => {
 exports.getOne = (req, res) => {
     PrivilegedUser.findById(req.params.id)
         .populate({
-            path: 'userId',
+            path: 'user',
             select: '-__v -salt -hash -createdAt -updatedAt'
         })
         .then(item => {
@@ -33,7 +33,7 @@ exports.getOne = (req, res) => {
 };
 
 exports.getResourcesOfUser = (req, res) => {
-    PrivilegedUser.find({'userId': req.params.id})
+    PrivilegedUser.find({'user': req.params.id})
         .then(item => {
             if(!item) return res.status(200).json({
                 userId: req.params.id,

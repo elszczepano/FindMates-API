@@ -5,17 +5,17 @@ mongoose.connect('mongodb://localhost:27017/FindMates', { useNewUrlParser: true 
 mongoose.set('useCreateIndex', true);
 PendingMatch.deleteMany({}, err=> console.log(err));
 
-const user1Id = mongoose.Types.ObjectId();
-const user2Id = mongoose.Types.ObjectId();
+const user1 = mongoose.Types.ObjectId();
+const user2 = mongoose.Types.ObjectId();
 
 const pendingMatch1 = new PendingMatch({
-    user1Id: user1Id,
-    user2Id: user2Id,
+    user1: user1,
+    user2: user2,
     user1Approval: true
 });
 const pendingMatch2 = new PendingMatch({
-    user1Id: user2Id,
-    user2Id: user1Id,
+    user1: user2,
+    user2: user1,
     user1Approval: false,
     user2Approval: true
 });

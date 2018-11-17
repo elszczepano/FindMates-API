@@ -3,12 +3,15 @@ import Message from '../models/Message';
 exports.getAll = (req, res) => {
     Message.find({})
         .populate({
-            path: 'recipientId',
+            path: 'recipient',
             select: 'name profilePicture -_id'
         })
         .populate({
-            path: 'senderId',
+            path: 'sender',
             select: 'name profilePicture -_id'
+        })
+        .populate({
+            path: 'match'
         })
         .then(item => {
             if(!item) return res.status(404).json({ message: "Messages not found."});
@@ -23,16 +26,19 @@ exports.getAll = (req, res) => {
 exports.getOne = (req, res) => {
     Message.findById(req.params.id)
         .populate({
-            path: 'recipientId',
+            path: 'recipient',
             select: 'name profilePicture -_id'
         })
         .populate({
-            path: 'senderId',
+            path: 'sender',
             select: 'name profilePicture -_id'
+        })
+        .populate({
+            path: 'match'
         })
         .then(item => {
             if(!item) return res.status(404).json({ message: `Message with ID ${req.params.id} not found.`});
-            if(req.user._id.equals(item.recipientId) || req.user._id.equals(item.senderId)) {
+            if(req.user._id.equals(item.recipient) || req.user._id.equals(item.sender)) {
                 res.status(200).json(item);
             }
             else {
@@ -51,12 +57,12 @@ exports.getOne = (req, res) => {
 exports.getResourcesOfUser = (req, res) => {
     Message.find({$or:
             [
-                {'recipientId': req.user._id},
-                {'senderId': req.user._id}
+                {'recipient': req.user._id},
+                {'sender': req.user._id}
             ]})
         .then(item => {
             if(!item) return res.status(404).json({ message: `Resources of user ID ${req.params.id} not found.`});
-            if(req.user._id.equals(item.recipientId) || req.user._id.equals(item.senderId)) {
+            if(req.user._id.equals(item.recipient) || req.user._id.equals(item.sender)) {
                 res.status(200).json(item);
             }
             else {
@@ -73,10 +79,10 @@ exports.getResourcesOfUser = (req, res) => {
 };
 
 exports.getResourcesOfMatch = (req, res) => {
-    Message.find({'matchId': req.params.id})
+    Message.find({'match': req.params.id})
         .then(item => {
             if(!item) return res.status(404).json({ message: `Resources of match ID ${req.params.id} not found.`});
-            if(req.user._id.equals(item.recipientId) || req.user._id.equals(item.senderId)) {
+            if(req.user._id.equals(item.recipient) || req.user._id.equals(item.sender)) {
                 res.status(200).json(item);
             }
             else {
@@ -110,7 +116,7 @@ exports.updateOne = (req, res) => {
     Message.findById(req.params.id)
         .then(item => {
             if(!item) return res.status(404).json({ message: `Message with ID ${req.params.id} not found.`});
-            if(req.user._id.equals(item.senderId) || req.user._id.equals(item.recipientId)) {
+            if(req.user._id.equals(item.sender) || req.user._id.equals(item.recipient)) {
                 const message = Object.assign(item, req.body);
                 message.save()
                     .then(item => res.status(200).json({
@@ -136,7 +142,7 @@ exports.deleteOne = (req, res) => {
     Message.findById(req.params.id)
         .then(item => {
             if(!item) return res.status(404).json({ message: `Message with ID ${req.params.id} not found.`});
-            if(req.user._id.equals(item.recipientId) || req.user._id.equals(item.senderId)) {
+            if(req.user._id.equals(item.recipient) || req.user._id.equals(item.sender)) {
                 item.remove({_id: req.params.id});
                 res.status(200).json({
                     success: true,
