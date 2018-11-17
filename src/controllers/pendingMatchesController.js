@@ -2,6 +2,14 @@ import PendingMatch from '../models/PendingMatch';
 
 exports.getAll = (req, res) => {
     PendingMatch.find({})
+        .populate({
+            path: 'user1Id',
+            select: 'name profilePicture'
+        })
+        .populate({
+            path: 'user2Id',
+            select: 'name profilePicture'
+        })
         .then(item => {
             if(!item) return res.status(404).json({ message: "Matches not found."});
             return res.status(200).json(item);
@@ -14,6 +22,14 @@ exports.getAll = (req, res) => {
 
 exports.getOne = (req, res) => {
     PendingMatch.findById(req.params.id)
+        .populate({
+            path: 'user1Id',
+            select: 'name profilePicture'
+        })
+        .populate({
+            path: 'user2Id',
+            select: 'name profilePicture'
+        })
         .then(item => {
             if(!item) return res.status(404).json({ message: `Pending match with ID ${req.params.id} not found.`});
             if(req.user._id.equals(item.user1Id) || req.user._id.equals(item.user2Id)) {

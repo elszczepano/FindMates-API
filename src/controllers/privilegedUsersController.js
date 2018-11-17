@@ -2,6 +2,10 @@ import PrivilegedUser from '../models/PrivilegedUser';
 
 exports.getAll = (req, res) => {
     PrivilegedUser.find({})
+        .populate({
+            path: 'userId',
+            select: '-__v -salt -hash -createdAt -updatedAt'
+        })
         .then(item => {
             if(!item) return res.status(404).json({ message: "Privileged users not found."});
             return res.status(200).json(item);
@@ -14,6 +18,10 @@ exports.getAll = (req, res) => {
 
 exports.getOne = (req, res) => {
     PrivilegedUser.findById(req.params.id)
+        .populate({
+            path: 'userId',
+            select: '-__v -salt -hash -createdAt -updatedAt'
+        })
         .then(item => {
             if(!item) return res.status(404).json({ message: `Privileged user with ID ${req.params.id} not found.`});
             return res.status(200).json(item);

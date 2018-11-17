@@ -2,6 +2,17 @@ import Match from '../models/Match';
 
 exports.getAll = (req, res) => {
     Match.find({})
+        .populate({
+            path: 'user1Id',
+            select: 'name profilePicture -_id'
+        })
+        .populate({
+            path: 'user2Id',
+            select: 'name profilePicture -_id'
+        })
+        .populate({
+            path: 'matchId'
+        })
         .then(item => {
             if(!item) return res.status(404).json({ message: "Matches not found."});
             return res.status(200).json(item);
@@ -14,6 +25,14 @@ exports.getAll = (req, res) => {
 
 exports.getOne = (req, res) => {
     Match.findById(req.params.id)
+        .populate({
+            path: 'user1Id',
+            select: 'name profilePicture -_id'
+        })
+        .populate({
+            path: 'user2Id',
+            select: 'name profilePicture -_id'
+        })
         .then(item => {
             if(!item) return res.status(404).json({ message: `Match with ID ${req.params.id} not found.`});
             if(req.user._id.equals(item.user1Id) || req.user._id.equals(item.user2Id)) {

@@ -2,6 +2,14 @@ import Message from '../models/Message';
 
 exports.getAll = (req, res) => {
     Message.find({})
+        .populate({
+            path: 'recipientId',
+            select: 'name profilePicture -_id'
+        })
+        .populate({
+            path: 'senderId',
+            select: 'name profilePicture -_id'
+        })
         .then(item => {
             if(!item) return res.status(404).json({ message: "Messages not found."});
             return res.status(200).json(item);
@@ -14,6 +22,14 @@ exports.getAll = (req, res) => {
 
 exports.getOne = (req, res) => {
     Message.findById(req.params.id)
+        .populate({
+            path: 'recipientId',
+            select: 'name profilePicture -_id'
+        })
+        .populate({
+            path: 'senderId',
+            select: 'name profilePicture -_id'
+        })
         .then(item => {
             if(!item) return res.status(404).json({ message: `Message with ID ${req.params.id} not found.`});
             if(req.user._id.equals(item.recipientId) || req.user._id.equals(item.senderId)) {
