@@ -23,7 +23,7 @@ const user = new User({
     description: faker.lorem.sentence(),
     snapchat: faker.lorem.word(),
     instagram: faker.lorem.word(),
-    purpose: 'New friends',
+    purpose: 'Friends',
 });
 
 const register = new Promise((resolve, reject) => {
