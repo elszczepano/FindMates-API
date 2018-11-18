@@ -13,21 +13,21 @@ exports.validateRegister = [
     check('birthDate').trim().not().isEmpty().withMessage('Date of birth is required.'),
     check('birthDate').trim().custom(value => moment(value, 'YYYY-MM-DD').isValid()).withMessage('Invalid date of birth.'),
     check('pictures').optional().isArray().withMessage('Invalid data format.'),
-    check('purpose').trim().not().isEmpty().withMessage('Purpose is required.'),
+    check('pictures').optional().custom(value => value.length <=3).withMessage('You can add up to 3 pictures.'),
     sanitizeBody('*').escape()
 ];
 
 exports.validateUserUpdate = [
     check('name').optional().trim().not().isEmpty().withMessage('Name cannot be empty.'),
     check('password').optional().trim().not().isEmpty().withMessage('Password cannot be empty.'),
-    check('password').trim().isLength({ min: 8 }).withMessage('Password must be at least 8 characters long.'),
+    check('password').optional().trim().isLength({ min: 8 }).withMessage('Password must be at least 8 characters long.'),
     check('email').optional().trim().not().isEmpty().withMessage('E-mail cannot be empty.'),
-    check('email').trim().isEmail().withMessage('Invalid e-mail address.'),
+    check('email').optional().trim().isEmail().withMessage('Invalid e-mail address.'),
     check('phone').optional().trim().not().isEmpty().withMessage('Phone number cannot be empty.'),
     check('gender').optional().trim().not().isEmpty().withMessage('Gender cannot be empty.'),
     check('birthDate').optional().trim().not().isEmpty().withMessage('Date of birth cannot be empty.'),
-    check('birthDate').trim().custom(value => moment(value, 'YYYY-MM-DD').isValid()).withMessage('Invalid date of birth.'),
+    check('birthDate').optional().trim().custom(value => moment(value, 'YYYY-MM-DD').isValid()).withMessage('Invalid date of birth.'),
     check('pictures').optional().isArray().withMessage('Invalid data format.'),
-    check('purpose').optional().trim().not().isEmpty().withMessage('Purpose cannot be empty.'),
+    check('pictures').optional().custom(value => value.length <=3).withMessage('You can add up to 3 pictures.'),
     sanitizeBody('*').escape()
 ];

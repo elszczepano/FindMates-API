@@ -12,6 +12,10 @@ const GeoSchema = mongoose.Schema({
     }
 });
 
+function arrayLimit(val) {
+    return val.length <= 3;
+}
+
 const userSchema = mongoose.Schema({
     name: {
         type: String,
@@ -37,7 +41,10 @@ const userSchema = mongoose.Schema({
         required: [true, 'Birth date field is required.']
     },
     geometry: GeoSchema,
-    pictures: Array,
+    pictures: {
+        type: Array,
+        validate: [arrayLimit, '{PATH} exceeds the limit of 3']
+    },
     profilePicture: String,
     description: String,
     snapchat: String,
