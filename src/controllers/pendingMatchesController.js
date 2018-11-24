@@ -1,4 +1,5 @@
 import PendingMatch from '../models/PendingMatch';
+import Match from '../models/Match';
 
 exports.getAll = (req, res) => {
     PendingMatch.find({})
@@ -11,7 +12,7 @@ exports.getAll = (req, res) => {
             select: 'name profilePicture'
         })
         .then(item => {
-            if(!item) return res.status(404).json({ message: "Matches not found."});
+            if(!item) return res.status(404).json({ message: "Pending matches not found."});
             return res.status(200).json(item);
         })
         .catch(err => res.status(500).json({
@@ -77,7 +78,7 @@ exports.createNew = (req, res) => {
     pendingMatch.save()
         .then(item => res.status(201).json({
             success: true,
-            message: "Match created successfully.",
+            message: "Pending match created successfully.",
             data: item
         }))
         .catch(err => res.status(500).json({
@@ -93,11 +94,24 @@ exports.updateOne = (req, res) => {
             if(req.user._id.equals(item.user1) || req.user._id.equals(item.user2)) {
                 const pendingMatch = Object.assign(item, req.body);
                 pendingMatch.save()
-                    .then(item => res.status(200).json({
-                        success: true,
-                        message: "Match updated successfully.",
-                        data: item
-                    }));
+                    .then(item => {
+                        if(item.user1Approval && item.user2Approval) {
+                            const newMatch = new Match(pendingMatch);
+                            newMatch.save();
+                            item.remove({_id: item._id});
+                            res.status(200).json({
+                                success: true,
+                                message: "New match created!",
+                                data: item
+                            });
+                        } else {
+                            res.status(200).json({
+                                success: true,
+                                message: "Pending match updated successfully.",
+                                data: item
+                            });
+                        }
+                    });
             }
             else {
                 res.status(403).json({
