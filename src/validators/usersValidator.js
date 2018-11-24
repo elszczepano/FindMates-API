@@ -15,7 +15,7 @@ exports.validateRegister = [
     check('pictures').optional().isArray().withMessage('Invalid data format.'),
     check('pictures').optional().custom(value => value.length <=3).withMessage('You can add up to 3 pictures.'),
     check('purpose').trim().not().isEmpty().withMessage('Purpose is required.'),
-    check('purpose').trim().in(['Friends', 'Dating', 'For fun', 'Sex', 'Other']).withMessage('Invalid purpose.'),
+    check('purpose').trim().isIn(['Friends', 'Dating', 'For fun', 'Sex', 'Other']).withMessage('Invalid purpose.'),
     sanitizeBody('*').escape()
 ];
 
@@ -32,6 +32,6 @@ exports.validateUserUpdate = [
     check('pictures').optional().isArray().withMessage('Invalid data format.'),
     check('pictures').optional().custom(value => value.length <=3).withMessage('You can add up to 3 pictures.'),
     check('purpose').optional().trim().not().isEmpty().withMessage('Purpose is required.'),
-    check('purpose').optional().trim().in(['Friends', 'Dating', 'For fun', 'Sex', 'Other']).withMessage('Invalid purpose.'),
+    check('purpose').trim().isIn(['Friends', 'Dating', 'For fun', 'Sex', 'Other']).withMessage('Invalid purpose.'),
     sanitizeBody('*').escape()
 ];
