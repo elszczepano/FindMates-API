@@ -58,6 +58,11 @@ const userSchema = mongoose.Schema({
         type: String,
         required: [true, 'Purpose field is required.']
     },
+    blocked: {
+        type: Boolean,
+        default: false
+    },
+    blockedTo: Date,
     deletedAt: Date
 }, {
     timestamps: true
