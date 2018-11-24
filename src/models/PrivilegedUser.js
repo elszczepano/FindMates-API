@@ -5,7 +5,7 @@ const privilegedUserSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         unique: true,
-        required: [true, 'User ID field is required.']
+        required: [true, 'User field is required.']
     },
     role: {
         type: String,
