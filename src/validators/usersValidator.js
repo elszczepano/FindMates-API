@@ -1,5 +1,6 @@
 import { check } from 'express-validator/check';
 import { sanitizeBody } from 'express-validator/filter';
+import User from '../models/User';
 import moment from 'moment';
 
 exports.validateRegister = [
@@ -7,6 +8,13 @@ exports.validateRegister = [
     check('password').trim().not().isEmpty().withMessage('Password is required.'),
     check('password').trim().isLength({ min: 8 }).withMessage('Password must be at least 8 characters long.'),
     check('email').trim().not().isEmpty().withMessage('E-mail is required.'),
+    check('email').trim().custom(value => {
+        return User.find({'email': value}).then(user => {
+            if (user.length) {
+                return Promise.reject('E-mail already in use');
+            }
+        });
+    }),
     check('email').trim().isEmail().withMessage('Invalid e-mail address.'),
     check('phone').trim().not().isEmpty().withMessage('Phone number is required.'),
     check('gender').trim().not().isEmpty().withMessage('Gender is required.'),
