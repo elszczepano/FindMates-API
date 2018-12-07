@@ -21,6 +21,7 @@ api.get('/users/:id',
 );
 api.post('/',
     jwtAuth,
+    checkPrivileges,
     validateCreate,
     checkValidation,
     matchesController.createNew
