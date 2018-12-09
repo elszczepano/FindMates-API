@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 
 export default {
     async login(req, res, next) {
-        const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, { expiresIn: 1200 });
+        const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, { expiresIn: 3600 });
         return res.status(200).json({
             success: true,
             message: "User signed in successfully.",
