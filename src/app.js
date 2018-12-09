@@ -27,6 +27,7 @@ checkDatabaseStatus(process.env.DB_HOST);
 
 //Setup extensions
 app.use(bodyParser.json());
+app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
 
