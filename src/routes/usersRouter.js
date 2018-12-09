@@ -3,6 +3,7 @@ import jwtAuth from '../middlewares/auth';
 import checkOwnership from '../middlewares/checkOwnership';
 import checkPrivileges from "../middlewares/checkPrivileges";
 import usersController from "../controllers/usersController";
+import upload from "../middlewares/uploadImage";
 import { validateUserUpdate } from "../validators/usersValidator";
 import { checkValidation } from "../validators/checkValidation";
 
@@ -19,6 +20,7 @@ api.get('/:id',
 api.put('/:id',
     jwtAuth,
     checkOwnership,
+    upload.single('profilePicture'),
     validateUserUpdate,
     checkValidation,
     usersController.updateOne
