@@ -43,7 +43,7 @@ const userSchema = mongoose.Schema({
     geometry: GeoSchema,
     pictures: {
         type: Array,
-        validate: [arrayLimit, '{PATH} exceeds the limit of 3']
+        validate: [arrayLimit, 'You can add up to 3 pictures']
     },
     profilePicture: {
         type: String,
