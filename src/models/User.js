@@ -45,7 +45,10 @@ const userSchema = mongoose.Schema({
         type: Array,
         validate: [arrayLimit, '{PATH} exceeds the limit of 3']
     },
-    profilePicture: String,
+    profilePicture: {
+        type: String,
+        required: [true, 'Profile picture is required.']
+    },
     description: String,
     snapchat: String,
     instagram: String,
