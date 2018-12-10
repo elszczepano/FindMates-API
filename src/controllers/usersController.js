@@ -25,10 +25,49 @@ exports.getOne = (req, res) => {
 };
 
 exports.updateOne = (req, res) => {
-    User.findOneAndUpdate({id: req.params.id}, req.body, {new: true})
+    User.findByIdAndUpdate(req.params.id, req.body, {new: true})
         .then(item => {
             if(!item) return res.status(404).json({ message: `User with ID ${req.params.id} not found.`});
             return res.status(200).json(item);
+        })
+        .catch(err => res.status(500).json({
+            success: false,
+            message: err
+        }));
+};
+
+exports.updateProfilePicture = (req, res) => {
+    User.findById(req.params.id)
+        .then(item => {
+            if(!item) return res.status(404).json({ message: `User with ID ${req.params.id} not found.`});
+                const user = Object.assign(item, {profilePicture: req.file.path});
+                user.save()
+                    .then(item => res.status(200).json({
+                        success: true,
+                        message: "User profile picture updated successfully.",
+                        data: item
+                    }));
+
+        })
+        .catch(err => res.status(500).json({
+            success: false,
+            message: err
+        }));
+};
+
+exports.updateGallery = (req, res) => {
+    const paths = req.files.map(file => file.path);
+    User.findById(req.params.id)
+        .then(item => {
+            if(!item) return res.status(404).json({ message: `User with ID ${req.params.id} not found.`});
+            const user = Object.assign(item, {pictures: paths});
+            user.save()
+                .then(item => res.status(200).json({
+                    success: true,
+                    message: "User gallery updated successfully.",
+                    data: item
+                }));
+
         })
         .catch(err => res.status(500).json({
             success: false,
