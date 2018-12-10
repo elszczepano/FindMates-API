@@ -68,7 +68,7 @@ exports.deleteOne = (req, res) => {
             item.remove();
             res.json({
                 success: true,
-                message: 'Privileged user successfully deleted.'
+                message: 'Privileged user deleted successfully.'
             })
         })
         .catch(err => res.status(500).json({
