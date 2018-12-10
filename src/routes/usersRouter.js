@@ -20,10 +20,21 @@ api.get('/:id',
 api.put('/:id',
     jwtAuth,
     checkOwnership,
-    upload.single('profilePicture'),
     validateUserUpdate,
     checkValidation,
     usersController.updateOne
+);
+api.post('/:id/update-profile-picture',
+    jwtAuth,
+    checkOwnership,
+    upload.single('profilePicture'),
+    usersController.updateProfilePicture
+);
+api.post('/:id/update-gallery',
+    jwtAuth,
+    checkOwnership,
+    upload.array('pictures', 3),
+    usersController.updateGallery
 );
 api.delete('/:id',
     jwtAuth,
