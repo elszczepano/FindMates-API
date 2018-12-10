@@ -23,6 +23,7 @@ passport();
 //Setup MongoDB
 mongoose.connect(process.env.DB_HOST, {useNewUrlParser: true });
 mongoose.set('useCreateIndex', true);
+mongoose.set('useFindAndModify', false);
 checkDatabaseStatus(process.env.DB_HOST);
 
 //Setup extensions
