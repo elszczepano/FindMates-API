@@ -9,6 +9,7 @@ export default (req, res, next) => {
                 error: info.message || 'Invalid token.'
                 }
             )}
+        req.user = user;
         next();
     })(req, res, next);
 }
