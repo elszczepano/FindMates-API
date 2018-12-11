@@ -1,4 +1,5 @@
 import Message from '../models/Message';
+import Match from '../models/Match';
 
 exports.getAll = (req, res) => {
     Message.find({})
@@ -99,6 +100,15 @@ exports.getResourcesOfMatch = (req, res) => {
 };
 
 exports.createNew = (req, res) => {
+    Match.findById(req.body.match)
+        .then(item => {
+            if(!item) {
+                res.status(404).json({
+                    success: false,
+                    message: `Match with ID ${req.body.match} not found.`
+                })
+            }
+        });
     const message = new Message(req.body);
     message.save()
         .then(item => res.status(201).json({
