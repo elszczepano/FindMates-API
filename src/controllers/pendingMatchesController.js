@@ -92,6 +92,13 @@ exports.updateOne = (req, res) => {
         .then(item => {
             if(!item) return res.status(404).json({ message: `Pending match with ID ${req.params.id} not found.`});
             if(req.user._id.equals(item.user1) || req.user._id.equals(item.user2)) {
+                if((req.user._id.equals(item.user1) && req.body.user2Approval) || (req.user._id.equals(item.user2) && req.body.user1Approval)) {
+                    res.status(403).json({
+                        success: false,
+                        message: 'Access denied. User not permitted.'
+                    });
+                    return;
+                }
                 const pendingMatch = Object.assign(item, req.body);
                 pendingMatch.save()
                     .then(item => {
