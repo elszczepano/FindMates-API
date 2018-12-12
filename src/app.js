@@ -5,7 +5,6 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import passport from './config/passport';
-import authRouter from './routes/authRouter';
 import indexRouter from './routes/indexRouter';
 import matchesRouter from './routes/matchesRouter';
 import messagesRouter from './routes/messagesRouter';
@@ -34,7 +33,6 @@ app.use(cors());
 
 //Setup routing
 app.use('/', indexRouter);
-app.use('/', authRouter);
 app.use('/matches', matchesRouter);
 app.use('/messages', messagesRouter);
 app.use('/pending-matches', pendingMatchesRouter);
