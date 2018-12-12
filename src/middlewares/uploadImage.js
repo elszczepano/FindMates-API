@@ -9,7 +9,7 @@ const fileFilter = (req, file, callback) => {
     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
         callback(null, true);
     } else {
-        callback(null, false);
+        callback(new Error('Invalid file type. Only JPEG and PNG allowed.'));
     }
 };
 
@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
                 callback(null, dirName);
             });
         } else {
-            callback(null, dirName);
+            callback(new Error('Invalid directory.'));
         }
     },
     filename: (req, file, callback) => {
