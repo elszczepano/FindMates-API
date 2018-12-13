@@ -1,6 +1,7 @@
 import { Router } from "express";
 import authController from "../controllers/authController";
 import loginCheck from "../middlewares/loginCheck";
+import checkIfBlocked from "../middlewares/checkIfBlocked";
 import upload from "../middlewares/uploadImage";
 import { validateRegister } from "../validators/usersValidator";
 import { checkValidation } from "../validators/checkValidation";
@@ -17,7 +18,11 @@ api.get('/me',
     res.status(200).json(req.user);
 });
 
-api.post('/login', loginCheck, authController.login);
+api.post('/login',
+    loginCheck,
+    checkIfBlocked,
+    authController.login
+);
 api.post('/register',
     upload.single('profilePicture'),
     validateRegister,
