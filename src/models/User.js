@@ -63,9 +63,14 @@ const userSchema = mongoose.Schema({
     },
     blocked: {
         type: Boolean,
-        default: false
+        default: false,
+        select: false
     },
-    blockedTo: Date,
+    blockedTo: {
+        type: Date,
+        default: '',
+        select: false
+    },
     deletedAt: Date
 }, {
     timestamps: true
