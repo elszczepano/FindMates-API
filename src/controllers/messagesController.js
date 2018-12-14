@@ -109,6 +109,12 @@ exports.createNew = (req, res) => {
                 })
             }
         });
+    if(req.user._id.equals(req.body.recipient) || !req.user._id.equals(req.body.sender)) {
+        res.status(403).json({
+            success: false,
+            message: 'Access denied. User not permitted.'
+        });
+    }
     const message = new Message(req.body);
     message.save()
         .then(item => res.status(201).json({
@@ -126,7 +132,7 @@ exports.updateOne = (req, res) => {
     Message.findById(req.params.id)
         .then(item => {
             if(!item) return res.status(404).json({ message: `Message with ID ${req.params.id} not found.`});
-            if(req.user._id.equals(item.sender) || req.user._id.equals(item.recipient)) {
+            if(req.user._id.equals(item.sender)) {
                 const message = Object.assign(item, req.body);
                 message.save()
                     .then(item => res.status(200).json({
@@ -152,7 +158,7 @@ exports.deleteOne = (req, res) => {
     Message.findById(req.params.id)
         .then(item => {
             if(!item) return res.status(404).json({ message: `Message with ID ${req.params.id} not found.`});
-            if(req.user._id.equals(item.recipient) || req.user._id.equals(item.sender)) {
+            if(req.user._id.equals(item.sender)) {
                 item.remove({_id: req.params.id});
                 res.status(200).json({
                     success: true,
