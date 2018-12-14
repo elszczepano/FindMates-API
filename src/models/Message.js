@@ -18,7 +18,8 @@ const messageSchema = mongoose.Schema({
     match: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Match',
-        required: [true, 'Match field is required.']
+        required: [true, 'Match field is required.'],
+        set: () => this.match
     },
     deletedAt: Date
 }, {
