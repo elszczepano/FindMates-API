@@ -106,7 +106,15 @@ exports.createNew = (req, res) => {
                 res.status(404).json({
                     success: false,
                     message: `Match with ID ${req.body.match} not found.`
-                })
+                });
+                return;
+            }
+            if(!req.user._id.equals(item.user1) || !req.user._id.equals(item.user2)) {
+                res.status(403).json({
+                    success: false,
+                    message: 'Invalid match. User not permitted.'
+                });
+                return;
             }
         });
     if(req.user._id.equals(req.body.recipient) || !req.user._id.equals(req.body.sender)) {
@@ -114,6 +122,7 @@ exports.createNew = (req, res) => {
             success: false,
             message: 'Access denied. User not permitted.'
         });
+        return;
     }
     const message = new Message(req.body);
     message.save()
