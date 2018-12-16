@@ -12,9 +12,9 @@ const match = mongoose.Types.ObjectId();
 
 const message = new Message({
     message: faker.lorem.sentence(),
-    recipientId: recipient,
-    senderId: sender,
-    matchId: match
+    recipient: recipient,
+    sender: sender,
+    match: match
 });
 message.save()
     .then(() => mongoose.disconnect())

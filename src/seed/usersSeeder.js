@@ -20,6 +20,7 @@ const user = new User({
         faker.image.image(),
         faker.image.image()
     ],
+    profilePicture: faker.image.image(),
     description: faker.lorem.sentence(),
     snapchat: faker.lorem.word(),
     instagram: faker.lorem.word(),
