@@ -46,8 +46,7 @@ const userSchema = mongoose.Schema({
         validate: [arrayLimit, 'You can add up to 3 pictures']
     },
     profilePicture: {
-        type: String,
-        required: [true, 'Profile picture is required.']
+        type: String
     },
     description: String,
     snapchat: String,
