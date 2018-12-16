@@ -4,14 +4,12 @@ const matchSchema = mongoose.Schema({
     user1: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: [true, 'User 1 field is required.'],
-        set: () => this.user1
+        required: [true, 'User 1 field is required.']
     },
     user2: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
-        required: [true, 'User 2 field is required.'],
-        set: () => this.user2
+        required: [true, 'User 2 field is required.']
     },
     deletedAt: Date
 }, {
