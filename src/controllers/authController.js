@@ -13,7 +13,10 @@ export default {
 
     async register(req, res, next) {
     const {name, email, phone, gender, birthDate, purpose, password} = req.body;
-    const profilePicture = req.file.path;
+    let profilePicture = '';
+    if(req.file) {
+        profilePicture = req.file.path;
+    }
     const user = new User({name, email, password, phone, gender, birthDate, purpose, profilePicture});
     try {
         await User.register(user, password);
