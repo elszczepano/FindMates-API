@@ -24,7 +24,7 @@ exports.getOne = (req, res) => {
         })
         .then(item => {
             if(!item) return res.status(404).json({ message: `Privileged user with ID ${req.params.id} not found.`});
-            return res.status(200).json(item);
+            res.status(200).json(item);
         })
         .catch(err => res.status(500).json({
             success: false,
@@ -53,7 +53,7 @@ exports.updateOne = (req, res) => {
     PrivilegedUser.findOneAndUpdate({id: req.params.id}, req.body, {new: true})
         .then(item => {
             if(!item) return res.status(404).json({ message: `Privileged user with ID ${req.params.id} not found.`});
-            return res.status(200).json(item);
+            res.status(200).json(item);
         })
         .catch(err => res.status(500).json({
             success: false,
@@ -66,7 +66,7 @@ exports.deleteOne = (req, res) => {
         .then(item => {
             if(!item) return res.status(404).json({ message: `Privileged user with ID ${req.params.id} not found.`});
             item.remove();
-            res.json({
+            res.status(200).json({
                 success: true,
                 message: 'Privileged user deleted successfully.'
             })

@@ -4,7 +4,7 @@ exports.getAll = (req, res) => {
     User.find({})
         .then(item => {
             if(!item) return res.status(404).json({ message: "Users not found."});
-            return res.status(200).json(item);
+            res.status(200).json(item);
         })
         .catch(err => res.status(500).json({
             success: false,
@@ -16,7 +16,7 @@ exports.getOne = (req, res) => {
     User.findById(req.params.id)
         .then(item => {
             if(!item) return res.status(404).json({ message: `User with ID ${req.params.id} not found.`});
-            return res.status(200).json(item);
+            res.status(200).json(item);
         })
         .catch(err => res.status(500).json({
             success: false,
@@ -28,7 +28,7 @@ exports.updateOne = (req, res) => {
     User.findByIdAndUpdate(req.params.id, req.body, {new: true})
         .then(item => {
             if(!item) return res.status(404).json({ message: `User with ID ${req.params.id} not found.`});
-            return res.status(200).json(item);
+            res.status(200).json(item);
         })
         .catch(err => res.status(500).json({
             success: false,
