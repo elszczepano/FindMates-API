@@ -15,7 +15,7 @@ api.get('/:id',
 );
 api.get('/users/:id',
     jwtAuth,
-    privilegedUsersController.getOne
+    privilegedUsersController.getResourcesOfUser
 );
 api.post('/',
     jwtAuth,

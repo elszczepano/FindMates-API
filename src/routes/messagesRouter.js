@@ -13,11 +13,11 @@ api.get('/',
 );
 api.get('/matches/:id',
     jwtAuth,
-    messagesController.getOne
+    messagesController.getResourcesOfMatch
 );
 api.get('/users/:id',
     jwtAuth,
-    messagesController.getOne
+    messagesController.getResourcesOfUser
 );
 api.get('/:id',
     jwtAuth,
