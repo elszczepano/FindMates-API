@@ -24,7 +24,7 @@ test('Check if registry validation works correctly', () => {
         gender: "",
         birthDate: "",
         purpose: ""
-    }).catch(item =>  expect(item.response.data.success).toEqual(false));
+    }).catch(item =>  expect(item.response.data.success).toEqual(false) && (item.response.data.errors.email.msg).toEqual("E-mail already in use"));
 });
 
 test('Check if user email validation works correctly', () => {
