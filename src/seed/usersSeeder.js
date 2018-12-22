@@ -6,7 +6,6 @@ mongoose.connect('mongodb://localhost:27017/FindMates', { useNewUrlParser: true 
 mongoose.set('useCreateIndex', true);
 User.deleteMany({}, err=> console.log(err));
 
-
 API.post('register', {
     name: "John",
     phone: "123 456 789",
@@ -20,6 +19,3 @@ API.post('register', {
         mongoose.disconnect();
     })
     .catch(err => console.log(err));
-
-
-
