@@ -18,11 +18,13 @@ export default {
         profilePicture = req.file.path;
     }
     const user = new User({name, email, password, phone, gender, birthDate, purpose, profilePicture});
+    const detailsToShow = (({ _id, name, email, profilePicture }) => ({ _id, name, email, profilePicture }))(user);
     try {
         await User.register(user, password);
         res.status(201).json({
             success: true,
-            message: "User registered successfully."
+            message: "User registered successfully.",
+            user: detailsToShow
         });
     }
     catch(err) {
