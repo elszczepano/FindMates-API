@@ -1,4 +1,4 @@
-import API from '../../testsConfig';
+import API from '../../../testsConfig';
 
 test('Check if user signed in correctly', () => {
     API.post('login', {

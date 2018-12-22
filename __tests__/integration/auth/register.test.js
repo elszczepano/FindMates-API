@@ -1,6 +1,6 @@
-import API from '../../testsConfig';
+import API from '../../../testsConfig';
 
-test('Check if user registered correctly', () => {
+test('Check if user signed up correctly', () => {
     return API.post('register', {
         name: "John",
         phone: "123 456 789",
