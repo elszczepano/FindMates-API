@@ -12,7 +12,8 @@ test('Check if user registered correctly', () => {
     }).then(item => expect(item.data).toEqual({
         success: true,
         message: "User registered successfully."
-    }));
+    }))
+        .catch(err => console.log(err));
 });
 
 test('Check if registry validation works correctly', () => {
