@@ -7,9 +7,7 @@
     "build": "rimraf ./dist && babel ./src -d ./dist",
     "dev": "nodemon -w src/server.js --exec \"babel-node src/server.js\"",
     "seed": "babel-node src/seedRunner.js",
-    "test": "jest --coverage --collectCoverageFrom=!testConfig.js",
-    "unit": "jest unit/ --coverage",
-    "integration": "jest integration/ --coverage"
+    "test": "nyc mocha"
   },
   "repository": {
     "type": "git",
@@ -26,9 +24,10 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "faker": "^4.1.0",
-    "jest": "^23.6.0",
+    "mocha": "^5.2.0",
     "node-mocks-http": "^1.7.3",
     "nodemon": "^1.18.7",
+    "nyc": "^13.1.0",
     "passport-mock-strategy": "^1.1.1",
     "rimraf": "^2.6.2",
     "sinon": "^7.2.2"
