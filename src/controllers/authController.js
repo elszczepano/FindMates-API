@@ -12,13 +12,13 @@ export default {
     },
 
     async register(req, res, next) {
-    const {name, email, phone, gender, birthDate, purpose, password} = req.body;
+    const {name, email, phone, gender, birthDate, purpose, password, geometry} = req.body;
     let profilePicture = '';
     if(req.file) {
         profilePicture = req.file.path;
     }
-    const user = new User({name, email, password, phone, gender, birthDate, purpose, profilePicture});
-    const detailsToShow = (({ _id, name, email, profilePicture }) => ({ _id, name, email, profilePicture }))(user);
+    const user = new User({name, email, password, phone, gender, birthDate, purpose, profilePicture, geometry});
+    const detailsToShow = (({ _id, name, email, profilePicture, geometry }) => ({ _id, name, email, profilePicture, geometry }))(user);
     try {
         await User.register(user, password);
         res.status(201).json({

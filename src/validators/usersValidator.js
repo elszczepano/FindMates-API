@@ -20,10 +20,12 @@ exports.validateRegister = [
     check('gender').trim().not().isEmpty().withMessage('Gender is required.'),
     check('birthDate').trim().not().isEmpty().withMessage('Date of birth is required.'),
     check('birthDate').trim().custom(value => moment(value, 'YYYY-MM-DD').isValid()).withMessage('Invalid date of birth.'),
-    check('pictures').optional().isArray().withMessage('Invalid data format.'),
+    check('pictures').optional().isArray().withMessage('Invalid data format. Pass images in an array.'),
     check('pictures').optional().custom(value => value.length <=3).withMessage('You can add up to 3 pictures.'),
     check('purpose').trim().not().isEmpty().withMessage('Purpose is required.'),
     check('purpose').trim().isIn(['Friends', 'Dating', 'For fun', 'Sex', 'Other']).withMessage('Invalid purpose.'),
+    check('geometry').trim().not().isEmpty().withMessage('Geometry is required.'),
+    check('geometry').custom(value => typeof value === 'object' && value.hasOwnProperty('coordinates')).withMessage('Invalid data format. Pass coordinates in an object.'),
     sanitizeBody('*').escape()
 ];
 
@@ -41,5 +43,7 @@ exports.validateUserUpdate = [
     check('pictures').optional().custom(value => value.length <=3).withMessage('You can add up to 3 pictures.'),
     check('purpose').optional().trim().not().isEmpty().withMessage('Purpose is required.'),
     check('purpose').optional().trim().isIn(['Friends', 'Dating', 'For fun', 'Sex', 'Other']).withMessage('Invalid purpose.'),
+    check('geometry').optional().trim().not().isEmpty().withMessage('Geometry is required.'),
+    check('geometry').optional().custom(value => typeof value === 'object' && value.hasOwnProperty('coordinates')).withMessage('Invalid data format. Pass coordinates in an object.'),
     sanitizeBody('*').escape()
 ];

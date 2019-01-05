@@ -4,11 +4,13 @@ import passportLocalMongoose from 'passport-local-mongoose';
 const GeoSchema = mongoose.Schema({
     type: {
         type: String,
-        default: "Point"
+        default: "Point",
+        required: [true, 'Type field is required']
     },
     coordinates: {
         type: [Number],
-        index: '2dsphere'
+        index: '2dsphere',
+        required: [true, 'Coordinates field is required']
     }
 });
 
