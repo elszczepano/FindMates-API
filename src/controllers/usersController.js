@@ -1,4 +1,5 @@
 import User from '../models/User';
+import moment from 'moment';
 
 exports.getAll = (req, res) => {
     User.find({})
@@ -30,6 +31,10 @@ exports.findNearby = (req, res) => {
         maxDistance: req.query.distance,
         spherical: true,
         distanceField: 'dist.calculated'
+        })
+        .match({
+            gender: req.query.gender,
+            age: {$gte: moment().diff(req.query.minAge, 'years'), $lte: moment().diff(req.query.maxAge, 'years')}
         })
         .then(item => {
             if(!item) return res.status(404).json({ message: `There are no people nearby`});
