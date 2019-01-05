@@ -17,6 +17,10 @@ api.get('/:id',
     jwtAuth,
     usersController.getOne
 );
+api.get('/find',
+    jwtAuth,
+    usersController.findNearby
+);
 api.put('/:id',
     jwtAuth,
     checkOwnership,

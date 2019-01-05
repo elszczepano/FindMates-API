@@ -24,6 +24,23 @@ exports.getOne = (req, res) => {
         }));
 };
 
+exports.findNearby = (req, res) => {
+    User.aggregate().near({
+        near: [parseFloat(req.query.lng), parseFloat(req.query.lat)],
+        maxDistance: req.query.distance,
+        spherical: true,
+        distanceField: 'dist.calculated'
+        })
+        .then(item => {
+            if(!item) return res.status(404).json({ message: `There are no people nearby`});
+            res.status(200).json(item);
+        })
+        .catch(err => res.status(500).json({
+            success: false,
+            message: err
+        }));
+};
+
 exports.updateOne = (req, res) => {
     User.findByIdAndUpdate(req.params.id, req.body, {new: true})
         .then(item => {
