@@ -2,7 +2,9 @@ import PendingMatch from '../models/PendingMatch';
 import Match from '../models/Match';
 
 exports.getAll = (req, res) => {
-    PendingMatch.find({})
+    const offset = parseInt(req.query.offset) || 0;
+    const perPage = parseInt(req.query.perPage) || 10;
+    PendingMatch.find({}).skip(offset).limit(perPage)
         .populate({
             path: 'user1',
             select: 'name profilePicture'
