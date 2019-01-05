@@ -2,7 +2,9 @@ import User from '../models/User';
 import moment from 'moment';
 
 exports.getAll = (req, res) => {
-    User.find({})
+    const offset = parseInt(req.query.offset) || 0;
+    const perPage = parseInt(req.query.perPage) || 3;
+    User.find({}).skip(offset).limit(perPage)
         .then(item => {
             if(!item) return res.status(404).json({ message: "Users not found."});
             res.status(200).json(item);
