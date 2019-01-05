@@ -33,8 +33,8 @@ exports.findNearby = (req, res) => {
         distanceField: 'dist.calculated'
         })
         .match({
-            gender: req.query.gender,
-            age: {$gte: moment().diff(req.query.minAge, 'years'), $lte: moment().diff(req.query.maxAge, 'years')}
+            gender: req.params.gender,
+            age: {$gte: moment().diff(req.params.minAge, 'years'), $lte: moment().diff(req.params.maxAge, 'years')}
         })
         .then(item => {
             if(!item) return res.status(404).json({ message: `There are no people nearby`});
