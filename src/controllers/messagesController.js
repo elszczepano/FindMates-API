@@ -2,7 +2,9 @@ import Message from '../models/Message';
 import Match from '../models/Match';
 
 exports.getAll = (req, res) => {
-    Message.find({})
+    const offset = parseInt(req.query.offset) || 0;
+    const perPage = parseInt(req.query.perPage) || 100;
+    Message.find({}).skip(offset).limit(perPage)
         .populate({
             path: 'recipient',
             select: 'name profilePicture -_id'
