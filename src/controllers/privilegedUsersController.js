@@ -1,7 +1,9 @@
 import PrivilegedUser from '../models/PrivilegedUser';
 
 exports.getAll = (req, res) => {
-    PrivilegedUser.find({})
+    const offset = parseInt(req.query.offset) || 0;
+    const perPage = parseInt(req.query.perPage) || 10;
+    PrivilegedUser.find({}).skip(offset).limit(perPage)
         .populate({
             path: 'user',
             select: '-__v -salt -hash -createdAt -updatedAt'
