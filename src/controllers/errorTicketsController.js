@@ -2,11 +2,14 @@ import ErrorTicket from '../models/ErrorTicket';
 import Message from "../models/Message";
 
 exports.getAll = (req, res) => {
+    const offset = parseInt(req.query.offset) || 0;
+    const perPage = parseInt(req.query.perPage) || 10;
     ErrorTicket.find({})
         .populate({
             path: 'user',
             select: '-__v -salt -hash -createdAt -updatedAt'
         })
+        .skip(offset).limit(perPage)
         .then(item => {
             if(!item) return res.status(404).json({ message: "Error tickets not found."});
             return res.status(200).json(item);

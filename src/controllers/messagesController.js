@@ -4,7 +4,7 @@ import Match from '../models/Match';
 exports.getAll = (req, res) => {
     const offset = parseInt(req.query.offset) || 0;
     const perPage = parseInt(req.query.perPage) || 100;
-    Message.find({}).skip(offset).limit(perPage)
+    Message.find({})
         .populate({
             path: 'recipient',
             select: 'name profilePicture -_id'
@@ -16,6 +16,7 @@ exports.getAll = (req, res) => {
         .populate({
             path: 'match'
         })
+        .skip(offset).limit(perPage)
         .then(item => {
             if(!item) return res.status(404).json({ message: "Messages not found."});
             return res.status(200).json(item);

@@ -3,7 +3,7 @@ import Match from '../models/Match';
 exports.getAll = (req, res) => {
     const offset = parseInt(req.query.offset) || 0;
     const perPage = parseInt(req.query.perPage) || 100;
-    Match.find({}).skip(offset).limit(perPage)
+    Match.find({})
         .populate({
             path: 'user1',
             select: 'name profilePicture -_id'
@@ -12,6 +12,7 @@ exports.getAll = (req, res) => {
             path: 'user2',
             select: 'name profilePicture -_id'
         })
+        .skip(offset).limit(perPage)
         .then(item => {
             if(!item) return res.status(404).json({ message: "Matches not found."});
             return res.status(200).json(item);
