@@ -1,7 +1,9 @@
 import Match from '../models/Match';
 
 exports.getAll = (req, res) => {
-    Match.find({})
+    const offset = parseInt(req.query.offset) || 0;
+    const perPage = parseInt(req.query.perPage) || 100;
+    Match.find({}).skip(offset).limit(perPage)
         .populate({
             path: 'user1',
             select: 'name profilePicture -_id'
