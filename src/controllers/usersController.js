@@ -26,6 +26,8 @@ exports.getOne = (req, res) => {
 };
 
 exports.findNearby = (req, res) => {
+    const offset = parseInt(req.query.offset) || 0;
+    const perPage = parseInt(req.query.perPage) || 3;
     User.aggregate().near({
         near: [parseFloat(req.query.lng), parseFloat(req.query.lat)],
         maxDistance: req.query.distance,
@@ -34,8 +36,11 @@ exports.findNearby = (req, res) => {
         })
         .match({
             gender: req.params.gender,
-            age: {$gte: moment().diff(req.params.minAge, 'years'), $lte: moment().diff(req.params.maxAge, 'years')}
-        })
+            $and: [
+                { birthDate: { $gte: moment().subtract(req.params.minAge, 'years') } },
+                { birthDate: { $lte: moment().subtract(req.params.maxAge, 'years') } }
+            ]
+        }).skip(offset).limit(perPage)
         .then(item => {
             if(!item) return res.status(404).json({ message: `There are no people nearby`});
             res.status(200).json(item);
