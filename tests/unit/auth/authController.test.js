@@ -1,6 +1,19 @@
 import authController from '../../../src/controllers/authController';
 import { expect } from 'chai';
 import sinon from 'sinon';
+import mongoose from "mongoose";
+import faker from 'faker';
+
+before(done =>{
+    mongoose.connect('mongodb://localhost:27017/FindMates', {useNewUrlParser: true });
+    mongoose.set('useCreateIndex', true);
+    mongoose.set('useFindAndModify', false);
+    done();
+});
+after(done => {
+    mongoose.disconnect();
+    done();
+});
 
 describe('Test login method', () => {
     it('Login method should return JWT', done => {
@@ -26,9 +39,32 @@ describe('Test login method', () => {
 
 describe('Test register method', () => {
     it('Register method should create new user', done => {
-
+        const req = {
+            body: {
+                name: faker.name.findName(),
+                email: faker.internet.email(),
+                phone: faker.phone.phoneNumber(),
+                gender: "Male",
+                birthDate: faker.date.past(),
+                purpose: "Friends",
+                password: "Secret",
+                geometry: {
+                    coordinates: [21.37, 12.04]
+                }
+            }
+        };
+        const res = {
+            status: function () {
+                return this;
+            },
+            json: sinon.spy()
+        };
+        authController.register(req,res).then(() => {
+            expect(res.json.firstCall.lastArg.success).to.equal(true);
+            done();
+        });
     });
-    it('Register method should emit an error', done => {
-
-    });
+    // it('Register method should emit an error', done => {
+    //
+    // });
 });
