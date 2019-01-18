@@ -21,7 +21,7 @@ export default {
     const detailsToShow = (({ _id, name, email, profilePicture, geometry }) => ({ _id, name, email, profilePicture, geometry }))(user);
     try {
         await User.register(user, password);
-        res.status(201).json({
+        return res.status(201).json({
             success: true,
             message: "User registered successfully.",
             user: detailsToShow
