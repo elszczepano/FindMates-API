@@ -1,9 +1,6 @@
 import errorTicketsController from '../../../src/controllers/errorTicketsController';
-import mongoose from "mongoose";
 import sinon from "sinon";
 import {expect} from "chai";
-
-
 
 describe('Test method getAll', () => {
     it('getAll should return all records', (done) => {
