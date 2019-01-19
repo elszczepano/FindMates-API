@@ -1,5 +1,4 @@
 import ErrorTicket from '../models/ErrorTicket';
-import Message from "../models/Message";
 
 exports.getAll = (req, res) => {
     const offset = parseInt(req.query.offset) || 0;
