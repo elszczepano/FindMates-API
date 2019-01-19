@@ -15,7 +15,10 @@ exports.getAll = (req, res) => {
         .skip(offset).limit(perPage)
         .then(item => {
             if(!item) return res.status(404).json({ message: "Matches not found."});
-            return res.status(200).json(item);
+            return res.status(200).json({
+                success: true,
+                data: item
+            });
         })
         .catch(err => res.status(500).json({
             success: false,
@@ -36,7 +39,10 @@ exports.getOne = (req, res) => {
         .then(item => {
             if(!item) return res.status(404).json({ message: `Match with ID ${req.params.id} not found.`});
             if(req.user._id.equals(item.user1) || req.user._id.equals(item.user2)) {
-                res.status(200).json(item);
+                return res.status(200).json({
+                    success: true,
+                    data: item
+                });
             }
             else {
                 res.status(403).json({

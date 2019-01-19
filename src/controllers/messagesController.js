@@ -19,7 +19,10 @@ exports.getAll = (req, res) => {
         .skip(offset).limit(perPage)
         .then(item => {
             if(!item) return res.status(404).json({ message: "Messages not found."});
-            return res.status(200).json(item);
+            return res.status(200).json({
+                success: true,
+                data: item
+            });
         })
         .catch(err => res.status(500).json({
             success: false,
@@ -43,7 +46,10 @@ exports.getOne = (req, res) => {
         .then(item => {
             if(!item) return res.status(404).json({ message: `Message with ID ${req.params.id} not found.`});
             if(req.user._id.equals(item.recipient) || req.user._id.equals(item.sender)) {
-                res.status(200).json(item);
+                return res.status(200).json({
+                    success: true,
+                    data: item
+                });
             }
             else {
                 res.status(403).json({
@@ -67,7 +73,10 @@ exports.getResourcesOfUser = (req, res) => {
         .then(item => {
             if(!item) return res.status(404).json({ message: `Resources of user ID ${req.params.id} not found.`});
             if(req.user._id.equals(item.recipient) || req.user._id.equals(item.sender)) {
-                res.status(200).json(item);
+                return res.status(200).json({
+                    success: true,
+                    data: item
+                });
             }
             else {
                 res.status(403).json({
@@ -87,7 +96,10 @@ exports.getResourcesOfMatch = (req, res) => {
         .then(item => {
             if(!item) return res.status(404).json({ message: `Resources of match ID ${req.params.id} not found.`});
             if(req.user._id.equals(item.recipient) || req.user._id.equals(item.sender)) {
-                res.status(200).json(item);
+                return res.status(200).json({
+                    success: true,
+                    data: item
+                });
             }
             else {
                 res.status(403).json({

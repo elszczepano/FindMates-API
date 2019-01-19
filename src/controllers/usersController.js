@@ -7,7 +7,10 @@ exports.getAll = (req, res) => {
     User.find({}).skip(offset).limit(perPage)
         .then(item => {
             if(!item) return res.status(404).json({ message: "Users not found."});
-            res.status(200).json(item);
+            return res.status(200).json({
+                success: true,
+                data: item
+            });
         })
         .catch(err => res.status(500).json({
             success: false,
@@ -19,7 +22,10 @@ exports.getOne = (req, res) => {
     User.findById(req.params.id)
         .then(item => {
             if(!item) return res.status(404).json({ message: `User with ID ${req.params.id} not found.`});
-            res.status(200).json(item);
+            return res.status(200).json({
+                success: true,
+                data: item
+            });
         })
         .catch(err => res.status(500).json({
             success: false,
@@ -45,7 +51,10 @@ exports.findNearby = (req, res) => {
         }).skip(offset).limit(perPage)
         .then(item => {
             if(!item) return res.status(404).json({ message: `There are no people nearby`});
-            res.status(200).json(item);
+            return res.status(200).json({
+                success: true,
+                data: item
+            });
         })
         .catch(err => res.status(500).json({
             success: false,
@@ -57,7 +66,10 @@ exports.updateOne = (req, res) => {
     User.findByIdAndUpdate(req.params.id, req.body, {new: true})
         .then(item => {
             if(!item) return res.status(404).json({ message: `User with ID ${req.params.id} not found.`});
-            res.status(200).json(item);
+            return res.status(200).json({
+                success: true,
+                data: item
+            });
         })
         .catch(err => res.status(500).json({
             success: false,

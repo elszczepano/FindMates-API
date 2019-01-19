@@ -10,7 +10,10 @@ exports.getAll = (req, res) => {
         })
         .then(item => {
             if(!item) return res.status(404).json({ message: "Privileged users not found."});
-            return res.status(200).json(item);
+            return res.status(200).json({
+                success: true,
+                data: item
+            });
         })
         .catch(err => res.status(500).json({
             success: false,
@@ -26,7 +29,10 @@ exports.getOne = (req, res) => {
         })
         .then(item => {
             if(!item) return res.status(404).json({ message: `Privileged user with ID ${req.params.id} not found.`});
-            res.status(200).json(item);
+            return res.status(200).json({
+                success: true,
+                data: item
+            });
         })
         .catch(err => res.status(500).json({
             success: false,
@@ -42,7 +48,10 @@ exports.getResourcesOfUser = (req, res) => {
                 role: 'User'
             });
             else {
-                res.status(200).json(item);
+                return res.status(200).json({
+                    success: true,
+                    data: item
+                });
             }
         })
         .catch(err => res.status(500).json({
@@ -55,7 +64,10 @@ exports.updateOne = (req, res) => {
     PrivilegedUser.findOneAndUpdate({id: req.params.id}, req.body, {new: true})
         .then(item => {
             if(!item) return res.status(404).json({ message: `Privileged user with ID ${req.params.id} not found.`});
-            res.status(200).json(item);
+            return res.status(200).json({
+                success: true,
+                data: item
+            });
         })
         .catch(err => res.status(500).json({
             success: false,
