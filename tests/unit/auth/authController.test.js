@@ -1,11 +1,13 @@
 import authController from '../../../src/controllers/authController';
+import dotenv from 'dotenv';
+dotenv.config({path: '.env'});
 import { expect } from 'chai';
 import sinon from 'sinon';
 import mongoose from "mongoose";
 import faker from 'faker';
 
-before(done =>{
-    mongoose.connect('mongodb://localhost:27017/FindMates', {useNewUrlParser: true });
+before(done => {
+    mongoose.connect(process.env.DB_HOST, {useNewUrlParser: true });
     mongoose.set('useCreateIndex', true);
     mongoose.set('useFindAndModify', false);
     done();
