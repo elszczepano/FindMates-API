@@ -69,7 +69,19 @@ describe('Test register method', () => {
             done();
         });
     });
-    // it('Register method should emit an error', done => {
-    //
-    // });
+    it('Register method should emit an error', done => {
+        const req = {
+            body: {}
+        };
+        const res = {
+            status: function () {
+                return this;
+            },
+            json: sinon.spy()
+        };
+        authController.register(req,res).then(() => {
+            expect(res.json.firstCall.lastArg.message).to.equal("No username was given");
+            done();
+        });
+    });
 });
