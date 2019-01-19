@@ -1,21 +1,7 @@
 import authController from '../../../src/controllers/authController';
-import dotenv from 'dotenv';
-dotenv.config({path: '.env'});
 import { expect } from 'chai';
 import sinon from 'sinon';
-import mongoose from "mongoose";
 import faker from 'faker';
-
-before(done => {
-    mongoose.connect(process.env.DB_HOST, {useNewUrlParser: true });
-    mongoose.set('useCreateIndex', true);
-    mongoose.set('useFindAndModify', false);
-    done();
-});
-after(done => {
-    mongoose.disconnect();
-    done();
-});
 
 describe('Test login method', () => {
     it('Login method should return JWT', done => {
