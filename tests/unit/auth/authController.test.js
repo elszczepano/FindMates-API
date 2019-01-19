@@ -42,6 +42,9 @@ describe('Test login method', () => {
 describe('Test register method', () => {
     it('Register method should create new user', done => {
         const req = {
+            file: {
+                path: '/'
+            },
             body: {
                 name: faker.name.findName(),
                 email: faker.internet.email(),
