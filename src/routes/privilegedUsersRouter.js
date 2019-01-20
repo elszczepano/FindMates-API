@@ -11,14 +11,17 @@ api.get('/',
     jwtAuth,
     privilegedUsersController.getAll
 );
+
 api.get('/:id',
     jwtAuth,
     privilegedUsersController.getOne
 );
+
 api.get('/users/:id',
     jwtAuth,
     privilegedUsersController.getResourcesOfUser
 );
+
 api.post('/',
     jwtAuth,
     checkPrivileges,
@@ -26,6 +29,7 @@ api.post('/',
     checkValidation,
     privilegedUsersController.createNew
 );
+
 api.put('/:id',
     jwtAuth,
     checkPrivileges,
@@ -33,6 +37,7 @@ api.put('/:id',
     checkValidation,
     privilegedUsersController.updateOne
 );
+
 api.delete('/:id',
     jwtAuth,
     checkPrivileges,

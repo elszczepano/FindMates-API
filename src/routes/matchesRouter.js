@@ -11,14 +11,17 @@ api.get('/',
     checkPrivileges,
     matchesController.getAll
 );
+
 api.get('/:id',
     jwtAuth,
     matchesController.getOne
 );
+
 api.get('/users/:id',
     jwtAuth,
     matchesController.getResourcesOfUser
 );
+
 api.post('/',
     jwtAuth,
     checkPrivileges,
@@ -26,6 +29,7 @@ api.post('/',
     checkValidation,
     matchesController.createNew
 );
+
 api.put('/:id',
     jwtAuth,
     checkPrivileges,
@@ -33,6 +37,7 @@ api.put('/:id',
     checkValidation,
     matchesController.updateOne
 );
+
 api.delete('/:id',
     jwtAuth,
     matchesController.deleteOne

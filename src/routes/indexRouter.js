@@ -23,6 +23,7 @@ api.post('/login',
     checkIfBlocked,
     authController.login
 );
+
 api.post('/register',
     upload.single('profilePicture'),
     validateRegister,
