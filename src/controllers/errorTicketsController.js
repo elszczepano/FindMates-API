@@ -11,7 +11,10 @@ export default {
             })
             .skip(offset).limit(perPage)
             .then(item => {
-                if(!item) return res.status(404).json({ message: "Error tickets not found."});
+                if(!item.length) return res.status(404).json({
+                    success: false,
+                    message: "Error tickets not found."
+                });
                 res.status(200).json({
                     success: true,
                     data: item
@@ -23,13 +26,16 @@ export default {
             }));
     },
     getOne(req, res) {
-        ErrorTicket.findById(req.params.id)
+        return ErrorTicket.findById(req.params.id)
             .populate({
                 path: 'user',
                 select: '-__v -salt -hash -createdAt -updatedAt'
             })
             .then(item => {
-                if(!item) return res.status(404).json({ message: `Error ticket with ID ${req.params.id} not found.`});
+                if(!item.length) return res.status(404).json({
+                    success: false,
+                    message: `Error ticket with ID ${req.params.id} not found.`
+                });
                 return res.status(200).json({
                     success: true,
                     data: item
@@ -41,9 +47,12 @@ export default {
             }));
     },
     getResourcesOfUser(req, res) {
-        ErrorTicket.find({'user': req.params.id})
+        return ErrorTicket.find({'user': req.params.id})
             .then(item => {
-                if (!item) return res.status(404).json({message: `Error ticket with user ID ${req.params.id} not found.`});
+                if (!item.length) return res.status(404).json({
+                    success: false,
+                    message: `Error ticket with user ID ${req.params.id} not found.`
+                });
                 return res.status(200).json({
                     success: true,
                     data: item
@@ -56,8 +65,8 @@ export default {
     },
     createNew(req, res) {
         const errorTicket = new ErrorTicket(req.body);
-        errorTicket.save()
-            .then(item => res.status(201).json({
+        return errorTicket.save()
+            .then(item =>  res.status(201).json({
                 success: true,
                 message: "Error ticket created successfully.",
                 data: item
@@ -68,9 +77,12 @@ export default {
             }));
     },
     deleteOne(req, res)  {
-        ErrorTicket.findById(req.params.id)
+        return ErrorTicket.findById(req.params.id)
             .then(item => {
-                if(!item) return res.status(404).json({ message: `Error ticket with ID ${req.params.id} not found.`});
+                if(!item.length) return res.status(404).json({
+                    success: false,
+                    message: `Error ticket with ID ${req.params.id} not found.`
+                });
                 item.remove();
                 res.json({
                     success: true,
