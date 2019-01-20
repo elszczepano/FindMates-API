@@ -32,11 +32,11 @@ export default {
                 select: '-__v -salt -hash -createdAt -updatedAt'
             })
             .then(item => {
-                if(!item.length) return res.status(404).json({
+                if(!item) return res.status(404).json({
                     success: false,
                     message: `Error ticket with ID ${req.params.id} not found.`
                 });
-                return res.status(200).json({
+                res.status(200).json({
                     success: true,
                     data: item
                 });
@@ -53,7 +53,7 @@ export default {
                     success: false,
                     message: `Error ticket with user ID ${req.params.id} not found.`
                 });
-                return res.status(200).json({
+                res.status(200).json({
                     success: true,
                     data: item
                 });
