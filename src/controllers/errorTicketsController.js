@@ -49,7 +49,7 @@ export default {
     getResourcesOfUser(req, res) {
         return ErrorTicket.find({'user': req.params.id})
             .then(item => {
-                if (!item.length) return res.status(404).json({
+                if (!item) return res.status(404).json({
                     success: false,
                     message: `Error ticket with user ID ${req.params.id} not found.`
                 });
@@ -79,7 +79,7 @@ export default {
     deleteOne(req, res)  {
         return ErrorTicket.findById(req.params.id)
             .then(item => {
-                if(!item.length) return res.status(404).json({
+                if(!item) return res.status(404).json({
                     success: false,
                     message: `Error ticket with ID ${req.params.id} not found.`
                 });
