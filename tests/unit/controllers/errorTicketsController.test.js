@@ -108,3 +108,40 @@ describe('Test method getOne', () => {
     });
 });
 
+describe('Test method deleteOne', () => {
+    it('deleteOne should return an error', done => {
+        const req = {
+            params: {
+                id: '5c308c78ce1c640bdc493942'
+            }
+        };
+        const res = {
+            status: function () {
+                return this;
+            },
+            json: sinon.spy()
+        };
+        errorTicketsController.deleteOne(req,res).then(() => {
+            expect(res.json.firstCall.lastArg.success).to.equal(false);
+            done();
+        });
+    });
+    it('deleteOne should delete one records', done => {
+        const req = {
+            params: {
+                id: idStore
+            }
+        };
+        const res = {
+            status: function () {
+                return this;
+            },
+            json: sinon.spy()
+        };
+        errorTicketsController.deleteOne(req,res).then(() => {
+            expect(res.json.firstCall.lastArg.success).to.equal(true);
+            done();
+        });
+    });
+});
+
