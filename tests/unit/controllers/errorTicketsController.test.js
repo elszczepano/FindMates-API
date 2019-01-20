@@ -49,3 +49,24 @@ describe('Test method getAll', () => {
     });
 });
 
+describe('Test method createNew', () => {
+    it('createNew should return new record', done => {
+        const req = {
+            body: {
+                user: '5c308c78ce1c640bdc493942',
+                message: 'lorem ipsum'
+            }
+        };
+        const res = {
+            status: function () {
+                return this;
+            },
+            json: sinon.spy()
+        };
+        errorTicketsController.createNew(req,res).then(() => {
+            expect(res.json.firstCall.lastArg.success).to.equal(true);
+            done();
+        });
+    });
+});
+
