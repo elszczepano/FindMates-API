@@ -33,18 +33,18 @@ export default  {
         return Match.findById(req.params.id)
             .populate({
                 path: 'user1',
-                select: 'name profilePicture -_id'
+                select: 'name profilePicture _id'
             })
             .populate({
                 path: 'user2',
-                select: 'name profilePicture -_id'
+                select: 'name profilePicture _id'
             })
             .then(item => {
                 if(!item) return res.status(404).json({
                     success: false,
                     message: `Match with ID ${req.params.id} not found.`
                 });
-                if(req.user._id.equals(item.user1) || req.user._id.equals(item.user2)) {
+                if(req.user._id.equals(item.user1._id) || req.user._id.equals(item.user2._id)) {
                     res.status(200).json({
                         success: true,
                         data: item
@@ -73,7 +73,7 @@ export default  {
                     success: false,
                     message: `Resources of user ID ${req.params.id} not found.`
                 });
-                if(req.user._id.equals(item.user1) || req.user._id.equals(item.user2)) {
+                if(req.user._id.equals(item.user1._id) || req.user._id.equals(item.user2._id)) {
                     res.status(200).json(item);
                 }
                 else {
@@ -108,7 +108,7 @@ export default  {
                     success: false,
                     message: `Match with ID ${req.params.id} not found.`
                 });
-                if(req.user._id.equals(item.user1) || req.user._id.equals(item.user2)) {
+                if(req.user._id.equals(item.user1._id) || req.user._id.equals(item.user2._id)) {
                     const match = Object.assign(item, req.body);
                     match.save()
                         .then(item => res.status(200).json({
@@ -136,7 +136,7 @@ export default  {
                     success: false,
                     message: `Match with ID ${req.params.id} not found.`
                 });
-                if(req.user._id.equals(item.user1) || req.user._id.equals(item.user2)) {
+                if(req.user._id.equals(item.user1._id) || req.user._id.equals(item.user2._id)) {
                     item.remove({_id: req.params.id});
                     res.status(200).json({
                         success: true,
