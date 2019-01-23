@@ -46,3 +46,42 @@ describe('Test matchesController getAll method', () => {
         });
     });
 });
+
+describe('Test matchesController getOne method', () => {
+    it('getOne should return an 404 error', done => {
+        const req = {
+            params: {
+                id: ''
+            }
+        };
+        const res = {
+            status: function () {
+                return this;
+            },
+            json: sinon.spy()
+        };
+        matchesController.getOne(req,res).then(() => {
+            expect(res.json.firstCall.lastArg.success).to.equal(false);
+            done();
+        });
+    });
+    it('getOne should return an 500 error', done => {
+        const req = {
+            params: {
+                id: ''
+            }
+        };
+        const res = {
+            status: function () {
+                return this;
+            },
+            json: sinon.spy()
+        };
+        matchesController.getOne(req,res).then(() => {
+            throw "Emit an error!";
+        }).catch(() => {
+            expect(res.json.firstCall.lastArg.success).to.equal(false);
+            done();
+        });
+    });
+});
