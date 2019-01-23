@@ -85,3 +85,44 @@ describe('Test matchesController getOne method', () => {
         });
     });
 });
+
+describe('Test matchesController createNew method', () => {
+    it('createNew should return new record', done => {
+        const req = {
+            body: {
+                user1: '5c308c78ce1c640bdc493942',
+                user2: '5c308c78ce1c640bdc493943',
+            }
+        };
+        const res = {
+            status: function () {
+                return this;
+            },
+            json: sinon.spy()
+        };
+        matchesController.createNew(req,res).then(() => {
+            expect(res.json.firstCall.lastArg.success).to.equal(true);
+            done();
+        });
+    });
+    it('createNew should return an 500 error', done => {
+        const req = {
+            body: {
+                user: '',
+                message: ''
+            }
+        };
+        const res = {
+            status: function () {
+                return this;
+            },
+            json: sinon.spy()
+        };
+        matchesController.createNew(req,res).then(() => {
+            throw "Emit an error!";
+        }).catch(() => {
+            expect(res.json.firstCall.lastArg.success).to.equal(false);
+            done();
+        });
+    });
+});
