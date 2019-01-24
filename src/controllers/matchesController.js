@@ -68,7 +68,7 @@ export default  {
                     {'user2': req.params.id}
                 ]})
             .then(item => {
-                if(!item) return res.status(404).json({
+                if(!item.length || !item) return res.status(404).json({
                     success: false,
                     message: `Resources of user ID ${req.params.id} not found.`
                 });

@@ -49,7 +49,7 @@ export default {
     getResourcesOfUser(req, res) {
         return ErrorTicket.find({'user': req.params.id})
             .then(item => {
-                if (!item) return res.status(404).json({
+                if (!item.length || !item) return res.status(404).json({
                     success: false,
                     message: `Error ticket with user ID ${req.params.id} not found.`
                 });

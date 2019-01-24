@@ -40,7 +40,7 @@ export default {
                 select: 'name profilePicture'
             })
             .then(item => {
-                if(!item.length) return res.status(404).json({
+                if(!item) return res.status(404).json({
                     success: false,
                     message: `Pending match with ID ${req.params.id} not found.`
                 });
@@ -68,7 +68,7 @@ export default {
                     {'user2': req.params.id}
                 ]})
             .then(item => {
-                if(!item.length) return res.status(404).json({
+                if(!item.length || !item) return res.status(404).json({
                     success: false,
                     message: `Resources of user ID ${req.params.id} not found.`
                 });
@@ -105,7 +105,7 @@ export default {
     updateOne(req, res) {
         return PendingMatch.findById(req.params.id)
             .then(item => {
-                if(!item.length) return res.status(404).json({
+                if(!item) return res.status(404).json({
                     success: false,
                     message: `Pending match with ID ${req.params.id} not found.`
                 });
@@ -151,7 +151,7 @@ export default {
     deleteOne(req, res) {
         return PendingMatch.findById(req.params.id)
             .then(item => {
-                if(!item.length) return res.status(404).json({
+                if(!item) return res.status(404).json({
                     success: false,
                     message: `Pending match with ID ${req.params.id} not found.`
                 });

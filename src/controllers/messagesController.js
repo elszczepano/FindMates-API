@@ -47,7 +47,7 @@ export default {
                 path: 'match'
             })
             .then(item => {
-                if(!item.length) return res.status(404).json({
+                if(!item) return res.status(404).json({
                     success: false,
                     message: `Message with ID ${req.params.id} not found.`
                 });
@@ -75,7 +75,7 @@ export default {
                     {'sender': req.user._id}
                 ]})
             .then(item => {
-                if(!item.length) return res.status(404).json({
+                if(!item.length || !item) return res.status(404).json({
                     success: false,
                     message: `Resources of user ID ${req.params.id} not found.`
                 });
@@ -99,7 +99,7 @@ export default {
     getResourcesOfMatch(req, res) {
         return Message.find({'match': req.params.id})
             .then(item => {
-                if(!item.length) return res.status(404).json({
+                if(!item.length || !item) return res.status(404).json({
                     success: false,
                     message: `Resources of match ID ${req.params.id} not found.`
                 });
@@ -123,7 +123,7 @@ export default {
     createNew(req, res) {
         Match.findById(req.body.match)
             .then(item => {
-                if(!item.length) {
+                if(!item) {
                     return res.status(404).json({
                         success: false,
                         message: `Match with ID ${req.body.match} not found.`
@@ -157,7 +157,7 @@ export default {
     updateOne(req, res) {
         return Message.findById(req.params.id)
             .then(item => {
-                if(!item.length) return res.status(404).json({
+                if(!item) return res.status(404).json({
                     success: false,
                     message: `Message with ID ${req.params.id} not found.`
                 });
@@ -184,7 +184,7 @@ export default {
     deleteOne(req, res) {
         return Message.findById(req.params.id)
             .then(item => {
-                if(!item.length) return res.status(404).json({
+                if(!item) return res.status(404).json({
                     success: false,
                     message: `Message with ID ${req.params.id} not found.`
                 });
