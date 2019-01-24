@@ -146,7 +146,7 @@ describe('Test errorTicketsController getOne method', () => {
             done();
         });
     });
-    it('getOne should return one records', done => {
+    it('getOne should return one record', done => {
         const req = {
             params: {
                 id: idStore
@@ -202,7 +202,7 @@ describe('Test errorTicketsController deleteOne method', () => {
             done();
         });
     });
-    it('deleteOne should delete one records', done => {
+    it('deleteOne should delete one record', done => {
         const req = {
             params: {
                 id: idStore
