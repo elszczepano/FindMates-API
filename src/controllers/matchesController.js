@@ -49,8 +49,7 @@ export default  {
                         success: true,
                         data: item
                     });
-                }
-                else {
+                } else {
                     res.status(403).json({
                         success: false,
                         message: 'Access denied. User not permitted.'
@@ -75,8 +74,7 @@ export default  {
                 });
                 if(req.user._id.equals(item.user1._id) || req.user._id.equals(item.user2._id)) {
                     res.status(200).json(item);
-                }
-                else {
+                } else {
                     res.status(403).json({
                         success: false,
                         message: 'Access denied. User not permitted.'
@@ -116,8 +114,7 @@ export default  {
                             message: "Match updated successfully.",
                             data: item
                         }));
-                }
-                else {
+                } else {
                     res.status(403).json({
                         success: false,
                         message: 'Access denied. User not permitted.'
@@ -142,8 +139,7 @@ export default  {
                         success: true,
                         message: 'Message deleted successfully.'
                     });
-                }
-                else {
+                } else {
                     res.status(403).json({
                         success: false,
                         message: 'Access denied. User not permitted.'
