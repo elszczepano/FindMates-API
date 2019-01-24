@@ -10,6 +10,7 @@ import matchesRouter from './routes/matchesRouter';
 import messagesRouter from './routes/messagesRouter';
 import pendingMatchesRouter from './routes/pendingMatchesRouter';
 import usersRouter from './routes/usersRouter';
+import privilegedUsersRouter from './routes/privilegedUsersRouter';
 import errorTicketsRouter from './routes/errorTicketsRouter';
 import errorsHandler from './middlewares/errors';
 import checkDatabaseStatus from './checkDatabaseStatus';
@@ -39,6 +40,7 @@ app.use('/messages', messagesRouter);
 app.use('/pending-matches', pendingMatchesRouter);
 app.use('/users', usersRouter);
 app.use('/ticket', errorTicketsRouter);
+app.use('/privileged-users', privilegedUsersRouter);
 app.use(errorsHandler.notFound);
 app.use(errorsHandler.catchErrors);
 
