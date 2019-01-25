@@ -80,9 +80,10 @@ export default {
             }));
     },
     updateOne(req, res) {
-        return PrivilegedUser.findOneAndUpdate({id: req.params.id}, req.body, {new: true})
+        return PrivilegedUser.findByIdAndUpdate(req.params.id, req.body, {new: true})
             .then(item => {
                 if(!item) return res.status(404).json({
+                    item: item,
                     success: false,
                     message: `Privileged user with ID ${req.params.id} not found.`
                 });
