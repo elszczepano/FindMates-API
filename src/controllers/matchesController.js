@@ -15,7 +15,7 @@ export default  {
             })
             .skip(offset).limit(perPage)
             .then(item => {
-                if(!item.length) return res.status(404).json({
+                if(!item.length || !item) return res.status(404).json({
                     success: false,
                     message: "Matches not found."
                 });
