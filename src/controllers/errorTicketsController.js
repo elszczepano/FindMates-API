@@ -13,7 +13,7 @@ export default {
             .then(item => {
                 if(!item.length || !item) return res.status(404).json({
                     success: false,
-                    message: "Error tickets not found."
+                    message: 'Error tickets not found.'
                 });
                 res.status(200).json({
                     success: true,
@@ -68,7 +68,7 @@ export default {
         return errorTicket.save()
             .then(item =>  res.status(201).json({
                 success: true,
-                message: "Error ticket created successfully.",
+                message: 'Error ticket created successfully.',
                 data: item
             }))
             .catch(err => res.status(500).json({
@@ -87,11 +87,11 @@ export default {
                 res.json({
                     success: true,
                     message: 'Error ticket deleted successfully.'
-                })
+                });
             })
             .catch(err => res.status(500).json({
                 success: false,
                 message: err
             }));
     }
-}
+};

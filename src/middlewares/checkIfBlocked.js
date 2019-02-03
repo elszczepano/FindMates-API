@@ -24,4 +24,4 @@ export default (req, res, next) => {
             success: false,
             message: err
         }));
-}
+};

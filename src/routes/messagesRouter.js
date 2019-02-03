@@ -1,9 +1,9 @@
-import { Router } from "express";
-import messagesController from "../controllers/messagesController";
-import jwtAuth from "../middlewares/auth";
-import checkPrivileges from "../middlewares/checkPrivileges";
-import { validateCreate, validateUpdate } from "../validators/messagesValidator";
-import { checkValidation } from "../validators/checkValidation";
+import { Router } from 'express';
+import messagesController from '../controllers/messagesController';
+import jwtAuth from '../middlewares/auth';
+import checkPrivileges from '../middlewares/checkPrivileges';
+import { validateCreate, validateUpdate } from '../validators/messagesValidator';
+import { checkValidation } from '../validators/checkValidation';
 
 const api = Router();
 api.get('/',

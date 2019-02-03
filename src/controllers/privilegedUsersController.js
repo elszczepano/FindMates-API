@@ -12,7 +12,7 @@ export default {
             .then(item => {
                 if(!item.length || !item) return res.status(404).json({
                     success: false,
-                    message: "Privileged users not found."
+                    message: 'Privileged users not found.'
                 });
                 res.status(200).json({
                     success: true,
@@ -71,7 +71,7 @@ export default {
         return privilegedUser.save()
             .then(item =>  res.status(201).json({
                 success: true,
-                message: "Privileged user created successfully.",
+                message: 'Privileged user created successfully.',
                 data: item
             }))
             .catch(err => res.status(500).json({
@@ -108,11 +108,11 @@ export default {
                 res.status(200).json({
                     success: true,
                     message: 'Privileged user deleted successfully.'
-                })
+                });
             })
             .catch(err => res.status(500).json({
                 success: false,
                 message: err
             }));
     }
-}
+};

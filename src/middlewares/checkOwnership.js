@@ -4,4 +4,4 @@ export default (req, res, next) => {
         success: false,
         message: 'Access denied. User not permitted.'
     });
-}
+};

@@ -9,7 +9,7 @@ export default {
             .then(item => {
                 if(!item.length || !item) return res.status(404).json({
                     success: false,
-                    message: "Users not found."
+                    message: 'Users not found.'
                 });
                 res.status(200).json({
                     success: true,
@@ -97,7 +97,7 @@ export default {
                 return user.save()
                     .then(item => res.status(200).json({
                         success: true,
-                        message: "User profile picture updated successfully.",
+                        message: 'User profile picture updated successfully.',
                         data: item
                     }));
 
@@ -119,7 +119,7 @@ export default {
                 return user.save()
                     .then(item => res.status(200).json({
                         success: true,
-                        message: "User gallery updated successfully.",
+                        message: 'User gallery updated successfully.',
                         data: item
                     }));
 
@@ -140,11 +140,11 @@ export default {
                 res.status(200).json({
                     success: true,
                     message: 'User deleted successfully.'
-                })
+                });
             })
             .catch(err => res.status(500).json({
                 success: false,
                 message: err
             }));
     }
-}
+};

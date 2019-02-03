@@ -18,5 +18,5 @@ export default () => {
     };
     passport.use(User.createStrategy());
     passport.use(new JWTStrategy(config, verifyCallback));
-}
+};
 

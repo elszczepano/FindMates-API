@@ -4,7 +4,7 @@ exports.notFound = (req, res, next) => {
     next(err);
 };
 
-exports.catchErrors = (err, req, res, next) => {
+exports.catchErrors = (err, req, res) => {
     res.status(err.status || 500);
     res.json({
         success: false,

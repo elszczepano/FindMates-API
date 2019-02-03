@@ -1,5 +1,5 @@
-import {check} from "express-validator/check";
-import {sanitizeBody} from "express-validator/filter";
+import {check} from 'express-validator/check';
+import {sanitizeBody} from 'express-validator/filter';
 
 exports.validateCreate = [
     check('user1').trim().not().isEmpty().withMessage('First user ID is required.'),

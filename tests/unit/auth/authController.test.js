@@ -35,10 +35,10 @@ describe('Test register method', () => {
                 name: faker.name.findName(),
                 email: faker.internet.email(),
                 phone: faker.phone.phoneNumber(),
-                gender: "Male",
+                gender: 'Male',
                 birthDate: faker.date.past(),
-                purpose: "Friends",
-                password: "Secret",
+                purpose: 'Friends',
+                password: 'Secret',
                 geometry: {
                     coordinates: [21.37, 12.04]
                 }
@@ -66,7 +66,7 @@ describe('Test register method', () => {
             json: sinon.spy()
         };
         authController.register(req,res).then(() => {
-            expect(res.json.firstCall.lastArg.message).to.equal("No username was given");
+            expect(res.json.firstCall.lastArg.message).to.equal('No username was given');
             done();
         });
     });

@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
-import chalk from "chalk";
+import mongoose from 'mongoose';
+import chalk from 'chalk';
 
 const { cyan } = chalk.bold;
 const { yellow } = chalk.bold.yellow;
@@ -17,7 +17,7 @@ function checkDatabaseStatus(url) {
     });
 
     mongoose.connection.on('disconnected', function(){
-        console.log(yellow("Mongoose connection is disconnected"));
+        console.log(yellow('Mongoose connection is disconnected'));
     });
 }
 

@@ -28,4 +28,4 @@ const messageSchema = mongoose.Schema({
 messageSchema.plugin(mongooseDelete, { deletedAt : true });
 messageSchema.plugin(mongooseDelete, { overrideMethods: true });
 
-const Message = module.exports = mongoose.model('Message', messageSchema, 'messages');
+module.exports = mongoose.model('Message', messageSchema, 'messages');

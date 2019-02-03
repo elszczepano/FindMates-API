@@ -1,6 +1,6 @@
 import privilegedUsersController from '../../../src/controllers/privilegedUsersController';
-import sinon from "sinon";
-import {expect} from "chai";
+import sinon from 'sinon';
+import { expect } from 'chai';
 
 let idStore= '';
 
@@ -83,7 +83,7 @@ describe('Test privilegedUsersController createNew method', () => {
             json: sinon.spy()
         };
         privilegedUsersController.createNew(req,res).then(() => {
-            throw "Emit an error!";
+            throw 'Emit an error!';
         }).catch(() => {
             expect(res.json.firstCall.lastArg.success).to.equal(false);
             done();
@@ -139,7 +139,7 @@ describe('Test privilegedUsersController getResourcesOfUser method',() => {
             json: sinon.spy()
         };
         privilegedUsersController.getResourcesOfUser(req,res).then(() => {
-            expect(res.json.firstCall.lastArg.role).to.equal("User");
+            expect(res.json.firstCall.lastArg.role).to.equal('User');
             done();
         });
     });
@@ -206,7 +206,7 @@ describe('Test privilegedUsersController updateOne method', () => {
     it('updateOne should return an 500 error', done => {
         const req = {
             params: {
-                id: "1"
+                id: '1'
             }
         };
         const res = {
@@ -216,7 +216,7 @@ describe('Test privilegedUsersController updateOne method', () => {
             json: sinon.spy()
         };
         privilegedUsersController.updateOne(req,res).then(() => {
-            throw "Emit an error";
+            throw 'Emit an error';
         }).catch(() => {
             expect(res.json.firstCall.lastArg.success).to.equal(false);
             done();
@@ -265,7 +265,7 @@ describe('Test privilegedUsersController deleteOne method', () => {
     it('deleteOne should return an 500 error', done => {
         const req = {
             params: {
-                id: "1"
+                id: '1'
             }
         };
         const res = {
@@ -275,7 +275,7 @@ describe('Test privilegedUsersController deleteOne method', () => {
             json: sinon.spy()
         };
         privilegedUsersController.deleteOne(req,res).then(() => {
-            throw "Emit an error";
+            throw 'Emit an error';
         }).catch(() => {
             expect(res.json.firstCall.lastArg.success).to.equal(false);
             done();

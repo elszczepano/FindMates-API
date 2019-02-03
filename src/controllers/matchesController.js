@@ -17,7 +17,7 @@ export default  {
             .then(item => {
                 if(!item.length || !item) return res.status(404).json({
                     success: false,
-                    message: "Matches not found."
+                    message: 'Matches not found.'
                 });
                 res.status(200).json({
                     success: true,
@@ -91,7 +91,7 @@ export default  {
         return newMatch.save()
             .then(item => res.status(201).json({
                 success: true,
-                message: "Match created successfully.",
+                message: 'Match created successfully.',
                 data: item
             }))
             .catch(err => res.status(500).json({
@@ -111,7 +111,7 @@ export default  {
                     match.save()
                         .then(item => res.status(200).json({
                             success: true,
-                            message: "Match updated successfully.",
+                            message: 'Match updated successfully.',
                             data: item
                         }));
                 } else {
@@ -151,4 +151,4 @@ export default  {
                 message: err
             }));
     }
-}
+};

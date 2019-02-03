@@ -1,4 +1,4 @@
-import multer from "multer";
+import multer from 'multer';
 import fs from 'fs';
 import mkdirp from 'mkdirp';
 
@@ -24,7 +24,7 @@ const storage = multer.diskStorage({
         }
     },
     filename: (req, file, callback) => {
-        callback(null, `${Date.now()}_${file.originalname}`)
+        callback(null, `${Date.now()}_${file.originalname}`);
     }
 });
 

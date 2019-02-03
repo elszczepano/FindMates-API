@@ -21,7 +21,7 @@ export default {
             .then(item => {
                 if(!item.length || !item) return res.status(404).json({
                     success: false,
-                    message: "Messages not found."
+                    message: 'Messages not found.'
                 });
                 return res.status(200).json({
                     success: true,
@@ -146,7 +146,7 @@ export default {
         return message.save()
             .then(item => res.status(201).json({
                 success: true,
-                message: "Message created successfully.",
+                message: 'Message created successfully.',
                 data: item
             }))
             .catch(err => res.status(500).json({
@@ -166,7 +166,7 @@ export default {
                     message.save()
                         .then(item => res.status(200).json({
                             success: true,
-                            message: "Message updated successfully.",
+                            message: 'Message updated successfully.',
                             data: item
                         }));
                 } else {
@@ -206,4 +206,4 @@ export default {
                 message: err
             }));
     }
-}
+};

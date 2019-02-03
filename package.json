@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "rimraf ./dist && babel ./src -d ./dist",
-    "dev": "esw && nodemon -w src/server.js --exec \"babel-node src/server.js\"",
+    "dev": "nodemon -w src/server.js --exec \"esw && babel-node src/server.js\"",
+    "lint": "esw --watch",
     "seed": "@babel/node src/seedRunner.js",
     "test": "nyc mocha --require @babel/register --require @babel/polyfill tests/unit/**/*.test.js --timeout 10000"
   },

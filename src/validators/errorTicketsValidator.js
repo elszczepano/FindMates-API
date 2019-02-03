@@ -1,5 +1,5 @@
-import {check} from "express-validator/check";
-import {sanitizeBody} from "express-validator/filter";
+import {check} from 'express-validator/check';
+import {sanitizeBody} from 'express-validator/filter';
 
 exports.validateCreate = [
     check('message').trim().not().isEmpty().withMessage('Message is required.'),

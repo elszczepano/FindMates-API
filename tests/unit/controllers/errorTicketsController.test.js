@@ -1,6 +1,6 @@
 import errorTicketsController from '../../../src/controllers/errorTicketsController';
-import sinon from "sinon";
-import {expect} from "chai";
+import sinon from 'sinon';
+import { expect } from 'chai';
 
 let idStore= '';
 
@@ -83,7 +83,7 @@ describe('Test errorTicketsController createNew method', () => {
             json: sinon.spy()
         };
         errorTicketsController.createNew(req,res).then(() => {
-            throw "Emit an error!";
+            throw 'Emit an error!';
         }).catch(() => {
             expect(res.json.firstCall.lastArg.success).to.equal(false);
             done();
@@ -186,7 +186,7 @@ describe('Test errorTicketsController deleteOne method', () => {
     it('deleteOne should return an 500 error', done => {
         const req = {
             params: {
-                id: "1"
+                id: '1'
             }
         };
         const res = {
@@ -196,7 +196,7 @@ describe('Test errorTicketsController deleteOne method', () => {
             json: sinon.spy()
         };
         errorTicketsController.deleteOne(req,res).then(() => {
-            throw "Emit an error";
+            throw 'Emit an error';
         }).catch(() => {
             expect(res.json.firstCall.lastArg.success).to.equal(false);
             done();

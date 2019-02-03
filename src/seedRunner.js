@@ -1,6 +1,6 @@
 import fs from 'fs';
 import async from 'async';
-const exec = require('child_process').exec
+const exec = require('child_process').exec;
 
 const scriptsFolder = './src/seed/';
 

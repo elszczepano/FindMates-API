@@ -17,7 +17,7 @@ export default {
             .then(item => {
                 if(!item.length || !item) return res.status(404).json({
                     success: false,
-                    message: "Pending matches not found."
+                    message: 'Pending matches not found.'
                 });
                 res.status(200).json({
                     success: true,
@@ -94,7 +94,7 @@ export default {
         return pendingMatch.save()
             .then(item => res.status(201).json({
                 success: true,
-                message: "Pending match created successfully.",
+                message: 'Pending match created successfully.',
                 data: item
             }))
             .catch(err => res.status(500).json({
@@ -125,13 +125,13 @@ export default {
                                 item.remove({_id: item._id});
                                 res.status(200).json({
                                     success: true,
-                                    message: "New match created!",
+                                    message: 'New match created!',
                                     data: item
                                 });
                             } else {
                                 res.status(200).json({
                                     success: true,
-                                    message: "Pending match updated successfully.",
+                                    message: 'Pending match updated successfully.',
                                     data: item
                                 });
                             }
@@ -173,4 +173,4 @@ export default {
                 message: err
             }));
     }
-}
+};

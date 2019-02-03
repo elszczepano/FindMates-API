@@ -19,4 +19,4 @@ const matchSchema = mongoose.Schema({
 matchSchema.plugin(mongooseDelete, { deletedAt : true });
 matchSchema.plugin(mongooseDelete, { overrideMethods: true });
 
-const Match = module.exports = mongoose.model('Match', matchSchema, 'matches');
+module.exports = mongoose.model('Match', matchSchema, 'matches');
