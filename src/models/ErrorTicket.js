@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
+import mongooseDelete from 'mongoose-delete';
 
-const errorTicketsSchema = mongoose.Schema({
+const errorTicketSchema = mongoose.Schema({
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
@@ -9,10 +10,12 @@ const errorTicketsSchema = mongoose.Schema({
     message: {
         type: String,
         required: [true, 'Message field is required.']
-    },
-    deletedAt: Date
+    }
 }, {
     timestamps: true
 });
 
-const ErrorTicket = module.exports = mongoose.model('ErrorTicket', errorTicketsSchema, 'errorTickets');
+errorTicketSchema.plugin(mongooseDelete, { deletedAt : true });
+errorTicketSchema.plugin(mongooseDelete, { overrideMethods: true });
+
+const ErrorTicket = module.exports = mongoose.model('ErrorTicket', errorTicketSchema, 'errorTickets');

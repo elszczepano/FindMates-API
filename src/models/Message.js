@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import mongooseDelete from 'mongoose-delete';
 
 const messageSchema = mongoose.Schema({
     message: {
@@ -19,10 +20,12 @@ const messageSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Match',
         required: [true, 'Match field is required.']
-    },
-    deletedAt: Date
+    }
 }, {
     timestamps: true
 });
+
+messageSchema.plugin(mongooseDelete, { deletedAt : true });
+messageSchema.plugin(mongooseDelete, { overrideMethods: true });
 
 const Message = module.exports = mongoose.model('Message', messageSchema, 'messages');

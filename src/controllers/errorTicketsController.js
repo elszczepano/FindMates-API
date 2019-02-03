@@ -83,7 +83,7 @@ export default {
                     success: false,
                     message: `Error ticket with ID ${req.params.id} not found.`
                 });
-                item.remove();
+                item.delete();
                 res.json({
                     success: true,
                     message: 'Error ticket deleted successfully.'

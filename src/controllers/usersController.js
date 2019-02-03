@@ -136,7 +136,7 @@ export default {
                     success: false,
                     message: `User with ID ${req.params.id} not found.`
                 });
-                item.remove();
+                item.delete();
                 res.status(200).json({
                     success: true,
                     message: 'User deleted successfully.'

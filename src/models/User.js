@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import passportLocalMongoose from 'passport-local-mongoose';
+import mongooseDelete from "mongoose-delete";
 
 const GeoSchema = mongoose.Schema({
     type: {
@@ -71,12 +72,13 @@ const userSchema = mongoose.Schema({
         type: Date,
         default: '',
         select: false
-    },
-    deletedAt: Date
+    }
 }, {
     timestamps: true
 });
 
+userSchema.plugin(mongooseDelete, { deletedAt : true });
+userSchema.plugin(mongooseDelete, { overrideMethods: true });
 userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
 
 const User = module.exports = mongoose.model('User', userSchema, 'users');

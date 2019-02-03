@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import mongooseDelete from 'mongoose-delete';
 
 const matchSchema = mongoose.Schema({
     user1: {
@@ -10,10 +11,12 @@ const matchSchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: [true, 'User 2 field is required.']
-    },
-    deletedAt: Date
+    }
 }, {
     timestamps: true
 });
+
+matchSchema.plugin(mongooseDelete, { deletedAt : true });
+matchSchema.plugin(mongooseDelete, { overrideMethods: true });
 
 const Match = module.exports = mongoose.model('Match', matchSchema, 'matches');

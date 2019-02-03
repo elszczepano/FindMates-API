@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import mongooseDelete from 'mongoose-delete';
 
 const privilegedUserSchema = mongoose.Schema({
     user: {
@@ -11,10 +12,12 @@ const privilegedUserSchema = mongoose.Schema({
         type: String,
         required: [true, 'Role field is required.'],
         default: 'User'
-    },
-    deletedAt: Date
+    }
 }, {
     timestamps: true
 });
+
+privilegedUserSchema.plugin(mongooseDelete, { deletedAt : true });
+privilegedUserSchema.plugin(mongooseDelete, { overrideMethods: true });
 
 const PrivilegedUser = module.exports = mongoose.model('PrivilegedUser', privilegedUserSchema, 'privilegedUsers');

@@ -189,7 +189,7 @@ export default {
                     message: `Message with ID ${req.params.id} not found.`
                 });
                 if(req.user._id.equals(item.sender._id)) {
-                    item.remove({_id: req.params.id});
+                    item.delete({_id: req.params.id});
                     res.status(200).json({
                         success: true,
                         message: 'Match deleted successfully.'

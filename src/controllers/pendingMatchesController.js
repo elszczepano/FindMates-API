@@ -156,7 +156,7 @@ export default {
                     message: `Pending match with ID ${req.params.id} not found.`
                 });
                 if(req.user._id.equals(item.user1._id) || req.user._id.equals(item.user2._idd)) {
-                    item.remove({_id: req.params.id});
+                    item.delete({_id: req.params.id});
                     res.status(200).json({
                         success: true,
                         message: 'Pending match deleted successfully.'
