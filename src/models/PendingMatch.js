@@ -18,7 +18,6 @@ const pendingMatchSchema = mongoose.Schema({
     timestamps: true
 });
 
-pendingMatchSchema.plugin(mongooseDelete, { deletedAt : true });
-pendingMatchSchema.plugin(mongooseDelete, { overrideMethods: true });
+pendingMatchSchema.plugin(mongooseDelete, { deletedAt : true, overrideMethods: true });
 
 module.exports = mongoose.model('PendingMatch', pendingMatchSchema, 'pendingMatches');

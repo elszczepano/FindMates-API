@@ -17,7 +17,6 @@ const privilegedUserSchema = mongoose.Schema({
     timestamps: true
 });
 
-privilegedUserSchema.plugin(mongooseDelete, { deletedAt : true });
-privilegedUserSchema.plugin(mongooseDelete, { overrideMethods: true });
+privilegedUserSchema.plugin(mongooseDelete, { deletedAt : true, overrideMethods: true });
 
 module.exports = mongoose.model('PrivilegedUser', privilegedUserSchema, 'privilegedUsers');

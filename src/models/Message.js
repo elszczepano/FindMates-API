@@ -25,7 +25,6 @@ const messageSchema = mongoose.Schema({
     timestamps: true
 });
 
-messageSchema.plugin(mongooseDelete, { deletedAt : true });
-messageSchema.plugin(mongooseDelete, { overrideMethods: true });
+messageSchema.plugin(mongooseDelete, { deletedAt : true, overrideMethods: true });
 
 module.exports = mongoose.model('Message', messageSchema, 'messages');
