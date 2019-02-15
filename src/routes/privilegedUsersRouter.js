@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import privilegedUsersController from '../controllers/privilegedUsersController';
+import privilegedUserController from '../controllers/privilegedUserController';
 import jwtAuth from '../middlewares/auth';
 import { validateCreate, validateUpdate } from '../validators/privilegedUsersValidator';
 import { checkValidation } from '../validators/checkValidation';
@@ -9,17 +9,17 @@ const api = Router();
 
 api.get('/',
     jwtAuth,
-    privilegedUsersController.getAll
+    privilegedUserController.getAll
 );
 
 api.get('/:id',
     jwtAuth,
-    privilegedUsersController.getOne
+    privilegedUserController.getOne
 );
 
 api.get('/users/:id',
     jwtAuth,
-    privilegedUsersController.getResourcesOfUser
+    privilegedUserController.getResourcesOfUser
 );
 
 api.post('/',
@@ -27,7 +27,7 @@ api.post('/',
     checkPrivileges,
     validateCreate,
     checkValidation,
-    privilegedUsersController.createNew
+    privilegedUserController.createNew
 );
 
 api.put('/:id',
@@ -35,13 +35,13 @@ api.put('/:id',
     checkPrivileges,
     validateUpdate,
     checkValidation,
-    privilegedUsersController.updateOne
+    privilegedUserController.updateOne
 );
 
 api.delete('/:id',
     jwtAuth,
     checkPrivileges,
-    privilegedUsersController.deleteOne
+    privilegedUserController.deleteOne
 );
 
 module.exports = api;

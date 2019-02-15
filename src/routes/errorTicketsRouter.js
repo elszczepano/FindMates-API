@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import errorTicketsController from '../controllers/errorTicketsController';
+import errorTicketController from '../controllers/errorTicketController';
 import jwtAuth from '../middlewares/auth';
 import checkPrivileges from '../middlewares/checkPrivileges';
 import { validateCreate } from '../validators/errorTicketsValidator';
@@ -9,32 +9,32 @@ const api = Router();
 api.get('/',
     jwtAuth,
     checkPrivileges,
-    errorTicketsController.getAll
+    errorTicketController.getAll
 );
 
 api.get('/:id',
     jwtAuth,
     checkPrivileges,
-    errorTicketsController.getOne
+    errorTicketController.getOne
 );
 
 api.get('/users/:id',
     jwtAuth,
     checkPrivileges,
-    errorTicketsController.getOne
+    errorTicketController.getOne
 );
 
 api.post('/',
     jwtAuth,
     validateCreate,
     checkValidation,
-    errorTicketsController.createNew
+    errorTicketController.createNew
 );
 
 api.delete('/:id',
     jwtAuth,
     checkPrivileges,
-    errorTicketsController.deleteOne
+    errorTicketController.deleteOne
 );
 
 module.exports = api;

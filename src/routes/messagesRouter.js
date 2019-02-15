@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import messagesController from '../controllers/messagesController';
+import messageController from '../controllers/messageController';
 import jwtAuth from '../middlewares/auth';
 import checkPrivileges from '../middlewares/checkPrivileges';
 import { validateCreate, validateUpdate } from '../validators/messagesValidator';
@@ -9,41 +9,41 @@ const api = Router();
 api.get('/',
     jwtAuth,
     checkPrivileges,
-    messagesController.getAll
+    messageController.getAll
 );
 
 api.get('/matches/:id',
     jwtAuth,
-    messagesController.getResourcesOfMatch
+    messageController.getResourcesOfMatch
 );
 
 api.get('/users/:id',
     jwtAuth,
-    messagesController.getResourcesOfUser
+    messageController.getResourcesOfUser
 );
 
 api.get('/:id',
     jwtAuth,
-    messagesController.getOne
+    messageController.getOne
 );
 
 api.post('/',
     jwtAuth,
     validateCreate,
     checkValidation,
-    messagesController.createNew
+    messageController.createNew
 );
 
 api.put('/:id',
     jwtAuth,
     validateUpdate,
     checkValidation,
-    messagesController.updateOne
+    messageController.updateOne
 );
 
 api.delete('/:id',
     jwtAuth,
-    messagesController.deleteOne
+    messageController.deleteOne
 );
 
 module.exports = api;

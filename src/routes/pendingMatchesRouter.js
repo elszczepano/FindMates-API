@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import pendingMatchesController from '../controllers/pendingMatchesController';
+import pendingMatchController from '../controllers/pendingMatchController';
 import jwtAuth from '../middlewares/auth';
 import { validateCreate, validateUpdate } from '../validators/pendingMatchesValidator';
 import { checkValidation } from '../validators/checkValidation';
@@ -9,38 +9,38 @@ const api = Router();
 api.get('/',
     jwtAuth,
     checkPrivileges,
-    pendingMatchesController.getAll
+    pendingMatchController.getAll
 );
 
 api.get('/:id',
     jwtAuth,
     checkPrivileges,
-    pendingMatchesController.getOne
+    pendingMatchController.getOne
 );
 
 api.get('/users/:id',
     jwtAuth,
     checkPrivileges,
-    pendingMatchesController.getResourcesOfUser
+    pendingMatchController.getResourcesOfUser
 );
 
 api.post('/',
     jwtAuth,
     validateCreate,
     checkValidation,
-    pendingMatchesController.createNew
+    pendingMatchController.createNew
 );
 
 api.put('/:id',
     jwtAuth,
     validateUpdate,
     checkValidation,
-    pendingMatchesController.updateOne
+    pendingMatchController.updateOne
 );
 
 api.delete('/:id',
     jwtAuth,
-    pendingMatchesController.deleteOne
+    pendingMatchController.deleteOne
 );
 
 module.exports = api;

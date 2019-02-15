@@ -2,7 +2,7 @@ import { Router } from 'express';
 import jwtAuth from '../middlewares/auth';
 import checkOwnership from '../middlewares/checkOwnership';
 import checkPrivileges from '../middlewares/checkPrivileges';
-import usersController from '../controllers/usersController';
+import userController from '../controllers/userController';
 import upload from '../middlewares/uploadImage';
 import { validateUserUpdate } from '../validators/usersValidator';
 import { checkValidation } from '../validators/checkValidation';
@@ -11,17 +11,17 @@ const api = Router();
 api.get('/',
     jwtAuth,
     checkPrivileges,
-    usersController.getAll
+    userController.getAll
 );
 
 api.get('/:id',
     jwtAuth,
-    usersController.getOne
+    userController.getOne
 );
 
 api.get('/find',
     jwtAuth,
-    usersController.findNearby
+    userController.findNearby
 );
 
 api.put('/:id',
@@ -29,27 +29,27 @@ api.put('/:id',
     checkOwnership,
     validateUserUpdate,
     checkValidation,
-    usersController.updateOne
+    userController.updateOne
 );
 
 api.post('/:id/update-profile-picture',
     jwtAuth,
     checkOwnership,
     upload.single('profilePicture'),
-    usersController.updateProfilePicture
+    userController.updateProfilePicture
 );
 
 api.post('/:id/update-gallery',
     jwtAuth,
     checkOwnership,
     upload.array('pictures', 3),
-    usersController.updateGallery
+    userController.updateGallery
 );
 
 api.delete('/:id',
     jwtAuth,
     checkOwnership,
-    usersController.deleteOne
+    userController.deleteOne
 );
 
 module.exports = api;

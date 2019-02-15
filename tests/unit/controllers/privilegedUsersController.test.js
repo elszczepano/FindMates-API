@@ -1,4 +1,4 @@
-import privilegedUsersController from '../../../src/controllers/privilegedUsersController';
+import privilegedUserController from '../../../src/controllers/privilegedUserController';
 import sinon from 'sinon';
 import { expect } from 'chai';
 
@@ -18,7 +18,7 @@ describe('Test privilegedUsersController getAll method', () => {
             },
             json: sinon.spy()
         };
-        privilegedUsersController.getAll(req,res).then(() => {
+        privilegedUserController.getAll(req,res).then(() => {
             expect(res.json.firstCall.lastArg.success).to.equal(false);
             done();
         });
@@ -40,8 +40,8 @@ describe('Test privilegedUsersController getAll method', () => {
             },
             json: sinon.spy()
         };
-        privilegedUsersController.createNew(req,res).then(() => {
-            privilegedUsersController.getAll(req,res).then(() => {
+        privilegedUserController.createNew(req,res).then(() => {
+            privilegedUserController.getAll(req,res).then(() => {
                 expect(res.json.firstCall.lastArg.success).to.equal(true);
                 done();
             });
@@ -63,7 +63,7 @@ describe('Test privilegedUsersController createNew method', () => {
             },
             json: sinon.spy()
         };
-        privilegedUsersController.createNew(req,res).then(() => {
+        privilegedUserController.createNew(req,res).then(() => {
             expect(res.json.firstCall.lastArg.success).to.equal(true);
             idStore = res.json.firstCall.lastArg.data._id;
             done();
@@ -82,7 +82,7 @@ describe('Test privilegedUsersController createNew method', () => {
             },
             json: sinon.spy()
         };
-        privilegedUsersController.createNew(req,res).then(() => {
+        privilegedUserController.createNew(req,res).then(() => {
             throw 'Emit an error!';
         }).catch(() => {
             expect(res.json.firstCall.lastArg.success).to.equal(false);
@@ -104,7 +104,7 @@ describe('Test privilegedUsersController getResourcesOfUser method',() => {
             },
             json: sinon.spy()
         };
-        privilegedUsersController.getResourcesOfUser(req,res).then(() => {
+        privilegedUserController.getResourcesOfUser(req,res).then(() => {
             expect(res.json.firstCall.lastArg.success).to.equal(false);
             done();
         });
@@ -121,7 +121,7 @@ describe('Test privilegedUsersController getResourcesOfUser method',() => {
             },
             json: sinon.spy()
         };
-        privilegedUsersController.getResourcesOfUser(req,res).then(() => {
+        privilegedUserController.getResourcesOfUser(req,res).then(() => {
             expect(res.json.firstCall.lastArg.success).to.equal(true);
             done();
         });
@@ -138,7 +138,7 @@ describe('Test privilegedUsersController getResourcesOfUser method',() => {
             },
             json: sinon.spy()
         };
-        privilegedUsersController.getResourcesOfUser(req,res).then(() => {
+        privilegedUserController.getResourcesOfUser(req,res).then(() => {
             expect(res.json.firstCall.lastArg.role).to.equal('User');
             done();
         });
@@ -158,7 +158,7 @@ describe('Test privilegedUsersController getOne method', () => {
             },
             json: sinon.spy()
         };
-        privilegedUsersController.getOne(req,res).then(() => {
+        privilegedUserController.getOne(req,res).then(() => {
             expect(res.json.firstCall.lastArg.success).to.equal(false);
             done();
         });
@@ -175,7 +175,7 @@ describe('Test privilegedUsersController getOne method', () => {
             },
             json: sinon.spy()
         };
-        privilegedUsersController.getOne(req,res).then(() => {
+        privilegedUserController.getOne(req,res).then(() => {
             expect(res.json.firstCall.lastArg.success).to.equal(true);
             done();
         });
@@ -198,7 +198,7 @@ describe('Test privilegedUsersController updateOne method', () => {
             },
             json: sinon.spy()
         };
-        privilegedUsersController.updateOne(req,res).then(() => {
+        privilegedUserController.updateOne(req,res).then(() => {
             expect(res.json.firstCall.lastArg.success).to.equal(false);
             done();
         });
@@ -215,7 +215,7 @@ describe('Test privilegedUsersController updateOne method', () => {
             },
             json: sinon.spy()
         };
-        privilegedUsersController.updateOne(req,res).then(() => {
+        privilegedUserController.updateOne(req,res).then(() => {
             throw 'Emit an error';
         }).catch(() => {
             expect(res.json.firstCall.lastArg.success).to.equal(false);
@@ -237,7 +237,7 @@ describe('Test privilegedUsersController updateOne method', () => {
             },
             json: sinon.spy()
         };
-        privilegedUsersController.updateOne(req,res).then(() => {
+        privilegedUserController.updateOne(req,res).then(() => {
             expect(res.json.firstCall.lastArg.success).to.equal(true);
             done();
         });
@@ -257,7 +257,7 @@ describe('Test privilegedUsersController deleteOne method', () => {
             },
             json: sinon.spy()
         };
-        privilegedUsersController.deleteOne(req,res).then(() => {
+        privilegedUserController.deleteOne(req,res).then(() => {
             expect(res.json.firstCall.lastArg.success).to.equal(false);
             done();
         });
@@ -274,7 +274,7 @@ describe('Test privilegedUsersController deleteOne method', () => {
             },
             json: sinon.spy()
         };
-        privilegedUsersController.deleteOne(req,res).then(() => {
+        privilegedUserController.deleteOne(req,res).then(() => {
             throw 'Emit an error';
         }).catch(() => {
             expect(res.json.firstCall.lastArg.success).to.equal(false);
@@ -293,7 +293,7 @@ describe('Test privilegedUsersController deleteOne method', () => {
             },
             json: sinon.spy()
         };
-        privilegedUsersController.deleteOne(req,res).then(() => {
+        privilegedUserController.deleteOne(req,res).then(() => {
             expect(res.json.firstCall.lastArg.success).to.equal(true);
             done();
         });
