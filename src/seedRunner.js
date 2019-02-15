@@ -1,12 +1,11 @@
 import fs from 'fs';
 import async from 'async';
-const exec = require('child_process').exec;
+const exec = require('child_process').exec; // eslint-disable-line
 
-const scriptsFolder = './src/seed/';
 
-const files = fs.readdirSync(scriptsFolder);
+const files = fs.readdirSync('./src/seed/');
 const funcs = files.map(function(file) {
-    return exec.bind(null, `babel-node ${scriptsFolder}${file}`);
+    return exec.bind(null, `babel-node ./src/seed/${file}`);
 });
 
 function getResults(err, data) {

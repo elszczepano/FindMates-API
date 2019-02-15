@@ -15,7 +15,7 @@ const fileFilter = (req, file, callback) => {
 
 const storage = multer.diskStorage({
     destination: (req, file, callback) => {
-        if (!fs.exists(dirName)){
+        if (!fs.exists(dirName)) { // eslint-disable-line
             mkdirp(dirName, function() {
                 callback(null, dirName);
             });
