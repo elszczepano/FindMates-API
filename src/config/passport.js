@@ -6,17 +6,17 @@ const JWTStrategy = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
 
 function verifyCallback(payload, done) {
-    return User.findOne({_id: payload.id})
-        .then(user => done(null, user))
-        .catch(err => done(err));
+	return User.findOne({_id: payload.id})
+		.then(user => done(null, user))
+		.catch(err => done(err));
 }
 
 export default () => {
-    const config = {
-        jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-        secretOrKey: process.env.JWT_SECRET
-    };
-    passport.use(User.createStrategy());
-    passport.use(new JWTStrategy(config, verifyCallback));
+	const config = {
+		jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+		secretOrKey: process.env.JWT_SECRET
+	};
+	passport.use(User.createStrategy());
+	passport.use(new JWTStrategy(config, verifyCallback));
 };
 

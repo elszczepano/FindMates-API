@@ -2,20 +2,20 @@ import mongoose from 'mongoose';
 import mongooseDelete from 'mongoose-delete';
 
 const pendingMatchSchema = mongoose.Schema({
-    user1: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: [true, 'User 1 field is required.']
-    },
-    user2: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: [true, 'User 2 field is required.']
-    },
-    user1Approval: Boolean,
-    user2Approval: Boolean
+	user1: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User',
+		required: [true, 'User 1 field is required.']
+	},
+	user2: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User',
+		required: [true, 'User 2 field is required.']
+	},
+	user1Approval: Boolean,
+	user2Approval: Boolean
 }, {
-    timestamps: true
+	timestamps: true
 });
 
 pendingMatchSchema.plugin(mongooseDelete, { deletedAt : true, overrideMethods: true });

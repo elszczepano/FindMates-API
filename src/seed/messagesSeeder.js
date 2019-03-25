@@ -11,12 +11,12 @@ const sender = mongoose.Types.ObjectId();
 const match = mongoose.Types.ObjectId();
 
 const message = new Message({
-    message: faker.lorem.sentence(),
-    recipient: recipient,
-    sender: sender,
-    match: match
+	message: faker.lorem.sentence(),
+	recipient: recipient,
+	sender: sender,
+	match: match
 });
 message.save()
-    .then(() => mongoose.disconnect())
-    .then(() => console.log('Message seed successfully.'))
-    .catch(err => console.log(err));
+	.then(() => mongoose.disconnect())
+	.then(() => console.log('Message seed successfully.'))
+	.catch(err => console.log(err));
