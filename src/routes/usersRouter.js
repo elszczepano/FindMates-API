@@ -9,47 +9,47 @@ import { checkValidation } from '../validators/checkValidation';
 
 const api = Router();
 api.get('/',
-    jwtAuth,
-    checkPrivileges,
-    userController.getAll
+	jwtAuth,
+	checkPrivileges,
+	userController.getAll
 );
 
 api.get('/:id',
-    jwtAuth,
-    userController.getOne
+	jwtAuth,
+	userController.getOne
 );
 
 api.get('/find',
-    jwtAuth,
-    userController.findNearby
+	jwtAuth,
+	userController.findNearby
 );
 
 api.put('/:id',
-    jwtAuth,
-    checkOwnership,
-    validateUserUpdate,
-    checkValidation,
-    userController.updateOne
+	jwtAuth,
+	checkOwnership,
+	validateUserUpdate,
+	checkValidation,
+	userController.updateOne
 );
 
 api.post('/:id/update-profile-picture',
-    jwtAuth,
-    checkOwnership,
-    upload.single('profilePicture'),
-    userController.updateProfilePicture
+	jwtAuth,
+	checkOwnership,
+	upload.single('profilePicture'),
+	userController.updateProfilePicture
 );
 
 api.post('/:id/update-gallery',
-    jwtAuth,
-    checkOwnership,
-    upload.array('pictures', 3),
-    userController.updateGallery
+	jwtAuth,
+	checkOwnership,
+	upload.array('pictures', 3),
+	userController.updateGallery
 );
 
 api.delete('/:id',
-    jwtAuth,
-    checkOwnership,
-    userController.deleteOne
+	jwtAuth,
+	checkOwnership,
+	userController.deleteOne
 );
 
 module.exports = api;

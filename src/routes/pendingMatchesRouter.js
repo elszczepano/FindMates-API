@@ -7,40 +7,40 @@ import checkPrivileges from '../middlewares/checkPrivileges';
 
 const api = Router();
 api.get('/',
-    jwtAuth,
-    checkPrivileges,
-    pendingMatchController.getAll
+	jwtAuth,
+	checkPrivileges,
+	pendingMatchController.getAll
 );
 
 api.get('/:id',
-    jwtAuth,
-    checkPrivileges,
-    pendingMatchController.getOne
+	jwtAuth,
+	checkPrivileges,
+	pendingMatchController.getOne
 );
 
 api.get('/users/:id',
-    jwtAuth,
-    checkPrivileges,
-    pendingMatchController.getResourcesOfUser
+	jwtAuth,
+	checkPrivileges,
+	pendingMatchController.getResourcesOfUser
 );
 
 api.post('/',
-    jwtAuth,
-    validateCreate,
-    checkValidation,
-    pendingMatchController.createNew
+	jwtAuth,
+	validateCreate,
+	checkValidation,
+	pendingMatchController.createNew
 );
 
 api.put('/:id',
-    jwtAuth,
-    validateUpdate,
-    checkValidation,
-    pendingMatchController.updateOne
+	jwtAuth,
+	validateUpdate,
+	checkValidation,
+	pendingMatchController.updateOne
 );
 
 api.delete('/:id',
-    jwtAuth,
-    pendingMatchController.deleteOne
+	jwtAuth,
+	pendingMatchController.deleteOne
 );
 
 module.exports = api;

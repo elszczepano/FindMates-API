@@ -7,34 +7,34 @@ import { checkValidation } from '../validators/checkValidation';
 
 const api = Router();
 api.get('/',
-    jwtAuth,
-    checkPrivileges,
-    errorTicketController.getAll
+	jwtAuth,
+	checkPrivileges,
+	errorTicketController.getAll
 );
 
 api.get('/:id',
-    jwtAuth,
-    checkPrivileges,
-    errorTicketController.getOne
+	jwtAuth,
+	checkPrivileges,
+	errorTicketController.getOne
 );
 
 api.get('/users/:id',
-    jwtAuth,
-    checkPrivileges,
-    errorTicketController.getOne
+	jwtAuth,
+	checkPrivileges,
+	errorTicketController.getOne
 );
 
 api.post('/',
-    jwtAuth,
-    validateCreate,
-    checkValidation,
-    errorTicketController.createNew
+	jwtAuth,
+	validateCreate,
+	checkValidation,
+	errorTicketController.createNew
 );
 
 api.delete('/:id',
-    jwtAuth,
-    checkPrivileges,
-    errorTicketController.deleteOne
+	jwtAuth,
+	checkPrivileges,
+	errorTicketController.deleteOne
 );
 
 module.exports = api;

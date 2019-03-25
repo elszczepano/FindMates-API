@@ -7,40 +7,40 @@ import { checkValidation } from '../validators/checkValidation';
 
 const api = Router();
 api.get('/',
-    jwtAuth,
-    checkPrivileges,
-    matchController.getAll
+	jwtAuth,
+	checkPrivileges,
+	matchController.getAll
 );
 
 api.get('/:id',
-    jwtAuth,
-    matchController.getOne
+	jwtAuth,
+	matchController.getOne
 );
 
 api.get('/users/:id',
-    jwtAuth,
-    matchController.getResourcesOfUser
+	jwtAuth,
+	matchController.getResourcesOfUser
 );
 
 api.post('/',
-    jwtAuth,
-    checkPrivileges,
-    validateCreate,
-    checkValidation,
-    matchController.createNew
+	jwtAuth,
+	checkPrivileges,
+	validateCreate,
+	checkValidation,
+	matchController.createNew
 );
 
 api.put('/:id',
-    jwtAuth,
-    checkPrivileges,
-    validateUpdate,
-    checkValidation,
-    matchController.updateOne
+	jwtAuth,
+	checkPrivileges,
+	validateUpdate,
+	checkValidation,
+	matchController.updateOne
 );
 
 api.delete('/:id',
-    jwtAuth,
-    matchController.deleteOne
+	jwtAuth,
+	matchController.deleteOne
 );
 
 module.exports = api;

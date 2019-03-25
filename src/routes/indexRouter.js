@@ -10,25 +10,25 @@ import jwtAuth from '../middlewares/auth';
 const api = Router();
 
 api.get('/', (req, res) => {
-    res.status(200).json('Welcome to FindMates API.');
+	res.status(200).json('Welcome to FindMates API.');
 });
 
 api.get('/me',
-    jwtAuth, (req, res) => {
-        res.status(200).json(req.user);
-    });
+	jwtAuth, (req, res) => {
+		res.status(200).json(req.user);
+	});
 
 api.post('/login',
-    loginCheck,
-    checkIfBlocked,
-    authController.login
+	loginCheck,
+	checkIfBlocked,
+	authController.login
 );
 
 api.post('/register',
-    upload.single('profilePicture'),
-    validateRegister,
-    checkValidation,
-    authController.register
+	upload.single('profilePicture'),
+	validateRegister,
+	checkValidation,
+	authController.register
 );
 
 module.exports = api;

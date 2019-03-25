@@ -5,9 +5,9 @@ export default (req, res, next) => {
 		if (err) return next(err);
 		if (!user) {
 			return res.status(401).json({
-					success: false,
-					error: info.message || 'Invalid token.'
-				}
+				success: false,
+				error: info.message || 'Invalid token.'
+			}
 			);}
 		req.user = user;
 		next();
