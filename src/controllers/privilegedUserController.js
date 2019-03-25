@@ -1,9 +1,10 @@
 import PrivilegedUser from '../models/PrivilegedUser';
 
 export default {
-	getAll(req, res) {
+	async getAll(req, res) {
 		const offset = parseInt(req.query.offset) || 0;
 		const perPage = parseInt(req.query.perPage) || 10;
+		const count = await PrivilegedUser.estimatedDocumentCount();
 		return PrivilegedUser.find({}).skip(offset).limit(perPage)
 			.populate({
 				path: 'user',
@@ -14,6 +15,7 @@ export default {
 					success: false,
 					message: 'Privileged users not found.'
 				});
+				res.append('total-count', count);
 				res.status(200).json({
 					success: true,
 					data: item

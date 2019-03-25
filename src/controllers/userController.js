@@ -2,15 +2,17 @@ import User from '../models/User';
 import moment from 'moment';
 
 export default {
-	getAll(req, res) {
+	async getAll(req, res) {
 		const offset = parseInt(req.query.offset) || 0;
 		const perPage = parseInt(req.query.perPage) || 3;
+		const count = await User.estimatedDocumentCount();
 		return User.find({}).skip(offset).limit(perPage)
 			.then(item => {
 				if(!item.length || !item) return res.status(404).json({
 					success: false,
 					message: 'Users not found.'
 				});
+				res.append('total-count', count);
 				res.status(200).json({
 					success: true,
 					data: item

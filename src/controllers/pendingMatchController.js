@@ -2,9 +2,10 @@ import PendingMatch from '../models/PendingMatch';
 import Match from '../models/Match';
 
 export default {
-	getAll(req, res) {
+	async getAll(req, res) {
 		const offset = parseInt(req.query.offset) || 0;
 		const perPage = parseInt(req.query.perPage) || 10;
+		const count = await PendingMatch.estimatedDocumentCount();
 		return PendingMatch.find({}).skip(offset).limit(perPage)
 			.populate({
 				path: 'user1',
@@ -19,6 +20,7 @@ export default {
 					success: false,
 					message: 'Pending matches not found.'
 				});
+				res.append('total-count', count);
 				res.status(200).json({
 					success: true,
 					data: item

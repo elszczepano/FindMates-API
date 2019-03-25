@@ -2,9 +2,10 @@ import Message from '../models/Message';
 import Match from '../models/Match';
 
 export default {
-	getAll(req, res) {
+	async getAll(req, res) {
 		const offset = parseInt(req.query.offset) || 0;
 		const perPage = parseInt(req.query.perPage) || 100;
+		const count = await Message.estimatedDocumentCount();
 		return Message.find({})
 			.populate({
 				path: 'recipient',
@@ -23,7 +24,8 @@ export default {
 					success: false,
 					message: 'Messages not found.'
 				});
-				return res.status(200).json({
+				res.append('total-count', count);
+				res.status(200).json({
 					success: true,
 					data: item
 				});

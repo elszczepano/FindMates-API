@@ -1,9 +1,10 @@
 import ErrorTicket from '../models/ErrorTicket';
 
 export default {
-	getAll(req, res) {
+	async getAll(req, res) {
 		const offset = parseInt(req.query.offset) || 0;
 		const perPage = parseInt(req.query.perPage) || 10;
+		const count = await ErrorTicket.estimatedDocumentCount();
 		return ErrorTicket.find({})
 			.populate({
 				path: 'user',
@@ -15,6 +16,7 @@ export default {
 					success: false,
 					message: 'Error tickets not found.'
 				});
+				res.append('total-count', count);
 				res.status(200).json({
 					success: true,
 					data: item
