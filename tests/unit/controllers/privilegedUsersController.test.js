@@ -1,8 +1,8 @@
 import privilegedUserController from '../../../src/controllers/privilegedUserController';
 import sinon from 'sinon';
-import { expect } from 'chai';
+import {expect} from 'chai';
 
-let idStore= '';
+let idStore = '';
 
 describe('Test privilegedUsersController getAll method', () => {
 	it('getAll should return an 404 error', done => {
@@ -13,12 +13,12 @@ describe('Test privilegedUsersController getAll method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		privilegedUserController.getAll(req,res).then(() => {
+		privilegedUserController.getAll(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(false);
 			done();
 		});
@@ -35,13 +35,13 @@ describe('Test privilegedUsersController getAll method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		privilegedUserController.createNew(req,res).then(() => {
-			privilegedUserController.getAll(req,res).then(() => {
+		privilegedUserController.createNew(req, res).then(() => {
+			privilegedUserController.getAll(req, res).then(() => {
 				expect(res.json.firstCall.lastArg.success).to.equal(true);
 				done();
 			});
@@ -58,12 +58,12 @@ describe('Test privilegedUsersController createNew method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		privilegedUserController.createNew(req,res).then(() => {
+		privilegedUserController.createNew(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(true);
 			idStore = res.json.firstCall.lastArg.data._id;
 			done();
@@ -77,12 +77,12 @@ describe('Test privilegedUsersController createNew method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		privilegedUserController.createNew(req,res).then(() => {
+		privilegedUserController.createNew(req, res).then(() => {
 			throw 'Emit an error!';
 		}).catch(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(false);
@@ -91,7 +91,7 @@ describe('Test privilegedUsersController createNew method', () => {
 	});
 });
 
-describe('Test privilegedUsersController getResourcesOfUser method',() => {
+describe('Test privilegedUsersController getResourcesOfUser method', () => {
 	it('getResourcesOfUser should return an 404 error', done => {
 		const req = {
 			params: {
@@ -99,12 +99,12 @@ describe('Test privilegedUsersController getResourcesOfUser method',() => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		privilegedUserController.getResourcesOfUser(req,res).then(() => {
+		privilegedUserController.getResourcesOfUser(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(false);
 			done();
 		});
@@ -116,12 +116,12 @@ describe('Test privilegedUsersController getResourcesOfUser method',() => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		privilegedUserController.getResourcesOfUser(req,res).then(() => {
+		privilegedUserController.getResourcesOfUser(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(true);
 			done();
 		});
@@ -133,12 +133,12 @@ describe('Test privilegedUsersController getResourcesOfUser method',() => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		privilegedUserController.getResourcesOfUser(req,res).then(() => {
+		privilegedUserController.getResourcesOfUser(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.role).to.equal('User');
 			done();
 		});
@@ -153,12 +153,12 @@ describe('Test privilegedUsersController getOne method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		privilegedUserController.getOne(req,res).then(() => {
+		privilegedUserController.getOne(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(false);
 			done();
 		});
@@ -170,12 +170,12 @@ describe('Test privilegedUsersController getOne method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		privilegedUserController.getOne(req,res).then(() => {
+		privilegedUserController.getOne(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(true);
 			done();
 		});
@@ -193,12 +193,12 @@ describe('Test privilegedUsersController updateOne method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		privilegedUserController.updateOne(req,res).then(() => {
+		privilegedUserController.updateOne(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(false);
 			done();
 		});
@@ -210,12 +210,12 @@ describe('Test privilegedUsersController updateOne method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		privilegedUserController.updateOne(req,res).then(() => {
+		privilegedUserController.updateOne(req, res).then(() => {
 			throw 'Emit an error';
 		}).catch(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(false);
@@ -232,12 +232,12 @@ describe('Test privilegedUsersController updateOne method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		privilegedUserController.updateOne(req,res).then(() => {
+		privilegedUserController.updateOne(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(true);
 			done();
 		});
@@ -252,12 +252,12 @@ describe('Test privilegedUsersController deleteOne method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		privilegedUserController.deleteOne(req,res).then(() => {
+		privilegedUserController.deleteOne(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(false);
 			done();
 		});
@@ -269,12 +269,12 @@ describe('Test privilegedUsersController deleteOne method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		privilegedUserController.deleteOne(req,res).then(() => {
+		privilegedUserController.deleteOne(req, res).then(() => {
 			throw 'Emit an error';
 		}).catch(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(false);
@@ -288,12 +288,12 @@ describe('Test privilegedUsersController deleteOne method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		privilegedUserController.deleteOne(req,res).then(() => {
+		privilegedUserController.deleteOne(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(true);
 			done();
 		});

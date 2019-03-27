@@ -1,8 +1,8 @@
-import { Router } from 'express';
+import {Router} from 'express';
 import privilegedUserController from '../controllers/privilegedUserController';
 import jwtAuth from '../middlewares/auth';
-import { validateCreate, validateUpdate } from '../validators/privilegedUsersValidator';
-import { checkValidation } from '../validators/checkValidation';
+import {validateCreate, validateUpdate} from '../validators/privilegedUsersValidator';
+import {checkValidation} from '../validators/checkValidation';
 import checkPrivileges from '../middlewares/checkPrivileges';
 
 const api = Router();

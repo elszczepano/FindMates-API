@@ -1,5 +1,5 @@
 import authController from '../../../src/controllers/authController';
-import { expect } from 'chai';
+import {expect} from 'chai';
 import sinon from 'sinon';
 import faker from 'faker';
 
@@ -13,12 +13,12 @@ describe('Test login method', () => {
 			user: user
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		authController.login(req,res).then(() => {
+		authController.login(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.token).to.be.a('string');
 			done();
 		});
@@ -45,12 +45,12 @@ describe('Test register method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		authController.register(req,res).then(() => {
+		authController.register(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(true);
 			done();
 		});
@@ -60,12 +60,12 @@ describe('Test register method', () => {
 			body: {}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		authController.register(req,res).then(() => {
+		authController.register(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.message).to.equal('No username was given');
 			done();
 		});

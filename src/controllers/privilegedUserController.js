@@ -11,7 +11,7 @@ export default {
 				select: '-__v -salt -hash -createdAt -updatedAt'
 			})
 			.then(item => {
-				if(!item.length || !item) return res.status(404).json({
+				if (!item.length || !item) return res.status(404).json({
 					success: false,
 					message: 'Privileged users not found.'
 				});
@@ -33,7 +33,7 @@ export default {
 				select: '-__v -salt -hash -createdAt -updatedAt'
 			})
 			.then(item => {
-				if(!item) return res.status(404).json({
+				if (!item) return res.status(404).json({
 					success: false,
 					message: `Privileged user with ID ${req.params.id} not found.`
 				});
@@ -50,7 +50,7 @@ export default {
 	getResourcesOfUser(req, res) {
 		return PrivilegedUser.find({'user': req.params.id})
 			.then(item => {
-				if(!item.length || !item) {
+				if (!item.length || !item) {
 					return res.status(200).json({
 						success: true,
 						userId: req.params.id,
@@ -71,7 +71,7 @@ export default {
 	createNew(req, res) {
 		const privilegedUser = new PrivilegedUser(req.body);
 		return privilegedUser.save()
-			.then(item =>  res.status(201).json({
+			.then(item => res.status(201).json({
 				success: true,
 				message: 'Privileged user created successfully.',
 				data: item
@@ -84,7 +84,7 @@ export default {
 	updateOne(req, res) {
 		return PrivilegedUser.findByIdAndUpdate(req.params.id, req.body, {new: true})
 			.then(item => {
-				if(!item) return res.status(404).json({
+				if (!item) return res.status(404).json({
 					item: item,
 					success: false,
 					message: `Privileged user with ID ${req.params.id} not found.`
@@ -102,7 +102,7 @@ export default {
 	deleteOne(req, res) {
 		return PrivilegedUser.findById(req.params.id)
 			.then(item => {
-				if(!item) return res.status(404).json({
+				if (!item) return res.status(404).json({
 					success: false,
 					message: `Privileged user with ID ${req.params.id} not found.`
 				});

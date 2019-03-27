@@ -1,8 +1,8 @@
 import errorTicketController from '../../../src/controllers/errorTicketController';
 import sinon from 'sinon';
-import { expect } from 'chai';
+import {expect} from 'chai';
 
-let idStore= '';
+let idStore = '';
 
 describe('Test errorTicketsController getAll method', () => {
 	it('getAll should return an 404 error', done => {
@@ -13,12 +13,12 @@ describe('Test errorTicketsController getAll method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		errorTicketController.getAll(req,res).then(() => {
+		errorTicketController.getAll(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(false);
 			done();
 		});
@@ -35,13 +35,13 @@ describe('Test errorTicketsController getAll method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		errorTicketController.createNew(req,res).then(() => {
-			errorTicketController.getAll(req,res).then(() => {
+		errorTicketController.createNew(req, res).then(() => {
+			errorTicketController.getAll(req, res).then(() => {
 				expect(res.json.firstCall.lastArg.success).to.equal(true);
 				done();
 			});
@@ -58,12 +58,12 @@ describe('Test errorTicketsController createNew method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		errorTicketController.createNew(req,res).then(() => {
+		errorTicketController.createNew(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(true);
 			idStore = res.json.firstCall.lastArg.data._id;
 			done();
@@ -77,12 +77,12 @@ describe('Test errorTicketsController createNew method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		errorTicketController.createNew(req,res).then(() => {
+		errorTicketController.createNew(req, res).then(() => {
 			throw 'Emit an error!';
 		}).catch(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(false);
@@ -91,7 +91,7 @@ describe('Test errorTicketsController createNew method', () => {
 	});
 });
 
-describe('Test errorTicketsController getResourcesOfUser method',() => {
+describe('Test errorTicketsController getResourcesOfUser method', () => {
 	it('getResourcesOfUser should return an 404 error', done => {
 		const req = {
 			params: {
@@ -99,12 +99,12 @@ describe('Test errorTicketsController getResourcesOfUser method',() => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		errorTicketController.getResourcesOfUser(req,res).then(() => {
+		errorTicketController.getResourcesOfUser(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(false);
 			done();
 		});
@@ -116,12 +116,12 @@ describe('Test errorTicketsController getResourcesOfUser method',() => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		errorTicketController.getResourcesOfUser(req,res).then(() => {
+		errorTicketController.getResourcesOfUser(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(true);
 			done();
 		});
@@ -136,12 +136,12 @@ describe('Test errorTicketsController getOne method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		errorTicketController.getOne(req,res).then(() => {
+		errorTicketController.getOne(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(false);
 			done();
 		});
@@ -153,12 +153,12 @@ describe('Test errorTicketsController getOne method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		errorTicketController.getOne(req,res).then(() => {
+		errorTicketController.getOne(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(true);
 			done();
 		});
@@ -173,12 +173,12 @@ describe('Test errorTicketsController deleteOne method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		errorTicketController.deleteOne(req,res).then(() => {
+		errorTicketController.deleteOne(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(false);
 			done();
 		});
@@ -190,12 +190,12 @@ describe('Test errorTicketsController deleteOne method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		errorTicketController.deleteOne(req,res).then(() => {
+		errorTicketController.deleteOne(req, res).then(() => {
 			throw 'Emit an error';
 		}).catch(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(false);
@@ -209,12 +209,12 @@ describe('Test errorTicketsController deleteOne method', () => {
 			}
 		};
 		const res = {
-			status: function () {
+			status: function() {
 				return this;
 			},
 			json: sinon.spy()
 		};
-		errorTicketController.deleteOne(req,res).then(() => {
+		errorTicketController.deleteOne(req, res).then(() => {
 			expect(res.json.firstCall.lastArg.success).to.equal(true);
 			done();
 		});

@@ -8,7 +8,7 @@ export default {
 		const count = await User.estimatedDocumentCount();
 		return User.find({}).skip(offset).limit(perPage)
 			.then(item => {
-				if(!item.length || !item) return res.status(404).json({
+				if (!item.length || !item) return res.status(404).json({
 					success: false,
 					message: 'Users not found.'
 				});
@@ -26,7 +26,7 @@ export default {
 	getOne(req, res) {
 		return User.findById(req.params.id)
 			.then(item => {
-				if(!item) return res.status(404).json({
+				if (!item) return res.status(404).json({
 					success: false,
 					message: `User with ID ${req.params.id} not found.`
 				});
@@ -52,12 +52,12 @@ export default {
 			.match({
 				gender: req.params.gender,
 				$and: [
-					{ birthDate: { $gte: moment().subtract(req.params.minAge, 'years') } },
-					{ birthDate: { $lte: moment().subtract(req.params.maxAge, 'years') } }
+					{birthDate: {$gte: moment().subtract(req.params.minAge, 'years')}},
+					{birthDate: {$lte: moment().subtract(req.params.maxAge, 'years')}}
 				]
 			}).skip(offset).limit(perPage)
 			.then(item => {
-				if(!item.length || !item) return res.status(200).json({
+				if (!item.length || !item) return res.status(200).json({
 					success: true,
 					message: `There are no people nearby`
 				});
@@ -74,7 +74,7 @@ export default {
 	updateOne(req, res) {
 		return User.findByIdAndUpdate(req.params.id, req.body, {new: true})
 			.then(item => {
-				if(!item) return res.status(404).json({
+				if (!item) return res.status(404).json({
 					success: false,
 					message: `User with ID ${req.params.id} not found.`
 				});
@@ -91,7 +91,7 @@ export default {
 	updateProfilePicture(req, res) {
 		User.findById(req.params.id)
 			.then(item => {
-				if(!item) return res.status(404).json({
+				if (!item) return res.status(404).json({
 					success: false,
 					message: `User with ID ${req.params.id} not found.`
 				});
@@ -113,7 +113,7 @@ export default {
 		const paths = req.files.map(file => file.path);
 		User.findById(req.params.id)
 			.then(item => {
-				if(!item) return res.status(404).json({
+				if (!item) return res.status(404).json({
 					success: false,
 					message: `User with ID ${req.params.id} not found.`
 				});
@@ -134,7 +134,7 @@ export default {
 	deleteOne(req, res) {
 		return User.findById(req.params.id)
 			.then(item => {
-				if(!item) return res.status(404).json({
+				if (!item) return res.status(404).json({
 					success: false,
 					message: `User with ID ${req.params.id} not found.`
 				});

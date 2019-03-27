@@ -1,5 +1,6 @@
 import fs from 'fs';
 import async from 'async';
+
 const exec = require('child_process').exec; // eslint-disable-line
 
 
@@ -12,7 +13,7 @@ function getResults(err, data) {
 	if (err) {
 		return console.log(err);
 	}
-	const results = data.map(function(lines){
+	const results = data.map(function(lines) {
 		return lines.join('');
 	});
 	console.log(results);

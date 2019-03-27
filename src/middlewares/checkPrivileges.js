@@ -3,7 +3,7 @@ import PrivilegedUser from '../models/PrivilegedUser';
 export default (req, res, next) => {
 	PrivilegedUser.find({'user': req.params.id})
 		.then(item => {
-			if(item.role === 'Administrator') next();
+			if (item.role === 'Administrator') next();
 			else {
 				res.status(403).json({
 					success: false,

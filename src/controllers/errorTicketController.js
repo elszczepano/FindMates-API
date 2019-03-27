@@ -12,7 +12,7 @@ export default {
 			})
 			.skip(offset).limit(perPage)
 			.then(item => {
-				if(!item.length || !item) return res.status(404).json({
+				if (!item.length || !item) return res.status(404).json({
 					success: false,
 					message: 'Error tickets not found.'
 				});
@@ -34,10 +34,12 @@ export default {
 				select: '-__v -salt -hash -createdAt -updatedAt'
 			})
 			.then(item => {
-				if(!item) return res.status(404).json({
-					success: false,
-					message: `Error ticket with ID ${req.params.id} not found.`
-				});
+				if (!item) {
+					return res.status(404).json({
+						success: false,
+						message: `Error ticket with ID ${req.params.id} not found.`
+					});
+				}
 				res.status(200).json({
 					success: true,
 					data: item
@@ -68,7 +70,7 @@ export default {
 	createNew(req, res) {
 		const errorTicket = new ErrorTicket(req.body);
 		return errorTicket.save()
-			.then(item =>  res.status(201).json({
+			.then(item => res.status(201).json({
 				success: true,
 				message: 'Error ticket created successfully.',
 				data: item
@@ -78,10 +80,10 @@ export default {
 				message: err
 			}));
 	},
-	deleteOne(req, res)  {
+	deleteOne(req, res) {
 		return ErrorTicket.findById(req.params.id)
 			.then(item => {
-				if(!item) return res.status(404).json({
+				if (!item) return res.status(404).json({
 					success: false,
 					message: `Error ticket with ID ${req.params.id} not found.`
 				});

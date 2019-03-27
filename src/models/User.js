@@ -77,7 +77,7 @@ const userSchema = mongoose.Schema({
 	timestamps: true
 });
 
-userSchema.plugin(mongooseDelete, { deletedAt : true, overrideMethods: true });
-userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
+userSchema.plugin(mongooseDelete, {deletedAt: true, overrideMethods: true});
+userSchema.plugin(passportLocalMongoose, {usernameField: 'email'});
 
 module.exports = mongoose.model('User', userSchema, 'users');

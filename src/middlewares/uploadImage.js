@@ -3,7 +3,7 @@ import fs from 'fs';
 import mkdirp from 'mkdirp';
 
 const currentDate = new Date();
-const dirName = `./uploads/${currentDate.getFullYear()}/${currentDate.getMonth()+1}`;
+const dirName = `./uploads/${currentDate.getFullYear()}/${currentDate.getMonth() + 1}`;
 
 const fileFilter = (req, file, callback) => {
 	if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {

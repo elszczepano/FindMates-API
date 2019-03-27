@@ -16,7 +16,7 @@ export default {
 				select: 'name profilePicture'
 			})
 			.then(item => {
-				if(!item.length || !item) return res.status(404).json({
+				if (!item.length || !item) return res.status(404).json({
 					success: false,
 					message: 'Pending matches not found.'
 				});
@@ -42,11 +42,11 @@ export default {
 				select: 'name profilePicture'
 			})
 			.then(item => {
-				if(!item) return res.status(404).json({
+				if (!item) return res.status(404).json({
 					success: false,
 					message: `Pending match with ID ${req.params.id} not found.`
 				});
-				if(req.user._id.equals(item.user1._id) || req.user._id.equals(item.user2._id)) {
+				if (req.user._id.equals(item.user1._id) || req.user._id.equals(item.user2._id)) {
 					res.status(200).json({
 						success: true,
 						data: item
@@ -64,17 +64,19 @@ export default {
 			}));
 	},
 	getResourcesOfUser(req, res) {
-		return PendingMatch.find({$or:
+		return PendingMatch.find({
+			$or:
 				[
 					{'user1': req.params.id},
 					{'user2': req.params.id}
-				]})
+				]
+		})
 			.then(item => {
-				if(!item.length || !item) return res.status(404).json({
+				if (!item.length || !item) return res.status(404).json({
 					success: false,
 					message: `Resources of user ID ${req.params.id} not found.`
 				});
-				if(req.user._id.equals(item.user1._id) || req.user._id.equals(item.user2._id)) {
+				if (req.user._id.equals(item.user1._id) || req.user._id.equals(item.user2._id)) {
 					res.status(200).json({
 						success: true,
 						data: item
@@ -107,12 +109,12 @@ export default {
 	updateOne(req, res) {
 		return PendingMatch.findById(req.params.id)
 			.then(item => {
-				if(!item) return res.status(404).json({
+				if (!item) return res.status(404).json({
 					success: false,
 					message: `Pending match with ID ${req.params.id} not found.`
 				});
-				if(req.user._id.equals(item.user1._id) || req.user._id.equals(item.user2._id)) {
-					if((req.user._id.equals(item.user1._id) && req.body.user2Approval) || (req.user._id.equals(item.user2._id) && req.body.user1Approval)) {
+				if (req.user._id.equals(item.user1._id) || req.user._id.equals(item.user2._id)) {
+					if ((req.user._id.equals(item.user1._id) && req.body.user2Approval) || (req.user._id.equals(item.user2._id) && req.body.user1Approval)) {
 						return res.status(403).json({
 							success: false,
 							message: 'Access denied. User not permitted.'
@@ -121,7 +123,7 @@ export default {
 					const pendingMatch = Object.assign(item, req.body);
 					pendingMatch.save()
 						.then(item => {
-							if(item.user1Approval && item.user2Approval) {
+							if (item.user1Approval && item.user2Approval) {
 								const newMatch = new Match(pendingMatch);
 								newMatch.save();
 								item.remove({_id: item._id});
@@ -153,11 +155,11 @@ export default {
 	deleteOne(req, res) {
 		return PendingMatch.findById(req.params.id)
 			.then(item => {
-				if(!item) return res.status(404).json({
+				if (!item) return res.status(404).json({
 					success: false,
 					message: `Pending match with ID ${req.params.id} not found.`
 				});
-				if(req.user._id.equals(item.user1._id) || req.user._id.equals(item.user2._idd)) {
+				if (req.user._id.equals(item.user1._id) || req.user._id.equals(item.user2._idd)) {
 					item.delete({_id: req.params.id});
 					res.status(200).json({
 						success: true,

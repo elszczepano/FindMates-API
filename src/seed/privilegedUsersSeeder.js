@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 import PrivilegedUser from '../models/PrivilegedUser';
 
-mongoose.connect('mongodb://localhost:27017/FindMates', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/FindMates', {useNewUrlParser: true});
 mongoose.set('useCreateIndex', true);
-PrivilegedUser.deleteMany({}, err=> console.log(err));
+PrivilegedUser.deleteMany({}, err => console.log(err));
 
 const user = mongoose.Types.ObjectId();
 

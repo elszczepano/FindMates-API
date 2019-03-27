@@ -1,8 +1,8 @@
-import { Router } from 'express';
+import {Router} from 'express';
 import pendingMatchController from '../controllers/pendingMatchController';
 import jwtAuth from '../middlewares/auth';
-import { validateCreate, validateUpdate } from '../validators/pendingMatchesValidator';
-import { checkValidation } from '../validators/checkValidation';
+import {validateCreate, validateUpdate} from '../validators/pendingMatchesValidator';
+import {checkValidation} from '../validators/checkValidation';
 import checkPrivileges from '../middlewares/checkPrivileges';
 
 const api = Router();

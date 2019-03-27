@@ -15,6 +15,6 @@ const errorTicketSchema = mongoose.Schema({
 	timestamps: true
 });
 
-errorTicketSchema.plugin(mongooseDelete, { deletedAt : true, overrideMethods: true });
+errorTicketSchema.plugin(mongooseDelete, {deletedAt: true, overrideMethods: true});
 
 module.exports = mongoose.model('ErrorTicket', errorTicketSchema, 'errorTickets');

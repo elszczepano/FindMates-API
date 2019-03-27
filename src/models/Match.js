@@ -16,6 +16,6 @@ const matchSchema = mongoose.Schema({
 	timestamps: true
 });
 
-matchSchema.plugin(mongooseDelete, { deletedAt : true, overrideMethods: true });
+matchSchema.plugin(mongooseDelete, {deletedAt: true, overrideMethods: true});
 
 module.exports = mongoose.model('Match', matchSchema, 'matches');

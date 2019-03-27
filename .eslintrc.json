@@ -20,11 +20,15 @@
 
 		"indent": [
 			"error",
-			"tab"
+			"tab",
+			{
+				"SwitchCase": 1,
+				"ObjectExpression": 1
+			}
 		],
 		"linebreak-style": [
 			"error",
-			"windows"
+			"unix"
 		],
 		"quotes": [
 			"error",
@@ -34,6 +38,29 @@
 		"semi": [
 			"error",
 			"always"
+		],
+		"eol-last": [
+			"error",
+			"always"
+		],
+		"space-before-blocks": [
+			"error",
+			"always"
+		],
+		"space-before-function-paren": [
+			"error",
+			"never"
+		],
+		"object-curly-spacing": [
+			"error",
+			"never"
+		],
+		"keyword-spacing": [
+			"error",
+			{
+				"before": true,
+				"after": true
+			}
 		]
 	}
 }

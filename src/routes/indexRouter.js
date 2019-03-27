@@ -1,10 +1,10 @@
-import { Router } from 'express';
+import {Router} from 'express';
 import authController from '../controllers/authController';
 import loginCheck from '../middlewares/loginCheck';
 import checkIfBlocked from '../middlewares/checkIfBlocked';
 import upload from '../middlewares/uploadImage';
-import { validateRegister } from '../validators/usersValidator';
-import { checkValidation } from '../validators/checkValidation';
+import {validateRegister} from '../validators/usersValidator';
+import {checkValidation} from '../validators/checkValidation';
 import jwtAuth from '../middlewares/auth';
 
 const api = Router();

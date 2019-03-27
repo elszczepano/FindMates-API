@@ -20,7 +20,7 @@ export default {
 			})
 			.skip(offset).limit(perPage)
 			.then(item => {
-				if(!item.length || !item) return res.status(404).json({
+				if (!item.length || !item) return res.status(404).json({
 					success: false,
 					message: 'Messages not found.'
 				});
@@ -49,11 +49,11 @@ export default {
 				path: 'match'
 			})
 			.then(item => {
-				if(!item) return res.status(404).json({
+				if (!item) return res.status(404).json({
 					success: false,
 					message: `Message with ID ${req.params.id} not found.`
 				});
-				if(req.user._id.equals(item.recipient._id) || req.user._id.equals(item.sender._id)) {
+				if (req.user._id.equals(item.recipient._id) || req.user._id.equals(item.sender._id)) {
 					res.status(200).json({
 						success: true,
 						data: item
@@ -71,17 +71,19 @@ export default {
 			}));
 	},
 	getResourcesOfUser(req, res) {
-		return Message.find({$or:
+		return Message.find({
+			$or:
 				[
 					{'recipient': req.user._id},
 					{'sender': req.user._id}
-				]})
+				]
+		})
 			.then(item => {
-				if(!item.length || !item) return res.status(404).json({
+				if (!item.length || !item) return res.status(404).json({
 					success: false,
 					message: `Resources of user ID ${req.params.id} not found.`
 				});
-				if(req.user._id.equals(item.recipient._id) || req.user._id.equals(item.sender_id)) {
+				if (req.user._id.equals(item.recipient._id) || req.user._id.equals(item.sender_id)) {
 					res.status(200).json({
 						success: true,
 						data: item
@@ -101,11 +103,11 @@ export default {
 	getResourcesOfMatch(req, res) {
 		return Message.find({'match': req.params.id})
 			.then(item => {
-				if(!item.length || !item) return res.status(404).json({
+				if (!item.length || !item) return res.status(404).json({
 					success: false,
 					message: `Resources of match ID ${req.params.id} not found.`
 				});
-				if(req.user._id.equals(item.recipient._id) || req.user._id.equals(item.sender._id)) {
+				if (req.user._id.equals(item.recipient._id) || req.user._id.equals(item.sender._id)) {
 					res.status(200).json({
 						success: true,
 						data: item
@@ -125,20 +127,20 @@ export default {
 	createNew(req, res) {
 		Match.findById(req.body.match)
 			.then(item => {
-				if(!item) {
+				if (!item) {
 					return res.status(404).json({
 						success: false,
 						message: `Match with ID ${req.body.match} not found.`
 					});
 				}
-				if(!req.user._id.equals(item.user1._id) || !req.user._id.equals(item.user2._id)) {
+				if (!req.user._id.equals(item.user1._id) || !req.user._id.equals(item.user2._id)) {
 					return res.status(403).json({
 						success: false,
 						message: 'Invalid match. User not permitted.'
 					});
 				}
 			});
-		if(req.user._id.equals(req.body.recipient) || !req.user._id.equals(req.body.sender)) {
+		if (req.user._id.equals(req.body.recipient) || !req.user._id.equals(req.body.sender)) {
 			return res.status(403).json({
 				success: false,
 				message: 'Access denied. User not permitted.'
@@ -159,11 +161,11 @@ export default {
 	updateOne(req, res) {
 		return Message.findById(req.params.id)
 			.then(item => {
-				if(!item) return res.status(404).json({
+				if (!item) return res.status(404).json({
 					success: false,
 					message: `Message with ID ${req.params.id} not found.`
 				});
-				if(req.user._id.equals(item.sender._id)) {
+				if (req.user._id.equals(item.sender._id)) {
 					const message = Object.assign(item, req.body);
 					message.save()
 						.then(item => res.status(200).json({
@@ -186,11 +188,11 @@ export default {
 	deleteOne(req, res) {
 		return Message.findById(req.params.id)
 			.then(item => {
-				if(!item) return res.status(404).json({
+				if (!item) return res.status(404).json({
 					success: false,
 					message: `Message with ID ${req.params.id} not found.`
 				});
-				if(req.user._id.equals(item.sender._id)) {
+				if (req.user._id.equals(item.sender._id)) {
 					item.delete({_id: req.params.id});
 					res.status(200).json({
 						success: true,

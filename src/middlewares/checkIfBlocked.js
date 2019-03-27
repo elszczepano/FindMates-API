@@ -4,14 +4,13 @@ import moment from 'moment';
 export default (req, res, next) => {
 	User.findById(req.user._id).select('+blocked +blockedTo')
 		.then(item => {
-			if(!item.blocked) next();
+			if (!item.blocked) next();
 			else {
-				if(moment(item.blockedTo).isBefore(moment())) {
+				if (moment(item.blockedTo).isBefore(moment())) {
 					const user = Object.assign(item, {blockedTo: null, blocked: false});
 					user.save();
 					next();
-				}
-				else {
+				} else {
 					res.status(403).json({
 						success: false,
 						message: `Access denied. User blocked to ${item.blockedTo}.`,

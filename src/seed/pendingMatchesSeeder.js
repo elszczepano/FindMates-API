@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
 import PendingMatch from '../models/PendingMatch';
 
-mongoose.connect('mongodb://localhost:27017/FindMates', { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost:27017/FindMates', {useNewUrlParser: true});
 mongoose.set('useCreateIndex', true);
-PendingMatch.deleteMany({}, err=> console.log(err));
+PendingMatch.deleteMany({}, err => console.log(err));
 
 const user1 = mongoose.Types.ObjectId();
 const user2 = mongoose.Types.ObjectId();
