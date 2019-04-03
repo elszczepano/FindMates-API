@@ -220,4 +220,3 @@ describe('Test errorTicketsController deleteOne method', () => {
 		});
 	});
 });
-

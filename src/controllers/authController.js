@@ -10,7 +10,6 @@ export default {
 			token: token
 		});
 	},
-
 	async register(req, res) {
 		const {name, email, phone, gender, birthDate, purpose, password, geometry} = req.body;
 		let profilePicture = '';

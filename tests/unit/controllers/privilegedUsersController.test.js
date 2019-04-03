@@ -299,4 +299,3 @@ describe('Test privilegedUsersController deleteOne method', () => {
 		});
 	});
 });
-
