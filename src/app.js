@@ -5,6 +5,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import helmet from 'helmet';
 import passport from './config/passport';
 import indexRouter from './routes/indexRouter';
 import matchesRouter from './routes/matchesRouter';
@@ -33,6 +34,7 @@ app.use(bodyParser.json());
 app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cors());
+app.use(helmet());
 
 //Setup routing
 app.use('/', indexRouter);
