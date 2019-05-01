@@ -21,11 +21,11 @@
 	},
 	"homepage": "https://github.com/elszczepano/FindMates-API#readme",
 	"devDependencies": {
-		"@babel/cli": "^7.2.3",
+		"@babel/cli": "^7.4.4",
 		"@babel/core": "^7.3.4",
 		"@babel/node": "^7.2.2",
 		"@babel/polyfill": "^7.2.5",
-		"@babel/preset-env": "^7.3.4",
+		"@babel/preset-env": "^7.4.4",
 		"@babel/register": "^7.0.0",
 		"axios": "^0.18.0",
 		"babel": "^6.23.0",
