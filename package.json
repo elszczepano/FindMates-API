@@ -38,7 +38,7 @@
 		"mongoose-delete": "^0.5.0",
 		"node-mocks-http": "^1.7.5",
 		"nodemon": "^1.18.10",
-		"nyc": "^13.3.0",
+		"nyc": "^14.1.1",
 		"passport-mock-strategy": "^1.1.1",
 		"rimraf": "^2.6.3",
 		"sinon": "^7.2.7"
