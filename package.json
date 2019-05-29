@@ -30,7 +30,7 @@
 		"axios": "^0.18.0",
 		"babel": "^6.23.0",
 		"chai": "^4.2.0",
-		"eslint": "^5.15.2",
+		"eslint": "^5.16.0",
 		"eslint-plugin-security": "^1.4.0",
 		"eslint-watch": "^5.1.2",
 		"faker": "^4.1.0",
