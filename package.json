@@ -41,7 +41,7 @@
 		"nyc": "^14.1.1",
 		"passport-mock-strategy": "^1.1.1",
 		"rimraf": "^2.6.3",
-		"sinon": "^7.2.7"
+		"sinon": "^7.3.2"
 	},
 	"dependencies": {
 		"async": "^2.6.2",
